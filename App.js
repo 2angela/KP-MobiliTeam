@@ -4,17 +4,25 @@ import { NavigationContainer } from "@react-navigation/native";
 import Home from "./app/Home";
 import Landing from "./app/Landing";
 import Notice from "./app/Notice";
-
+import {
+  useFonts,
+  Montserrat_300Light,
+  Montserrat_400Regular,
+  Montserrat_500Medium,
+  Montserrat_600SemiBold,
+  Montserrat_700Bold,
+  Montserrat_800ExtraBold,
+} from "@expo-google-fonts/montserrat";
 const Stack = createStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    MontserratThin: Montserrat_300Regular,
+    MontserratThin: Montserrat_300Light,
     MonserratRegular: Montserrat_400Regular,
     MontserratMedium: Montserrat_500Medium,
+    MontserratSemiBold: Montserrat_600SemiBold,
     MontserratBold: Montserrat_700Bold,
     MontserratExtraBold: Montserrat_800ExtraBold,
-    MontserratSemiBold: Montserrat_600SemiBold,
   });
   if (!fontsLoaded) {
     console.log("Loading fonts...");

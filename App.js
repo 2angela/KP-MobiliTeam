@@ -4,20 +4,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import Home from "./app/Home";
 import Landing from "./app/Landing";
 import Notice from "./app/Notice";
-import {
-  useFonts,
-  Montserrat_300Light,
-  Montserrat_400Regular,
-  Montserrat_500Medium,
-  Montserrat_600SemiBold,
-  Montserrat_700Bold,
-  Montserrat_800ExtraBold,
-} from "@expo-google-fonts/montserrat";
+
 const Stack = createStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    MontserratThin: Montserrat_300Light,
+    MontserratThin: Montserrat_300Regular,
     MonserratRegular: Montserrat_400Regular,
     MontserratMedium: Montserrat_500Medium,
     MontserratBold: Montserrat_700Bold,

@@ -1,6 +1,11 @@
 import { Text, StyleSheet, Pressable } from "react-native";
 
-export default function ButtonBlue({ label, action, marginTop, marginBottom }) {
+export default function ButtonClear({
+  label,
+  action,
+  marginTop,
+  marginBottom,
+}) {
   return (
     <Pressable
       style={({ pressed }) => [
@@ -26,7 +31,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "80%",
     paddingVertical: 10,
-    backgroundColor: "rgb(59, 59, 137)",
+    backgroundColor: "transparent",
+    borderColor: "white",
+    borderStyle: "solid",
+    borderWidth: 1,
     borderRadius: 30,
     shadowColor: "rgba(0, 0, 0, 0.25)",
     shadowOffset: {
@@ -35,10 +43,10 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 4,
     elevation: 4,
-    shadowOpacity: 1,
+    shadowOpacity: 0,
   },
   buttonPressed: {
-    backgroundColor: "#B1B1D0",
-    shadowOpacity: 0,
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    shadowOpacity: 1,
   },
 });

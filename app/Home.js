@@ -8,6 +8,11 @@ export default function Home({ navigation }) {
       <Button title="Back" onPress={() => navigation.goBack()} />
       <Button title="Landing" onPress={() => navigation.push("Landing")} />
       <Navigation screenName="Home" navigation={navigation} />
+      <Button title="Notice" onPress={() => navigation.push("Notice")} />
+      <Button title="ClockIn" onPress={() => navigation.push("ClockIn")} />
+      <Button title="ClockOut" onPress={() => navigation.push("ClockOut")} />
+
+
     </View>
   );
 }

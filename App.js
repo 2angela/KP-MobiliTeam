@@ -4,6 +4,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import Home from "./app/Home";
 import Landing from "./app/Landing";
 import Notice from "./app/Notice";
+import ClockIn from "./app/ClockIn"
+import ClockOut from "./app/ClockOut"
 import {
   useFonts,
   Montserrat_300Light,
@@ -39,6 +41,9 @@ export default function App() {
           <Stack.Screen name="Landing" component={Landing}></Stack.Screen>
           <Stack.Screen name="Home" component={Home}></Stack.Screen>
           <Stack.Screen name="Notice" component={Notice}></Stack.Screen>
+          <Stack.Screen name="ClockIn" component={ClockIn}></Stack.Screen>
+          <Stack.Screen name="ClockOut" component={ClockOut}></Stack.Screen>
+
         </Stack.Navigator>
       </NavigationContainer>
     );

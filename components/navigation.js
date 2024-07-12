@@ -1,42 +1,50 @@
-import { View, StyleSheet, Text, Button } from "react-native";
-import { Icon } from "react-native-paper";
+import { View, StyleSheet, Text, Button, Pressable } from "react-native";
+import Home from "../assets/icons/home_fill.svg";
+import Profile from "../assets/icons/account-circle.svg";
+import Bell from "../assets/icons/bell_fill.svg";
 
-export default function Navigation({ screenName, navigation }) {
-  function highlightTab(tabName) {
+export default function Navigation({ screenName, setCurrentScreen }) {
+  const highlightTab = (tabName) => {
     if (tabName == screenName) {
       return "#3B3B89";
     } else return "black";
-  }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.tabs}>
-        <View style={styles.tab}>
-          <Icon
-            source="home"
-            size="35"
-            color={highlightTab("Home")}
-            style={styles.icon}
-          ></Icon>
-          <Text>Home</Text>
-        </View>
-        <View style={styles.tab}>
-          <Icon
-            source="account-circle"
-            size="35"
-            color={highlightTab("Profile")}
-            style={styles.icon}
-          ></Icon>
-          <Text>Profile</Text>
-        </View>
+        <Pressable style={styles.tab} onPress={() => setCurrentScreen("Home")}>
+          <View
+            style={[
+              styles.line,
+              screenName == "Home" ? { display: "flex" } : { display: "none" },
+            ]}
+          />
+          <Home width="35px" height="35px" fill={highlightTab("Home")} />
+          <Text style={[styles.textStyle, { color: highlightTab("Home") }]}>
+            Home
+          </Text>
+        </Pressable>
+        <Pressable
+          style={styles.tab}
+          onPress={() => setCurrentScreen("Profile")}
+        >
+          <View
+            style={[
+              styles.line,
+              screenName == "Profile"
+                ? { display: "flex" }
+                : { display: "none" },
+            ]}
+          />
+          <Profile width="35px" height="35px" fill={highlightTab("Profile")} />
+          <Text style={[styles.textStyle, { color: highlightTab("Profile") }]}>
+            Profile
+          </Text>
+        </Pressable>
       </View>
-      <View style={styles.middleTab}>
-        <Icon
-          source="bell"
-          size="35"
-          color={highlightTab("Notify")}
-          style={styles.icon}
-        ></Icon>
-      </View>
+      <Pressable style={styles.middleTab}>
+        <Bell width="35px" height="35px" fill={highlightTab("Notify")} />
+      </Pressable>
     </View>
   );
 }
@@ -55,7 +63,8 @@ const styles = StyleSheet.create({
     width: "90%",
     backgroundColor: "white",
     borderRadius: 30,
-    paddingVertical: 15,
+    paddingTop: 10,
+    paddingBottom: 15,
     shadowColor: "rgba(59, 59, 137, 0.25)",
     shadowOffset: {
       width: 0,
@@ -79,6 +88,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
+  line: {
+    display: "flex",
+    width: "100%",
+    height: "3px",
+    borderWidth: 2,
+    borderColor: "rgb(59, 59, 137)",
+    borderRadius: 5,
+    marginBottom: 5,
+  },
   middleTab: {
     position: "absolute",
     bottom: "50%",
@@ -100,7 +118,9 @@ const styles = StyleSheet.create({
     shadowOpacity: "0.5",
     shadowRadius: "10",
   },
-  icon: {
-    borderRadius: 10,
+  textStyle: {
+    fontFamily: "MontserratRegular",
+    fontSize: 12,
+    textAlign: "center",
   },
 });

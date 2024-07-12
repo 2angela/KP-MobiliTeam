@@ -1,15 +1,19 @@
 import { View, Text, StyleSheet, Button } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useState } from "react";
 import Navigation from "../components/navigation";
+import Home from "./Home";
+import Profile from "./Profile";
 
-export default function Home({ navigation }) {
+export default function MainPage({ navigation }) {
+  const [activeScreen, setActiveScreen] = useState("Home");
   return (
     <View style={styles.container}>
-      <SafeAreaView>
-        <Text style={styles.text}>Home</Text>
-        <Button title="Back" onPress={() => navigation.goBack()} />
-        <Button title="Landing" onPress={() => navigation.push("Landing")} />
-      </SafeAreaView>
+      {activeScreen == "Home" ? <Home /> : <Profile />}
+      <Navigation
+        screenName={activeScreen}
+        navigation={navigation}
+        setCurrentScreen={setActiveScreen}
+      />
     </View>
   );
 }

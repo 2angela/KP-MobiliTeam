@@ -5,7 +5,6 @@ import {
   ImageBackground,
   Image,
   TextInput,
-  Pressable,
 } from "react-native";
 import { HelperText, Icon } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";

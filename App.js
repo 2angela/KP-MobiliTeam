@@ -1,10 +1,13 @@
 import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import Home from "./app/Home";
-import SignUp from "./app/SignUp";
 import Landing from "./app/Landing";
+import SignUp from "./app/SignUp";
+import MainPage from "./app/MainPage";
+import Home from "./app/Home";
+import Profile from "./app/Profile";
 import Notice from "./app/Notice";
+import Notify from "./app/Notify";
 import { useFonts } from "expo-font";
 import {
   Montserrat_300Light,
@@ -39,8 +42,11 @@ export default function App() {
         >
           <Stack.Screen name="Landing" component={Landing}></Stack.Screen>
           <Stack.Screen name="SignUp" component={SignUp}></Stack.Screen>
+          <Stack.Screen name="MainPage" component={MainPage}></Stack.Screen>
           <Stack.Screen name="Home" component={Home}></Stack.Screen>
+          <Stack.Screen name="Profile" component={Profile}></Stack.Screen>
           <Stack.Screen name="Notice" component={Notice}></Stack.Screen>
+          <Stack.Screen name="Notify" component={Notify}></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     );

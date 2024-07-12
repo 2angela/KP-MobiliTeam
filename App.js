@@ -2,10 +2,11 @@ import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Home from "./app/Home";
+import SignUp from "./app/SignUp";
 import Landing from "./app/Landing";
 import Notice from "./app/Notice";
+import { useFonts } from "expo-font";
 import {
-  useFonts,
   Montserrat_300Light,
   Montserrat_400Regular,
   Montserrat_500Medium,
@@ -17,8 +18,8 @@ const Stack = createStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    MontserratThin: Montserrat_300Light,
-    MonserratRegular: Montserrat_400Regular,
+    MontserratLight: Montserrat_300Light,
+    MontserratRegular: Montserrat_400Regular,
     MontserratMedium: Montserrat_500Medium,
     MontserratSemiBold: Montserrat_600SemiBold,
     MontserratBold: Montserrat_700Bold,
@@ -37,6 +38,7 @@ export default function App() {
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name="Landing" component={Landing}></Stack.Screen>
+          <Stack.Screen name="SignUp" component={SignUp}></Stack.Screen>
           <Stack.Screen name="Home" component={Home}></Stack.Screen>
           <Stack.Screen name="Notice" component={Notice}></Stack.Screen>
         </Stack.Navigator>

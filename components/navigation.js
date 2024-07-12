@@ -42,16 +42,25 @@ export default function Navigation({ screenName, setCurrentScreen }) {
           </Text>
         </Pressable>
       </View>
-      <Pressable style={styles.middleTab}>
-        <Bell width="35px" height="35px" fill={highlightTab("Notify")} />
+      <Pressable
+        style={({ pressed }) => [
+          styles.middleTab,
+          pressed ? { backgroundColor: "#3B3B89" } : null,
+        ]}
+      >
+        {({ pressed }) => {
+          return (
+            <Bell
+              width="35px"
+              height="35px"
+              fill={pressed ? "white" : "black"}
+            />
+          );
+        }}
       </Pressable>
     </View>
   );
 }
-
-const theme = {
-  roundness: 8,
-};
 
 const styles = StyleSheet.create({
   container: {

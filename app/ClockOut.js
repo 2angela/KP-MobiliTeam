@@ -15,30 +15,21 @@ export default function ClockOut({ navigation }) {
     return day + ", " + date + " " + month + " " + year; // format: d-m-y;
   };
 
-  const getCurrentMinute = () => {
-    var minute = new Date().getMinutes;
+  const getCurrentTime = () => {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    const seconds = String(now.getSeconds()).padStart(2, "0");
+    return { hours, minutes, seconds };
   };
 
-  const getCurrentHours = () => {
-    var hours = new Date().getHours.toString;
-  };
-
-  const [currentTime, setCurrentTime] = useState({
-    hours: "00",
-    minutes: "00",
-    seconds: "00",
-  });
-
+  const [currentTime, setCurrentTime] = useState(getCurrentTime());
   const [reason, setReason] = useState("");
   const [isReasonValid, setIsReasonValid] = useState(true);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const now = new Date();
-      const hours = String(now.getHours()).padStart(2, "0");
-      const minutes = String(now.getMinutes()).padStart(2, "0");
-      const seconds = String(now.getSeconds()).padStart(2, "0");
-      setCurrentTime({ hours, minutes, seconds });
+      setCurrentTime(getCurrentTime());
     }, 1000);
 
     return () => clearInterval(timer); // Cleanup the interval on component unmount
@@ -50,6 +41,13 @@ export default function ClockOut({ navigation }) {
       Alert.alert("Validation Error", "Please provide a reason.");
       return;
     }
+    // Handle clock-out logic here (e.g., API call, navigation)
+    // For now, let's just navigate back
+    navigation.goBack();
+  };
+
+  const handleCancel = () => {
+    navigation.goBack(); // Navigate back when "Cancel" button is pressed
   };
 
   return (
@@ -92,8 +90,8 @@ export default function ClockOut({ navigation }) {
           colorCenter="#00BCD4"
           colorHour="#3B3B89"
           colorMinutes="#3B3B89"
-          hour={getCurrentHours()}
-          minutes={getCurrentMinute()}
+          hour={parseInt(currentTime.hours)}
+          minutes={parseInt(currentTime.minutes)}
         ></AnalogClock>
       </View>
       <View
@@ -114,8 +112,8 @@ export default function ClockOut({ navigation }) {
         }}
       />
       <View style={{ display: "flex", flexDirection: "row", marginTop: 20 }}>
-        <ButtonMedium label="Cancel" action={handleClockOut} />
-        <ButtonMedium label="Clock Out" action={null} />
+        <ButtonMedium label="Cancel" action={handleCancel} />
+        <ButtonMedium label="Clock Out" action={handleClockOut} />
       </View>
     </KeyboardAwareScrollView>
   );

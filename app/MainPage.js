@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Button, SafeAreaView } from "react-native";
 import { useState } from "react";
 import Navigation from "../components/navigation";
 import Home from "./Home";
@@ -8,7 +8,11 @@ export default function MainPage({ navigation }) {
   const [activeScreen, setActiveScreen] = useState("Home");
   return (
     <View style={styles.container}>
-      {activeScreen == "Home" ? <Home /> : <Profile />}
+      {activeScreen == "Home" ? (
+        <Home navigation={navigation} />
+      ) : (
+        <Profile navigation={navigation} />
+      )}
       <Navigation
         screenName={activeScreen}
         navigation={navigation}
@@ -28,7 +32,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
   },
-  text: {
-    color: "#FFFFFF",
+  navBarContainer: {
+    display: "flex",
+    width: "100%",
+    alignItems: "center",
+    bottom: 0,
+    position: "fixed",
+    height: "auto",
   },
 });

@@ -1,5 +1,4 @@
 import { View, Text, StyleSheet, Button, Pressable } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useEffect, useState } from "react";
 import Clock from "../assets/icons/clock_fill.svg";
 import Add from "../assets/icons/add_fill.svg";
@@ -20,10 +19,39 @@ export default function Home({ navigation }) {
 
   // set menu dynamically
   const [menu, setMenu] = useState([
-    { title: "BBM", options: ["Entry", "List"], color: "#C6A969" },
-    { title: "COP", options: ["Entry", "List"], color: "#379777" },
-    { title: "AOR", options: ["Entry", "AOR 4-6", "Doc"], color: "#7D8ABC" },
-    { title: "Tower", options: ["New Site", "List"], color: "#7C3E66" },
+    {
+      title: "BBM",
+      options: [
+        { label: "Entry", screenName: "BBMEntry" },
+        { label: "List", screenName: "" },
+      ],
+      color: "#C6A969",
+    },
+    {
+      title: "COP",
+      options: [
+        { label: "Entry", screenName: "" },
+        { label: "List", screenName: "" },
+      ],
+      color: "#379777",
+    },
+    {
+      title: "AOR",
+      options: [
+        { label: "Entry", screenName: "" },
+        { label: "AOR 4-6", screenName: "" },
+        { label: "Doc", screenName: "" },
+      ],
+      color: "#7D8ABC",
+    },
+    {
+      title: "Tower",
+      options: [
+        { label: "New Site", screenName: "" },
+        { label: "List", screenName: "" },
+      ],
+      color: "#7C3E66",
+    },
   ]);
 
   const findIcon = (item) => {
@@ -41,22 +69,32 @@ export default function Home({ navigation }) {
     }
   };
 
-  // useEffect(() => {
-  //   //example changing task count values (without data fetching)
-  //   const newTasks = tasks.map((item) => {
-  //     if (item.category == "Done") {
-  //       return { ...item, count: 5 };
-  //     } else if (item.category == "On Progress") {
-  //       return { ...item, count: 2 };
-  //     } else if (item.category == "Cancelled") {
-  //       return { ...item, count: 1 };
-  //     } else {
-  //       return item;
-  //     }
-  //   });
-  //   setTasks(newTasks);
-  //   console.log(newTasks);
-  // }, []);
+  const handleMenuNavigation = (screenName) => {
+    if (screenName == "") {
+      console.error("No screen assigned");
+      return null;
+    } else {
+      return navigation.push(screenName);
+    }
+  };
+  useEffect(() => {
+    //example changing task count values (without fetching data from API/database)
+    // const newTasks = tasks.map((item) => {
+    //   if (item.category == "Done") {
+    //     return { ...item, count: 5 };
+    //   } else if (item.category == "On Progress") {
+    //     return { ...item, count: 2 };
+    //   } else if (item.category == "Cancelled") {
+    //     return { ...item, count: 1 };
+    //   } else {
+    //     return item;
+    //   }
+    // });
+    // setTasks(newTasks);
+    // console.log(newTasks);
+    const test = menu[0].options[0].screenName;
+    console.log(test, typeof test);
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -131,9 +169,10 @@ export default function Home({ navigation }) {
           </Pressable>
         </View>
         <View style={styles.tasks}>
-          {tasks.map((item) => {
+          {tasks.map((item, index) => {
             return (
               <Pressable
+                key={index}
                 style={({ pressed }) => [
                   styles.task,
                   pressed ? styles.clicked : null,
@@ -160,15 +199,16 @@ export default function Home({ navigation }) {
 
       {/* Menu */}
       <View style={[styles.menuContainer, styles.shadowXY0]}>
-        {menu.map((item) => {
+        {menu.map((item, index) => {
           return (
-            <View style={styles.menu}>
+            <View key={index} style={styles.menu}>
               <Text style={[styles.bold, styles.h2]}>{item.title}</Text>
               <View style={styles.menuBottom}>
                 {findIcon(item)}
-                {item.options.map((option) => {
+                {item.options.map((option, index) => {
                   return (
                     <Pressable
+                      key={index}
                       style={({ pressed }) => [
                         styles.menuButton,
                         { borderColor: item.color },
@@ -176,8 +216,11 @@ export default function Home({ navigation }) {
                           ? [{ backgroundColor: "#ECECEC" }, styles.shadowY1R4]
                           : null,
                       ]}
+                      onPress={() => handleMenuNavigation(option.screenName)}
                     >
-                      <Text style={[styles.regular, styles.p]}>{option}</Text>
+                      <Text style={[styles.regular, styles.p]}>
+                        {option.label}
+                      </Text>
                       <ChevronRight width="25" height="25" fill="black" />
                     </Pressable>
                   );

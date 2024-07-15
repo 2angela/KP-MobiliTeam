@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Button, Pressable } from "react-native";
+import { View, StyleSheet, Text, Pressable } from "react-native";
 import Home from "../assets/icons/home_fill.svg";
 import Profile from "../assets/icons/account-circle.svg";
 import Bell from "../assets/icons/bell_fill.svg";
@@ -81,7 +81,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: "0.5",
     shadowRadius: "10",
-    bottom: 30,
+    elevation: 1,
+    bottom: "2%",
     fontFamily: "MontserratRegular",
   },
   tab: {
@@ -118,6 +119,7 @@ const styles = StyleSheet.create({
     aspectRatio: 1 / 1,
     borderRadius: 100,
     borderColor: "rgba(59, 59, 137, 0.25)",
+    borderWidth: 1,
     backgroundColor: "white",
     shadowColor: "rgba(59, 59, 137, 0.5)",
     shadowOffset: {

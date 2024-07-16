@@ -26,7 +26,7 @@ export default function ButtonWhite({
       onPress={action}
     >
       {findIcon(label)}
-      <Text style={styles.buttonText}>Clear</Text>
+      <Text style={styles.buttonText}>{label}</Text>
     </Pressable>
   );
 }

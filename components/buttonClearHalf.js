@@ -1,6 +1,6 @@
 import { Text, StyleSheet, Pressable } from "react-native";
 
-export default function ButtonClear({
+export default function ButtonClearHalf({
   label,
   action,
   marginTop,
@@ -24,15 +24,15 @@ const styles = StyleSheet.create({
   buttonText: {
     fontFamily: "MontserratBold",
     fontSize: 16,
-    color: "white",
+    color: "black",
   },
   buttonStyle: {
     display: "flex",
     alignItems: "center",
-    width: "80%",
+    width: "40%",
     paddingVertical: 10,
     backgroundColor: "rgba(255, 255, 255, 0)",
-    borderColor: "white",
+    borderColor: "black",
     borderStyle: "solid",
     borderWidth: 1,
     borderRadius: 30,

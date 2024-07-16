@@ -1,6 +1,6 @@
 import { Text, StyleSheet, Pressable } from "react-native";
 
-export default function ButtonClear({
+export default function ButtonBlueHalf({
   label,
   action,
   marginTop,
@@ -29,12 +29,9 @@ const styles = StyleSheet.create({
   buttonStyle: {
     display: "flex",
     alignItems: "center",
-    width: "80%",
+    width: "40%",
     paddingVertical: 10,
-    backgroundColor: "rgba(255, 255, 255, 0)",
-    borderColor: "white",
-    borderStyle: "solid",
-    borderWidth: 1,
+    backgroundColor: "rgb(59, 59, 137)",
     borderRadius: 30,
     shadowColor: "rgba(0, 0, 0, 0.25)",
     shadowOffset: {
@@ -46,8 +43,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
   },
   buttonPressed: {
-    backgroundColor: "#D8D8E7",
+    backgroundColor: "#B1B1D0",
     shadowOpacity: 0,
-    borderColor: "transparent",
   },
 });

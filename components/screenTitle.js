@@ -5,7 +5,7 @@ import Back from "../assets/icons/back_fill.svg";
 export default function ScreenTitle({ screenName, navigation }) {
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => navigation.goBack()}>
+      <Pressable onPress={() => navigation.navigate("MainPage")}>
         <Back width="30" height="30" fill="black" />
       </Pressable>
       <Text style={styles.h1}>{screenName}</Text>

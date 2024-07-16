@@ -24,8 +24,6 @@ export default function Profile({ navigation }) {
       project: "IOH NPM",
     };
     setUser(userExample);
-    const date = new Date();
-    console.log(date.toLocaleString());
   }, []);
 
   return (

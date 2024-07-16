@@ -77,24 +77,23 @@ export default function Home({ navigation }) {
       return navigation.push(screenName);
     }
   };
-  useEffect(() => {
-    //example changing task count values (without fetching data from API/database)
-    // const newTasks = tasks.map((item) => {
-    //   if (item.category == "Done") {
-    //     return { ...item, count: 5 };
-    //   } else if (item.category == "On Progress") {
-    //     return { ...item, count: 2 };
-    //   } else if (item.category == "Cancelled") {
-    //     return { ...item, count: 1 };
-    //   } else {
-    //     return item;
-    //   }
-    // });
-    // setTasks(newTasks);
-    // console.log(newTasks);
-    const test = menu[0].options[0].screenName;
-    console.log(test, typeof test);
-  }, []);
+  // useEffect(() => {
+  //   //example changing task count values (without fetching data from API/database)
+  //   const newTasks = tasks.map((item) => {
+  //     if (item.category == "Done") {
+  //       return { ...item, count: 5 };
+  //     } else if (item.category == "On Progress") {
+  //       return { ...item, count: 2 };
+  //     } else if (item.category == "Cancelled") {
+  //       return { ...item, count: 1 };
+  //     } else {
+  //       return item;
+  //     }
+  //   });
+  //   setTasks(newTasks);
+  //   console.log(newTasks);
+  // }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>

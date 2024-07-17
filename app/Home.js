@@ -158,7 +158,10 @@ export default function Home({ navigation }) {
       <View style={styles.tasksContainer}>
         <View style={styles.taskHead}>
           <Text style={[styles.h2, styles.bold]}>Your Tasks</Text>
-          <Pressable style={styles.allTask}>
+          <Pressable
+            style={styles.allTask}
+            onPress={() => navigation.push("Tasks")}
+          >
             <Text
               style={[styles.p, styles.bold, { color: "rgb(59, 59, 137)" }]}
             >

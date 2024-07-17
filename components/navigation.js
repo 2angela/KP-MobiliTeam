@@ -3,7 +3,11 @@ import Home from "../assets/icons/home_fill.svg";
 import Profile from "../assets/icons/account-circle.svg";
 import Bell from "../assets/icons/bell_fill.svg";
 
-export default function Navigation({ screenName, setCurrentScreen }) {
+export default function Navigation({
+  navigation,
+  screenName,
+  setCurrentScreen,
+}) {
   const highlightTab = (tabName) => {
     if (tabName == screenName) {
       return "#3B3B89";
@@ -12,7 +16,13 @@ export default function Navigation({ screenName, setCurrentScreen }) {
   return (
     <View style={styles.container}>
       <View style={styles.tabs}>
-        <Pressable style={styles.tab} onPress={() => setCurrentScreen("Home")}>
+        <Pressable
+          style={styles.tab}
+          onPress={() => {
+            setCurrentScreen("Home");
+            navigation.navigate("MainPage");
+          }}
+        >
           <View
             style={[
               styles.line,
@@ -26,7 +36,10 @@ export default function Navigation({ screenName, setCurrentScreen }) {
         </Pressable>
         <Pressable
           style={styles.tab}
-          onPress={() => setCurrentScreen("Profile")}
+          onPress={() => {
+            setCurrentScreen("Profile");
+            navigation.navigate("MainPage");
+          }}
         >
           <View
             style={[

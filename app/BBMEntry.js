@@ -1,7 +1,6 @@
-import { View, Text, TextInput, StyleSheet, SafeAreaView } from "react-native";
+import { View, StyleSheet, SafeAreaView } from "react-native";
 import { useState, useRef } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { HelperText } from "react-native-paper";
 import ScreenTitle from "../components/screenTitle";
 import ButtonWhite from "../components/buttonWhite";
 import DropdownField from "../components/dropdownField";

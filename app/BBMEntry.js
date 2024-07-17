@@ -24,19 +24,33 @@ export default function BBMEntry({ navigation }) {
     return option == selected;
   };
 
+  const inputCategories = [
+    { category: "BBM Request Amount", unit: "liter" },
+    { category: "Fuel Meter", unit: "liter" },
+    { category: "Running Hour", unit: "hours" },
+  ];
+  const dropDownCategories = [
+    {
+      category: "Region",
+      options: ["Region 1", "Region 2", "Region 3"],
+    },
+    {
+      category: "Cluster",
+      options: ["Cluster 1", "Cluster 2", "Cluster 3"],
+    },
+    { category: "Site", options: ["Site 1", "Site 2", "Site 3"] },
+  ];
+
   const inputFormat = {
     region: "",
-    site: "",
     cluster: "",
+    site: "",
     volume: "",
-    fule: "",
+    fuel: "",
     runninghour: "",
-    createdAt: "",
   };
   const [input, setInput] = useState(inputFormat);
   const handleInputChange = (category, value) => {
-    console.log(category, value);
-    console.log(input);
     switch (category) {
       case "Region":
         setInput({ ...input, region: value });
@@ -60,33 +74,17 @@ export default function BBMEntry({ navigation }) {
         console.warn(`Unhandled category: ${category}`);
     }
   };
-  const inputCategories = [
-    { category: "BBM Request Amount", unit: "liter" },
-    { category: "Fuel Meter", unit: "liter" },
-    { category: "Running Hour", unit: "hours" },
-  ];
-  const dropDownCategories = [
-    {
-      category: "Region",
-      options: ["Region 1", "Region 2", "Region 3"],
-    },
-    {
-      category: "Cluster",
-      options: ["Cluster 1", "Cluster 2", "Cluster 3"],
-    },
-    { category: "Site", options: ["Site 1", "Site 2", "Site 3"] },
-  ];
   const clearInput = () => {
-    console.log(inputCategories);
     const temp = { ...inputFormat };
     setInput(temp);
+    setErrors(Array(numOfErrors).fill(false));
   };
 
   const handleSave = () => {
     // save input to app cache (?)
   };
 
-  const numOfErrors = 6; // set number of fields in the screen with error conditions
+  const numOfErrors = Object.keys(input).length; // set number of fields in the screen with error conditions
   const [errors, setErrors] = useState(Array(numOfErrors).fill(false));
   const validate = () => {
     // customize valid conditions here
@@ -99,34 +97,39 @@ export default function BBMEntry({ navigation }) {
       return isEmpty(value);
       // add more error checking here
     });
-    console.log("new errors array = ", newErrors);
 
     setErrors(newErrors);
     return newErrors.includes(true);
   };
   const handleSubmit = () => {
     const isInvalid = validate();
-    {
-      isInvalid
-        ? console.log("Some fields are empty!")
-        : navigation.push("MainPage");
+    if (isInvalid) {
+      console.log("Some fields are empty!");
+    } else {
+      const date = new Date();
+      setInput((prevState) => ({
+        ...prevState,
+        createdAt: date.toLocaleString(),
+      }));
+
+      navigation.push("MainPage");
     }
   };
 
-  const findValue = (category) => {
+  const findItem = (category) => {
     switch (category) {
       case "Region":
-        return input.region;
+        return { index: 0, value: input.region };
       case "Cluster":
-        return input.cluster;
+        return { index: 1, value: input.cluster };
       case "Site":
-        return input.site;
+        return { index: 2, value: input.site };
       case "BBM Request Amount":
-        return input.volume;
+        return { index: 3, value: input.volume };
       case "Fuel Meter":
-        return input.fuel;
+        return { index: 4, value: input.fuel };
       case "Running Hour":
-        return input.runninghour;
+        return { index: 5, value: input.runninghour };
       default:
         return undefined;
     }
@@ -146,7 +149,6 @@ export default function BBMEntry({ navigation }) {
           ]}
         >
           {dropDownCategories.map((item, index) => {
-            // console.log(item);
             return (
               <View key={index}>
                 <View
@@ -181,14 +183,14 @@ export default function BBMEntry({ navigation }) {
                     onChange={(e) => {
                       handleInputChange(item.category, e.value);
                     }}
-                    value={findValue(item.category)}
+                    value={findItem(item.category).value}
                     selectedTextStyle={styles.input}
                     activeColor="#D8D8E7"
                   />
                 </View>
                 <HelperText
                   type="error"
-                  visible={errors[index]}
+                  visible={errors[findItem(item.category).index]}
                   style={styles.helper}
                 >
                   This field cannot be empty
@@ -209,7 +211,9 @@ export default function BBMEntry({ navigation }) {
                     <View
                       style={[
                         styles.input2,
-                        errors[index] ? styles.fieldError : null,
+                        errors[findItem(item.category).index]
+                          ? styles.fieldError
+                          : null,
                       ]}
                     >
                       <TextInput
@@ -217,7 +221,8 @@ export default function BBMEntry({ navigation }) {
                         onChangeText={(e) =>
                           handleInputChange(item.category, e)
                         }
-                        value={findValue(item.category)}
+                        onBlur={validate}
+                        value={findItem(item.category).value}
                         inputMode="decimal"
                         clearButtonMode="while-editing"
                         enterKeyHint="next"
@@ -227,7 +232,7 @@ export default function BBMEntry({ navigation }) {
                   </View>
                   <HelperText
                     type="error"
-                    visible={errors[index]}
+                    visible={errors[findItem(item.category).index]}
                     style={styles.helper}
                   >
                     This field cannot be empty
@@ -253,7 +258,9 @@ export default function BBMEntry({ navigation }) {
                     <View
                       style={[
                         styles.input2,
-                        errors[index] ? styles.fieldError : null,
+                        errors[findItem(item.category).index]
+                          ? styles.fieldError
+                          : null,
                       ]}
                     >
                       <TextInput
@@ -261,7 +268,8 @@ export default function BBMEntry({ navigation }) {
                         onChangeText={(e) =>
                           handleInputChange(item.category, e)
                         }
-                        value={findValue(item.category)}
+                        onBlur={validate}
+                        value={findItem(item.category).value}
                         inputMode="decimal"
                         clearButtonMode="while-editing"
                         enterKeyHint="next"
@@ -271,7 +279,7 @@ export default function BBMEntry({ navigation }) {
                   </View>
                   <HelperText
                     type="error"
-                    visible={errors[index]}
+                    visible={errors[findItem(item.category).index]}
                     style={styles.helper}
                   >
                     This field cannot be empty

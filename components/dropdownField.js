@@ -6,38 +6,50 @@ import { AntDesign } from "@expo/vector-icons";
 
 export default function DropdownField({
   item,
-  findItem,
+  index,
   errors,
+  setErrors,
   active,
-  handleActiveState,
+  setActive,
+  findValue,
   handleInputChange,
   validate,
 }) {
-  const isEmpty = (input) => {
-    return input ? false : true;
+  const handleActiveState = (index) => {
+    const newActive = active.map((item, i) => (i == index ? !item : item)); // change state of the item to the opposite
+    setActive(newActive);
+    resetError(index);
   };
+
+  const resetError = (index) => {
+    const newErrors = errors.map((item, i) => (i == index ? false : item));
+    setErrors(newErrors);
+  };
+
   return (
     <Fragment>
       <View
         style={[
           styles.field,
-          active[findItem(item.category).index] && styles.fieldActive,
-          errors[findItem(item.category).index] && styles.fieldError,
+          active[index] ? styles.fieldActive : null,
+          errors[index] ? styles.fieldError : null,
         ]}
       >
         <View
           style={[
             styles.labelContainer,
-            !isEmpty(findItem(item.category).value) && styles.labelFilled,
-            active[findItem(item.category).index] && styles.labelActive,
+            findValue(item.category) != "" ? styles.labelFilled : null,
+            active[index] ? styles.labelActive : null,
           ]}
         >
           <Text
             style={[
               styles.label,
-              active[findItem(item.category).index] && {
-                color: "white",
-              },
+              active[index]
+                ? {
+                    color: "white",
+                  }
+                : null,
             ]}
           >
             {item.category}
@@ -47,10 +59,10 @@ export default function DropdownField({
           search
           style={styles.dropdown}
           onFocus={() => {
-            handleActiveState(findItem(item.category).index);
+            handleActiveState(index);
           }}
           onBlur={() => {
-            handleActiveState(findItem(item.category).index);
+            handleActiveState(index);
             validate();
           }}
           placeholder="Select"
@@ -68,16 +80,12 @@ export default function DropdownField({
           onChange={(e) => {
             handleInputChange(item.category, e.value);
           }}
-          value={findItem(item.category).value}
+          value={findValue(item.category)}
           selectedTextStyle={styles.input}
           activeColor="#D8D8E7"
         />
       </View>
-      <HelperText
-        type="error"
-        visible={errors[findItem(item.category).index]}
-        style={styles.helper}
-      >
+      <HelperText type="error" visible={errors[index]} style={styles.helper}>
         This field cannot be empty
       </HelperText>
     </Fragment>

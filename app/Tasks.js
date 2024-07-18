@@ -5,9 +5,9 @@ import TaskCard from "../components/taskCard";
 
 // data import
 import * as taskData from "../data/task.json";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
-export default function Tasks({ navigation }) {
+export default function Tasks({ navigation, view }) {
   const data = Object.values(taskData);
   const [currentView, setCurrentView] = useState("All");
   const filteredData = data.filter(
@@ -16,6 +16,11 @@ export default function Tasks({ navigation }) {
       (currentView == "On Progress" && item.status == "Pending") ||
       (currentView == "All" && item.status)
   );
+
+  useEffect(() => {
+    setCurrentView(view);
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScreenTitle screenName={"Your Tasks"} navigation={navigation} />

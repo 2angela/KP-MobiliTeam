@@ -38,7 +38,7 @@ export default function Home({ navigation }) {
     {
       title: "AOR",
       options: [
-        { label: "Entry", screenName: "" },
+        { label: "Entry", screenName: "AOREntry" },
         { label: "AOR 4-6", screenName: "" },
         { label: "Doc", screenName: "" },
       ],

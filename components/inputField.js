@@ -4,32 +4,44 @@ import { HelperText } from "react-native-paper";
 
 export default function InputField({
   item,
-  findItem,
+  index,
   errors,
+  setErrors,
   active,
-  handleActiveState,
+  setActive,
+  findValue,
   handleInputChange,
   validate,
 }) {
-  const isEmpty = (input) => {
-    return input ? false : true;
+  const handleActiveState = (index) => {
+    const newActive = active.map((item, i) => (i == index ? !item : item)); // change state of the item to the opposite
+    setActive(newActive);
+    resetError(index);
   };
+
+  const resetError = (index) => {
+    const newErrors = errors.map((item, i) => (i == index ? false : item));
+    setErrors(newErrors);
+  };
+
   return (
     <Fragment>
       <View style={styles.field}>
         <View
           style={[
             styles.labelContainer,
-            !isEmpty(findItem(item.category).value) && styles.labelFilled,
-            active[findItem(item.category).index] && styles.labelActive,
+            findValue(item.category) != "" ? styles.fieldActive : null,
+            active[index] ? styles.labelActive : null,
           ]}
         >
           <Text
             style={[
               styles.label,
-              active[findItem(item.category).index] && {
-                color: "white",
-              },
+              active[index]
+                ? {
+                    color: "white",
+                  }
+                : null,
             ]}
           >
             {item.category}
@@ -38,21 +50,21 @@ export default function InputField({
         <View
           style={[
             styles.input,
-            active[findItem(item.category).index] && styles.fieldActive,
-            errors[findItem(item.category).index] && styles.fieldError,
+            active[index] ? styles.fieldActive : null,
+            errors[index] ? styles.fieldError : null,
           ]}
         >
           <TextInput
             placeholder="XX"
             onChangeText={(e) => handleInputChange(item.category, e)}
             onFocus={() => {
-              handleActiveState(findItem(item.category).index);
+              handleActiveState(index);
             }}
             onBlur={() => {
-              handleActiveState(findItem(item.category).index);
+              handleActiveState(index);
               validate();
             }}
-            value={findItem(item.category).value}
+            value={findValue(item.category)}
             inputMode="decimal"
             clearButtonMode="while-editing"
             enterKeyHint="next"
@@ -60,11 +72,7 @@ export default function InputField({
         </View>
         <Text style={styles.inputUnit}>{item.unit}</Text>
       </View>
-      <HelperText
-        type="error"
-        visible={errors[findItem(item.category).index]}
-        style={styles.helper}
-      >
+      <HelperText type="error" visible={errors[index]} style={styles.helper}>
         This field cannot be empty
       </HelperText>
     </Fragment>
@@ -78,10 +86,6 @@ const styles = StyleSheet.create({
   },
   fieldActive: {
     borderColor: "#3B3B89",
-    borderWidth: 1,
-  },
-  labelFilled: {
-    borderColor: "#3B3B89",
     borderWidth: 2,
   },
   label: {
@@ -92,6 +96,7 @@ const styles = StyleSheet.create({
   labelActive: {
     backgroundColor: "#3B3B89",
     borderColor: "#3B3B89",
+    borderWidth: 2,
   },
   field: {
     display: "flex",

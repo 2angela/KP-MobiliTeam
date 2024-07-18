@@ -2,28 +2,14 @@ import { View, StyleSheet, SafeAreaView } from "react-native";
 import { useState, useRef } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import ScreenTitle from "../components/screenTitle";
-import ButtonWhite from "../components/buttonWhite";
 import DropdownField from "../components/dropdownField";
 import InputField from "../components/inputField";
 import ButtonClearHalf from "../components/buttonClearHalf";
 import ButtonBlueHalf from "../components/buttonBlueHalf";
+import ButtonWhite from "../components/buttonWhite";
 
 export default function BBMEntry({ navigation }) {
-  const numOfField = 6; // set number of fields in the screen with active/inactive states
-  // true if field is active (on Focus), false otherwise
-  const [active, setActive] = useState(Array(numOfField).fill(false));
-  const handleActiveState = (index) => {
-    const newActive = active.map((item, i) => (i == index ? !item : item)); // change state of the item to the opposite
-    setActive(newActive);
-    resetError(index);
-  };
-
-  const inputCategories = [
-    { category: "BBM Request Amount", unit: "liter" },
-    { category: "Fuel Meter", unit: "liter" },
-    { category: "Running Hour", unit: "hours" },
-  ];
-  const dropDownCategories = [
+  const categories = [
     {
       category: "Region",
       options: ["Region 1", "Region 2", "Region 3"],
@@ -33,7 +19,14 @@ export default function BBMEntry({ navigation }) {
       options: ["Cluster 1", "Cluster 2", "Cluster 3"],
     },
     { category: "Site", options: ["Site 1", "Site 2", "Site 3"] },
+    { category: "BBM Request Amount", unit: "liter" },
+    { category: "Fuel Meter", unit: "liter" },
+    { category: "Running Hour", unit: "hours" },
   ];
+
+  const numOfField = 6; // set number of fields in the screen with active/inactive states
+  // true if field is active (on Focus), false otherwise
+  const [active, setActive] = useState(Array(numOfField).fill(false));
 
   const inputFormat = {
     region: "",
@@ -81,15 +74,14 @@ export default function BBMEntry({ navigation }) {
 
   const numOfErrors = Object.keys(input).length; // set number of fields in the screen with error conditions
   const [errors, setErrors] = useState(Array(numOfErrors).fill(false));
-  const resetError = (index) => {
-    const newErrors = errors.map((item, i) => (i == index ? false : item));
-    setErrors(newErrors);
-  };
+
   // customize valid conditions here
   // example checking empty condition
   const isEmpty = (input) => {
     return input ? false : true;
   };
+
+  const firstSubmit = useRef(true);
   const validate = () => {
     if (!firstSubmit.current) {
       // check for errors
@@ -104,7 +96,6 @@ export default function BBMEntry({ navigation }) {
       return true;
     }
   };
-  const firstSubmit = useRef(true);
   const handleSubmit = () => {
     if (firstSubmit.current) {
       firstSubmit.current = false;
@@ -124,20 +115,20 @@ export default function BBMEntry({ navigation }) {
   };
 
   // find index and value of an item from its category
-  const findItem = (category) => {
+  const findValue = (category) => {
     switch (category) {
       case "Region":
-        return { index: 0, value: input.region };
+        return input.region;
       case "Cluster":
-        return { index: 1, value: input.cluster };
+        return input.cluster;
       case "Site":
-        return { index: 2, value: input.site };
+        return input.site;
       case "BBM Request Amount":
-        return { index: 3, value: input.volume };
+        return input.volume;
       case "Fuel Meter":
-        return { index: 4, value: input.fuel };
+        return input.fuel;
       case "Running Hour":
-        return { index: 5, value: input.runninghour };
+        return input.runninghour;
       default:
         return undefined;
     }
@@ -154,33 +145,38 @@ export default function BBMEntry({ navigation }) {
             { borderTopLeftRadius: 30, borderTopRightRadius: 30 },
           ]}
         >
-          {dropDownCategories.map((item, index) => {
-            return (
-              <View key={index}>
-                <DropdownField
-                  item={item}
-                  findItem={findItem}
-                  errors={errors}
-                  active={active}
-                  handleActiveState={handleActiveState}
-                  handleInputChange={handleInputChange}
-                  validate={validate}
-                />
-              </View>
-            );
+          {categories.map((item, index) => {
+            if (index <= 2)
+              return (
+                <View key={index}>
+                  <DropdownField
+                    item={item}
+                    index={index}
+                    errors={errors}
+                    setErrors={setErrors}
+                    active={active}
+                    setActive={setActive}
+                    findValue={findValue}
+                    handleInputChange={handleInputChange}
+                    validate={validate}
+                  />
+                </View>
+              );
           })}
         </View>
         <View style={styles.fieldsContainer}>
-          {inputCategories.map((item, index) => {
-            if (index < 2)
+          {categories.map((item, index) => {
+            if (index == 3 || index == 4)
               return (
                 <View key={index}>
                   <InputField
                     item={item}
-                    findItem={findItem}
+                    index={index}
                     errors={errors}
+                    setErrors={setErrors}
                     active={active}
-                    handleActiveState={handleActiveState}
+                    setActive={setActive}
+                    findValue={findValue}
                     handleInputChange={handleInputChange}
                     validate={validate}
                   />
@@ -194,16 +190,18 @@ export default function BBMEntry({ navigation }) {
             { borderBottomLeftRadius: 30, borderBottomRightRadius: 30 },
           ]}
         >
-          {inputCategories.map((item, index) => {
-            if (index == 2)
+          {categories.map((item, index) => {
+            if (index == 5)
               return (
                 <View key={index}>
                   <InputField
                     item={item}
-                    findItem={findItem}
+                    index={index}
                     errors={errors}
+                    setErrors={setErrors}
                     active={active}
-                    handleActiveState={handleActiveState}
+                    setActive={setActive}
+                    findValue={findValue}
                     handleInputChange={handleInputChange}
                     validate={validate}
                   />

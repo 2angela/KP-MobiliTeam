@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  Pressable,
   SafeAreaView,
   Image,
   TouchableOpacity,
@@ -12,12 +11,16 @@ import { TextInput } from "react-native-paper";
 import { Table, Row, Rows } from "react-native-table-component";
 import ButtonSmall from "../components/buttonsmall";
 import * as BBMdata from "../data/bbmreq.json";
-import { Icon } from "react-native-paper";
 import Search from "../assets/icons/search.svg";
 import Download from "../assets/icons/download.svg";
 import ButtonWhite from "../components/buttonWhite";
 import ArrowDown from "../assets/icons/arrow_down.svg";
 import ArrowUp from "../assets/icons/arrow_up.svg";
+import * as FileSystem from "expo-file-system";
+import * as Sharing from "expo-sharing";
+import * as XLSX from "xlsx";
+import Tabbar from "../components/tabbar";
+import ScreenTitle from "../components/screenTitle";
 
 export default function BBMRequest({ navigation }) {
   const [filter, setFilter] = useState("All");
@@ -25,20 +28,6 @@ export default function BBMRequest({ navigation }) {
   const [search, setSearch] = useState("");
   const data = Object.values(BBMdata);
 
-  const removeDefaultValues = (obj) => {
-    if (Array.isArray(obj)) {
-      return obj.map((item) => removeDefaultValues(item));
-    } else if (typeof obj === "object" && obj !== null) {
-      const newObj = {};
-      for (const key in obj) {
-        if (obj.hasOwnProperty(key) && obj[key] !== "default") {
-          newObj[key] = removeDefaultValues(obj[key]);
-        }
-      }
-      return newObj;
-    }
-    return obj;
-  };
   useEffect(() => {
     // console.log("type of data = ", typeof(BBMdata));
     // console.log("data = ", BBMdata);
@@ -53,15 +42,7 @@ export default function BBMRequest({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image
-            style={styles.arrowstyle}
-            source={require("../assets/arrowback.png")}
-          />
-        </TouchableOpacity>
-        <Text style={styles.titletext}>My BBM Request</Text>
-      </View>
+      <ScreenTitle screenName={"My BBM Request"} navigation={navigation} />
       <Tabbar selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
 
       {/* Filter Menu */}
@@ -71,25 +52,21 @@ export default function BBMRequest({ navigation }) {
             label="All"
             action={() => handleFilterChange("All")}
             selected={filter === "All"}
-            marginTop={0}
           />
           <ButtonSmall
             label="Pending"
             action={() => handleFilterChange("Pending")}
             selected={filter === "Pending"}
-            marginTop={0}
           />
           <ButtonSmall
             label="On-progress"
             action={() => handleFilterChange("On-progress")}
             selected={filter === "On-progress"}
-            marginTop={0}
           />
           <ButtonSmall
             label="Done"
             action={() => handleFilterChange("Done")}
             selected={filter === "Done"}
-            marginTop={0}
           />
         </View>
       )}
@@ -100,50 +77,6 @@ export default function BBMRequest({ navigation }) {
     </SafeAreaView>
   );
 }
-
-// Select view as list or table
-const Tabbar = ({ selectedTab, setSelectedTab }) => {
-  return (
-    <View style={groupStyles.tabBarContainerWrapper}>
-      <View style={groupStyles.tabBarContainer}>
-        <Pressable
-          style={[
-            groupStyles.tabItem,
-            selectedTab === "List" && groupStyles.selectedTab,
-          ]}
-          onPress={() => setSelectedTab("List")}
-        >
-          <Text
-            style={[
-              groupStyles.tabItemText,
-              selectedTab === "List" && groupStyles.selectedtext,
-            ]}
-          >
-            List
-          </Text>
-          {selectedTab === "List" && <View style={groupStyles.selectedLine} />}
-        </Pressable>
-        <Pressable
-          style={[
-            groupStyles.tabItem,
-            selectedTab === "Tabel" && groupStyles.selectedTab,
-          ]}
-          onPress={() => setSelectedTab("Tabel")}
-        >
-          <Text
-            style={[
-              groupStyles.tabItemText,
-              selectedTab === "Tabel" && groupStyles.selectedtext,
-            ]}
-          >
-            Tabel
-          </Text>
-          {selectedTab === "Tabel" && <View style={groupStyles.selectedLine} />}
-        </Pressable>
-      </View>
-    </View>
-  );
-};
 
 const getStatusColor = (status) => {
   switch (status) {
@@ -253,6 +186,12 @@ const TableTab = ({ data }) => {
 
   const columnNames = ["site", "volume", "date", "region", "status"];
 
+  const parseDate = (dateStr) => {
+    const [day, month, year] = dateStr.split("/");
+    const date = new Date(`${year}-${month}-${day}T00:00:00`);
+    return isNaN(date) ? null : date;
+  };
+
   const handleSort = (columnIndex) => {
     const direction =
       sortDirection.column === columnIndex && sortDirection.direction === "asc"
@@ -260,10 +199,21 @@ const TableTab = ({ data }) => {
         : "asc";
 
     const sortedData = [...tableData].sort((a, b) => {
-      if (direction === "asc") {
-        return a[columnIndex] > b[columnIndex] ? 1 : -1;
+      if (columnIndex === 2) {
+        const dateA = parseDate(a[columnIndex]);
+        const dateB = parseDate(b[columnIndex]);
+
+        if (dateA === null && dateB === null) return 0;
+        if (dateA === null) return direction === "asc" ? 1 : -1;
+        if (dateB === null) return direction === "asc" ? -1 : 1;
+
+        return direction === "asc" ? dateA - dateB : dateB - dateA;
       } else {
-        return a[columnIndex] < b[columnIndex] ? 1 : -1;
+        if (direction === "asc") {
+          return a[columnIndex] > b[columnIndex] ? 1 : -1;
+        } else {
+          return a[columnIndex] < b[columnIndex] ? 1 : -1;
+        }
       }
     });
 
@@ -289,10 +239,21 @@ const TableTab = ({ data }) => {
   };
 
   const handleDownload = async () => {
-    // const csvData = tableData.map(row => row.join(',')).join('\n');
-    // const fileUri = FileSystem.documentDirectory + 'tableData.csv';
-    // await FileSystem.writeAsStringAsync(fileUri, csvData);
-    // Sharing.shareAsync(fileUri);
+    const workbook = XLSX.utils.book_new();
+
+    const worksheetData = [columnNames, ...tableData];
+    const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+
+    const fileUri = FileSystem.documentDirectory + "BBMRequest.xlsx";
+    const wbout = XLSX.write(workbook, { type: "base64", bookType: "xlsx" });
+
+    await FileSystem.writeAsStringAsync(fileUri, wbout, {
+      encoding: FileSystem.EncodingType.Base64,
+    });
+
+    await Sharing.shareAsync(fileUri);
   };
 
   const renderHeader = (text, columnIndex) => {
@@ -518,13 +479,14 @@ const list = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginTop: 10,
+    marginTop: 15,
     paddingHorizontal: 10,
     borderWidth: 1,
     borderRadius: 20,
     paddingTop: 5,
     paddingBottom: 5,
     borderColor: "#ECECEC",
+    marginBottom: 10,
   },
   detailText: {
     fontFamily: "MontserratSemiBold",
@@ -532,7 +494,7 @@ const list = StyleSheet.create({
     color: "#000000",
   },
   verticalLine: {
-    height: "100%",
+    height: "180%",
     width: 1,
     backgroundColor: "#ECECEC",
   },
@@ -562,51 +524,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 20,
-  },
-});
-
-const groupStyles = StyleSheet.create({
-  tabBarContainerWrapper: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  tabBarContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    width: "90%",
-    borderBottomWidth: 2,
-    borderColor: "#d9d9d9",
-    paddingVertical: 10,
-  },
-  tabItem: {
-    alignItems: "center",
-    position: "relative",
-    flex: 1,
-  },
-  tabItemText: {
-    textAlign: "center",
-    color: "black",
-    fontSize: 16,
-    fontFamily: "MontserratRegular",
-  },
-  selectedTab: {
-    borderBottomWidth: 2,
-    borderBottomColor: "#FFFFFF",
-  },
-  selectedLine: {
-    position: "absolute",
-    height: 2,
-    width: "40%",
-    backgroundColor: "#3B3B89",
-    bottom: -17,
-    borderBottomWidth: 5,
-    borderRadius: 3,
-    borderColor: "#3B3B89",
-  },
-  selectedtext: {
-    textAlign: "center",
-    color: "black",
-    fontSize: 16,
-    fontFamily: "MontserratExtraBold",
+    gap: 10,
   },
 });

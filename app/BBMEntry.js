@@ -138,7 +138,7 @@ export default function BBMEntry({ navigation }) {
     <SafeAreaView style={styles.container}>
       <ScreenTitle screenName="BBM Request Entry" navigation={navigation} />
       <ButtonWhite label="Clear" action={clearInput} marginRight={20} />
-      <KeyboardAwareScrollView style={styles.innerContainer}>
+      <KeyboardAwareScrollView style={styles.innerContainer} bounces={false}>
         <View
           style={[
             styles.fieldsContainer,

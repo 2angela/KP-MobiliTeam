@@ -1,7 +1,14 @@
-import { View, StyleSheet, SafeAreaView, Text, Pressable } from "react-native";
+import {
+  View,
+  StyleSheet,
+  SafeAreaView,
+  Text,
+  Pressable,
+  ScrollView,
+  TextInput,
+} from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useState, useRef, Fragment } from "react";
-import Svg from "react-native-svg";
 import { inputFormat } from "../data/aorFormat";
 import ScreenTitle from "../components/screenTitle";
 import Back from "../assets/icons/back_fill.svg";
@@ -10,7 +17,10 @@ import ButtonWhite from "../components/buttonWhite";
 import DropdownField from "../components/dropdownField";
 import ButtonClearHalf from "../components/buttonClearHalf";
 import ButtonBlueHalf from "../components/buttonBlueHalf";
+import InputField from "../components/inputField";
 import NoPhoto from "../assets/no-photo.svg";
+import Connector from "../assets/connector.svg";
+import Divider from "../assets/divider.svg";
 
 export default function AOREntry({ navigation }) {
   const [currentScreen, setCurrentScreen] = useState("Site Information");
@@ -33,14 +43,44 @@ export default function AOREntry({ navigation }) {
       name: "Rigger Photo On Site",
       categories: ["Tower", "Rigger", "Tag"],
     },
-    { name: "Fuel Meter", categories: ["0", "30", "60"] },
+    {
+      name: "Fuel Meter",
+      categories: [
+        "0",
+        "30",
+        "60",
+        "90",
+        "120",
+        "150",
+        "180",
+        "210",
+        "240",
+        "270",
+        "300",
+        "330",
+      ],
+    },
     {
       name: "Antenna",
-      categories: ["Height SEC 1", "Type SEC 2", "Height SEC 3"],
+      categories: [
+        "Height SEC 1",
+        "Type SEC 1",
+        "Height SEC 2",
+        "Type SEC 2",
+        "Height SEC 3",
+        "Type SEC 3",
+      ],
     },
     {
       name: "Azimuth",
-      categories: ["SEC 1 = 0", "SEC 2 = 90", "SEC 3 = 270", "View SEC 1"],
+      categories: [
+        "SEC 1 = 0",
+        "SEC 2 = 90",
+        "SEC 3 = 270",
+        "View SEC 1",
+        "View SEC 2",
+        "View SEC 3",
+      ],
     },
     {
       name: "Tilting",
@@ -49,23 +89,25 @@ export default function AOREntry({ navigation }) {
         "E-Tilt SEC 1",
         "M-Tilt SEC 2",
         "E-Tilt SEC 1",
+        "M-Tilt SEC 3",
+        "E-Tilt SEC 3",
       ],
     },
     {
       name: "RF Config Azimuth",
-      categories: ["SEC 1", "SEC 2", "SEC 3"],
+      categories: ["SEC 1", "SEC 2", "SEC 3", "SEC 1", "SEC 2", "SEC 3"],
     },
     {
-      name: "AOR Capture Entry",
-      categories: ["SEC 1", "SEC 2", "SEC 3"],
+      name: "RF Config M-Tilt",
+      categories: ["SEC 1", "SEC 2", "SEC 3", "SEC 1", "SEC 2", "SEC 3"],
     },
     {
       name: "RF Config E-Tilt",
-      categories: ["SEC 1", "SEC 2", "SEC 3"],
+      categories: ["SEC 1", "SEC 2", "SEC 3", "SEC 1", "SEC 2", "SEC 3"],
     },
   ];
 
-  const numOfField = 6; // set number of fields in the screen with active/inactive states
+  const numOfField = 4; // set number of fields in the screen with active/inactive states
   // true if field is active (on Focus), false otherwise
   const [active, setActive] = useState(Array(numOfField).fill(false));
   const [input, setInput] = useState(inputFormat);
@@ -79,6 +121,9 @@ export default function AOREntry({ navigation }) {
         break;
       case "Site":
         setInput({ ...input, site: value });
+        break;
+      case "Frequency":
+        setInput({ ...input, azimuth: { ...input.azimuth, frequency: value } });
         break;
       default:
         console.warn(`Unhandled category: ${category}`);
@@ -177,12 +222,77 @@ export default function AOREntry({ navigation }) {
       if (!isFirstStep()) {
         setCurrentScreen(screenNames[index - 1]);
       }
+    } else if (direction == "submit") {
+      if (isLastStep()) {
+        navigation.navigate("Home");
+      }
     }
+  };
+
+  // different input styles
+  const inputStyle = (category, index) => {
+    if (category == "Antenna" || category == "Tilting") return "PhotoInput";
+    else if (category == "Azimuth" && index >= 0 && index <= 2)
+      return "PhotoInput";
+    else if (
+      category == "RF Config Azimuth" ||
+      category == "RF Config M-Tilt" ||
+      category == "RF Config E-Tilt"
+    )
+      return "BeforeAfter";
+    else return "Photo";
+  };
+
+  const [coordinate, setCoordinate] = useState([]);
+  const xScroll = useRef(0);
+  const yScroll = useRef(0);
+  const stepScroll = (index) => {
+    xScroll.current?.scrollTo({ x: coordinate[index] - 50, animated: true });
+    yScroll.current?.scrollToPosition(0, 0, true);
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <ScreenTitle screenName="AOR Capture Entry" navigation={navigation} />
+      <ScrollView
+        contentContainerStyle={styles.formSteps}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        alwaysBounceVertical={false}
+        ref={xScroll}
+      >
+        {getScreenNames().map((screen, index) => {
+          return (
+            <Fragment key={index}>
+              <Pressable
+                style={[
+                  styles.step,
+                  currentScreen == screen
+                    ? { backgroundColor: "#D8D8E7" }
+                    : null,
+                ]}
+                onLayout={(event) => {
+                  const layout = event.nativeEvent.layout;
+                  coordinate[index] = layout.x;
+                  console.log(layout.x);
+                }}
+                onPress={() => {
+                  stepScroll(index);
+                  setCurrentScreen(screen);
+                }}
+              >
+                <Text style={styles.label}>{screen}</Text>
+              </Pressable>
+              <Connector
+                height="100%"
+                zIndex="2"
+                display={index < getScreenNames().length - 1 ? "flex" : "none"}
+                marginHorizontal="-1%"
+              />
+            </Fragment>
+          );
+        })}
+      </ScrollView>
       <View style={styles.topButtons}>
         <ButtonWhite label="Clear" action={clearInput} marginRight={20} />
         {isFirstStep() ? null : (
@@ -193,7 +303,29 @@ export default function AOREntry({ navigation }) {
         )}
       </View>
 
-      <KeyboardAwareScrollView style={styles.innerContainer}>
+      {/* fields */}
+      <KeyboardAwareScrollView
+        style={styles.innerContainer}
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+        ref={yScroll}
+      >
+        {currentScreen == "Azimuth" ? (
+          <View style={styles.inputContainer}>
+            <InputField
+              item={{ category: "Frequency", unit: "Hz" }}
+              index="0"
+              errors={errors}
+              setErrors={setErrors}
+              active={active}
+              setActive={setActive}
+              findValue={findValue}
+              handleInputChange={handleInputChange}
+              validate={validate}
+            />
+          </View>
+        ) : null}
+
         <View style={styles.fieldsContainer}>
           {screens.map((item) => {
             // Site Information
@@ -201,9 +333,7 @@ export default function AOREntry({ navigation }) {
               currentScreen == "Site Information" &&
               item.name == currentScreen
             ) {
-              console.log("current screen =", item);
               return item.categories.map((category, index) => {
-                console.log(category.category);
                 return (
                   <View key={index}>
                     <DropdownField
@@ -220,38 +350,159 @@ export default function AOREntry({ navigation }) {
                   </View>
                 );
               });
-            } else if (item.name == currentScreen) {
-              console.log("current screen =", item);
+            }
+            // Photo Entries
+            else if (item.name == currentScreen) {
               return item.categories.map((category, index) => {
-                return (
-                  <Fragment key={index}>
-                    <Pressable style={styles.container2}>
-                      <NoPhoto
-                        width="50"
-                        height="50"
-                        marginTop={5}
-                        marginBottom={5}
-                      />
-                      <View style={styles.textContent}>
-                        <Text style={styles.title}>{category}</Text>
-                        <Text style={styles.capture}>Capture Photo</Text>
-                      </View>
-                      <View style={styles.cameraContainer}>
-                        <Camera
-                          width="100"
-                          height="100"
-                          fill="#3B3B89"
-                          right="-5%"
-                          top="5%"
+                if (inputStyle(item.name, index) == "Photo")
+                  return (
+                    <Fragment key={index}>
+                      <Pressable
+                        style={({ pressed }) => [
+                          styles.container2,
+                          pressed ? styles.fieldPressed : null,
+                        ]}
+                      >
+                        <NoPhoto
+                          width="50"
+                          height="50"
+                          marginTop={5}
+                          marginBottom={5}
+                          marginLeft="10%"
                         />
-                      </View>
-                    </Pressable>
-                  </Fragment>
-                );
+                        <View style={styles.textContent}>
+                          <Text style={styles.title}>
+                            {category.toUpperCase()}
+                          </Text>
+                          <Text style={styles.capture}>Capture Photo</Text>
+                        </View>
+                        <View
+                          style={[
+                            styles.cameraContainer,
+                            { borderBottomRightRadius: "30%" },
+                          ]}
+                        >
+                          <Camera
+                            width="100"
+                            height="100"
+                            fill="#3B3B89"
+                            right="-5%"
+                            top="5%"
+                          />
+                        </View>
+                      </Pressable>
+                    </Fragment>
+                  );
+                else if (inputStyle(item.name, index) == "PhotoInput") {
+                  return (
+                    <Fragment key={index}>
+                      <Pressable
+                        style={({ pressed }) => [
+                          styles.container4,
+                          pressed ? styles.fieldPressed : null,
+                        ]}
+                      >
+                        <View style={styles.container3}>
+                          <NoPhoto
+                            width="50"
+                            height="50"
+                            marginTop={5}
+                            marginBottom={5}
+                            marginLeft="10%"
+                          />
+                          <View style={styles.textContent}>
+                            <Text style={styles.title}>
+                              {category.toUpperCase()}
+                            </Text>
+                            <Text style={styles.capture}>Capture Photo</Text>
+                          </View>
+                        </View>
+                        <TextInput
+                          placeholder={category}
+                          style={[styles.input, styles.textStyle]}
+                          inputMode="decimal"
+                        />
+                        <View
+                          style={[
+                            styles.cameraContainer,
+                            { borderRadius: "47%" },
+                          ]}
+                        >
+                          <Camera
+                            width="100"
+                            height="100"
+                            fill="#3B3B89"
+                            right="-5%"
+                            top="5%"
+                          />
+                        </View>
+                      </Pressable>
+                    </Fragment>
+                  );
+                } else if (inputStyle(item.name, index) == "BeforeAfter") {
+                  return (
+                    <Fragment key={index}>
+                      {index == 0 ? (
+                        <View style={styles.divider}>
+                          <Text style={styles.dividerText}>BEFORE</Text>
+                          <Divider width="100%" />
+                        </View>
+                      ) : null}
+                      {index == 3 ? (
+                        <View style={[styles.divider, { marginTop: "5%" }]}>
+                          <Text style={styles.dividerText}>AFTER</Text>
+                          <Divider width="100%" />
+                        </View>
+                      ) : null}
+                      <Pressable
+                        style={({ pressed }) => [
+                          styles.container4,
+                          pressed ? styles.fieldPressed : null,
+                        ]}
+                      >
+                        <View style={styles.container3}>
+                          <NoPhoto
+                            width="50"
+                            height="50"
+                            marginTop={5}
+                            marginBottom={5}
+                            marginLeft="10%"
+                          />
+                          <View style={styles.textContent}>
+                            <Text style={styles.title}>
+                              {category.toUpperCase()}
+                            </Text>
+                            <Text style={styles.capture}>Capture Photo</Text>
+                          </View>
+                        </View>
+                        <TextInput
+                          placeholder={category}
+                          style={[styles.input, styles.textStyle]}
+                          inputMode="decimal"
+                        />
+                        <View
+                          style={[
+                            styles.cameraContainer,
+                            { borderRadius: "47%" },
+                          ]}
+                        >
+                          <Camera
+                            width="100"
+                            height="100"
+                            fill="#3B3B89"
+                            right="-5%"
+                            top="5%"
+                          />
+                        </View>
+                      </Pressable>
+                    </Fragment>
+                  );
+                }
               });
             }
           })}
         </View>
+        {/* buttons */}
         <View style={styles.buttonsContainer}>
           <ButtonClearHalf
             label={
@@ -261,10 +512,20 @@ export default function AOREntry({ navigation }) {
             marginTop={0}
             marginBottom={0}
           />
-          {isLastStep() ? null : (
+          {isLastStep() ? (
+            <ButtonBlueHalf
+              label="Submit"
+              action={() => handleStep("submit")}
+              marginTop={0}
+              marginBottom={0}
+            />
+          ) : (
             <ButtonBlueHalf
               label="Next"
-              action={() => handleStep("next")}
+              action={() => {
+                stepScroll(currentScreenIndex() + 1);
+                handleStep("next");
+              }}
               marginTop={0}
               marginBottom={0}
             />
@@ -284,6 +545,11 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     backgroundColor: "white",
+  },
+  inputContainer: {
+    display: "flex",
+    paddingHorizontal: 25,
+    marginTop: "5%",
   },
   innerContainer: {
     display: "flex",
@@ -323,15 +589,29 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     gap: 10,
+    paddingVertical: 10,
   },
-  container2: {
+  divider: {
     display: "flex",
-    flexDirection: "row",
     width: "100%",
     alignItems: "center",
+    justifyContent: "center",
+    gap: 5,
+  },
+  dividerText: {
+    fontFamily: "MontserratBold",
+    fontSize: 14,
+    letterSpacing: 4.2,
+    color: "#3B3B89",
+  },
+  fieldPressed: {
+    backgroundColor: "#ECECEC",
+  },
+  container4: {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
     backgroundColor: "white",
-    gap: 10,
-    paddingLeft: 30,
     borderRadius: 50,
     borderColor: "#B1B1D0",
     borderWidth: 1,
@@ -344,6 +624,43 @@ const styles = StyleSheet.create({
     elevation: 4,
     shadowOpacity: 1,
   },
+  container3: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    alignItems: "center",
+    gap: 10,
+  },
+  container2: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    width: "100%",
+    backgroundColor: "white",
+    gap: 10,
+    borderRadius: 50,
+    borderColor: "#B1B1D0",
+    borderWidth: 1,
+    shadowColor: "rgba(0, 0, 0, 0.25)",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowRadius: 2,
+    elevation: 4,
+    shadowOpacity: 1,
+  },
+  input: {
+    display: "flex",
+    width: "80%",
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: "#D8D8E7",
+    padding: 10,
+    marginHorizontal: "10%",
+    marginBottom: 5,
+  },
   textContent: {
     display: "flex",
     gap: 5,
@@ -351,7 +668,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "MontserratLight",
-    fontSize: 12,
+    fontSize: 11,
   },
   capture: {
     fontFamily: "MontserratBold",
@@ -359,11 +676,35 @@ const styles = StyleSheet.create({
   },
   cameraContainer: {
     opacity: 0.2,
-    width: 100,
+    display: "flex",
+    alignItems: "flex-end",
     height: "100%",
     position: "absolute",
     overflow: "hidden",
     right: 0,
-    borderBottomRightRadius: 30,
+    zIndex: -1,
+  },
+  formSteps: {
+    display: "flex",
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: "5%",
+    marginBottom: "10%",
+    paddingHorizontal: "5%",
+  },
+  step: {
+    display: "flex",
+    height: "100%",
+    borderColor: "#B1B1D0",
+    borderWidth: 1,
+    borderRadius: 50,
+    backgroundColor: "white",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+  },
+  label: {
+    fontFamily: "MontserratBold",
+    fontSize: 14,
   },
 });

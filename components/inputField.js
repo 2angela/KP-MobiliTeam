@@ -65,12 +65,12 @@ export default function InputField({
               validate();
             }}
             value={findValue(item.category)}
-            inputMode="decimal"
+            inputMode={item.unit ? "decimal" : "text"}
             clearButtonMode="while-editing"
             enterKeyHint="next"
           />
         </View>
-        <Text style={styles.inputUnit}>{item.unit}</Text>
+        {item.unit ? <Text style={styles.inputUnit}>{item.unit}</Text> : null}
       </View>
       <HelperText type="error" visible={errors[index]} style={styles.helper}>
         This field cannot be empty

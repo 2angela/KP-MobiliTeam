@@ -160,7 +160,7 @@ export default function Home({ navigation }) {
           <Text style={[styles.h2, styles.bold]}>Your Tasks</Text>
           <Pressable
             style={styles.allTask}
-            onPress={() => navigation.push("Tasks")}
+            onPress={() => navigation.push("Tasks", { view: "All" })}
           >
             <Text
               style={[styles.p, styles.bold, { color: "rgb(59, 59, 137)" }]}
@@ -179,6 +179,9 @@ export default function Home({ navigation }) {
                   styles.task,
                   pressed ? styles.clicked : null,
                 ]}
+                onPress={() =>
+                  navigation.push("Tasks", { view: item.category })
+                }
               >
                 <Text
                   style={[

@@ -51,7 +51,7 @@ export default function Profile({ navigation }) {
         </View>
         <ButtonBlue
           label="Sign Out"
-          action={null}
+          action={() => navigation.navigate("Landing")}
           marginTop={20}
           marginBottom={0}
         />

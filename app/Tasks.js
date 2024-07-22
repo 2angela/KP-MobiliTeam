@@ -7,7 +7,7 @@ import TaskCard from "../components/taskCard";
 import * as taskData from "../data/task.json";
 import { Fragment, useEffect, useState } from "react";
 
-export default function Tasks({ navigation, view }) {
+export default function Tasks({ navigation, route }) {
   const data = Object.values(taskData);
   const [currentView, setCurrentView] = useState("All");
   const filteredData = data.filter(
@@ -18,8 +18,10 @@ export default function Tasks({ navigation, view }) {
   );
 
   useEffect(() => {
-    setCurrentView(view);
-  }, []);
+    const viewRequest = route.params.view;
+    console.log(viewRequest);
+    setCurrentView(viewRequest);
+  }, [route.params]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -56,7 +58,7 @@ export default function Tasks({ navigation, view }) {
       >
         {filteredData.map((item, index) => {
           // omit last element (last element in json is default with empty values)
-          if (index < data.length - 1)
+          if (index < filteredData.length)
             return (
               <Fragment key={index}>
                 <TaskCard item={item} />

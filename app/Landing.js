@@ -63,7 +63,10 @@ export default function Landing({ navigation }) {
   };
 
   return (
-    <KeyboardAwareScrollView contentContainerStyle={styles.container}>
+    <KeyboardAwareScrollView
+      contentContainerStyle={styles.container}
+      bounces={false}
+    >
       <ImageBackground
         source={background}
         resizeMode="cover"

@@ -11,6 +11,7 @@ export const inputFormat = {
     input: [{ H1: "" }, { T1: "" }, { H2: "" }, { T2: "" }],
   },
   azimuth: {
+    frequency: "",
     photo: [
       { 0: "" },
       { 90: "" },

@@ -23,7 +23,7 @@
     "cluster": "Yogyakarta",
     "volume": 55,
     "runninghour": 25,
-    "status": "On-progress",
+    "status": "On-Progress",
     "createdAt": "03/07/2024, 10.40.18 AM"
   },
   {
@@ -50,7 +50,7 @@
     "cluster": "Kebumen",
     "volume": 25,
     "runninghour": 10,
-    "status": "On-progress",
+    "status": "On-Progress",
     "createdAt": "02/07/2024, 09.40.18 PM"
   },
   {

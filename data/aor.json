@@ -1,0 +1,914 @@
+[
+  {
+    "site": "BLA001",
+    "region": "Central Java",
+    "cluster": "Majene",
+    "namesite": "Majene_PS",
+    "status": "Ready",
+    "tanggalMinta": "02/07/2024, 09.40.18 PM",
+    "riggerPOS": [
+      {
+        "tower": null
+      },
+      {
+        "rigger": null
+      },
+      {
+        "tag": null
+      }
+    ],
+
+    "panoramic": [
+      {
+        "0": null
+      },
+      {
+        "30": null
+      },
+      {
+        "60": null
+      },
+      {
+        "90": null
+      },
+      {
+        "120": null
+      },
+      {
+        "150": null
+      },
+      {
+        "180": null
+      },
+      {
+        "210": null
+      },
+      {
+        "240": null
+      },
+      {
+        "270": null
+      },
+      {
+        "300": null
+      },
+      {
+        "330": null
+      }
+    ],
+    "antenna": [
+      {
+        "height1": null,
+        "photo_height1": null,
+        "type1": null,
+        "photo_type1": null
+      },
+      {
+        "height2": null,
+        "photo_height2": null,
+        "type2": null,
+        "photo_type2": null
+      },
+      {
+        "height3": null,
+        "photo_height3": null,
+        "type3": null,
+        "photo_type3": null
+      }
+    ],
+    "freqAzimuth": null,
+    "azimuth": [
+      {
+        "sec1": null,
+        "photo_sec1": null,
+        "photo_view_sec1": null
+      },
+      {
+        "sec2": null,
+        "photo_sec2": null,
+        "photo_view_sec2": null
+      },
+      {
+        "sec3": null,
+        "photo_sec3": null,
+        "photo_view_sec3": null
+      }
+    ],
+    "tilting": [
+      {
+        "mtilt_sec1": null,
+        "photo_mtilt_sec1": null,
+        "etilt_sec1": null,
+        "photo_etilt_sec1": null
+      },
+      {
+        "mtilt_sec2": null,
+        "photo_mtilt_sec2": null,
+        "etilt_sec2": null,
+        "photo_etilt_sec2": null
+      },
+      {
+        "mtilt_sec3": null,
+        "photo_mtilt_sec3": null,
+        "etilt_sec3": null,
+        "photo_etilt_sec3": null
+      }
+    ],
+    "rfConfigAzimuth": [
+      {
+        "before": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        },
+        "after": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        }
+      }
+    ],
+    "rfConfigMTilt": [
+      {
+        "before": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        },
+        "after": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        }
+      }
+    ],
+    "rfConfigETilt": [
+      {
+        "before": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        },
+        "after": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        }
+      }
+    ]
+  },
+  {
+    "site": "BLA002",
+    "region": "Central Java",
+    "cluster": "Yogyakarta",
+    "namesite": "Yogyakarta_PS",
+    "status": "On-Process",
+    "tanggalMinta": "02/07/2024, 09.40.18 PM",
+    "riggerPOS": [
+      {
+        "tower": null
+      },
+      {
+        "rigger": null
+      },
+      {
+        "tag": null
+      }
+    ],
+
+    "panoramic": [
+      {
+        "0": null
+      },
+      {
+        "30": null
+      },
+      {
+        "60": null
+      },
+      {
+        "90": null
+      },
+      {
+        "120": null
+      },
+      {
+        "150": null
+      },
+      {
+        "180": null
+      },
+      {
+        "210": null
+      },
+      {
+        "240": null
+      },
+      {
+        "270": null
+      },
+      {
+        "300": null
+      },
+      {
+        "330": null
+      }
+    ],
+    "antenna": [
+      {
+        "height1": null,
+        "photo_height1": null,
+        "type1": null,
+        "photo_type1": null
+      },
+      {
+        "height2": null,
+        "photo_height2": null,
+        "type2": null,
+        "photo_type2": null
+      },
+      {
+        "height3": null,
+        "photo_height3": null,
+        "type3": null,
+        "photo_type3": null
+      }
+    ],
+    "freqAzimuth": null,
+    "azimuth": [
+      {
+        "sec1": null,
+        "photo_sec1": null,
+        "photo_view_sec1": null
+      },
+      {
+        "sec2": null,
+        "photo_sec2": null,
+        "photo_view_sec2": null
+      },
+      {
+        "sec3": null,
+        "photo_sec3": null,
+        "photo_view_sec3": null
+      }
+    ],
+    "tilting": [
+      {
+        "mtilt_sec1": null,
+        "photo_mtilt_sec1": null,
+        "etilt_sec1": null,
+        "photo_etilt_sec1": null
+      },
+      {
+        "mtilt_sec2": null,
+        "photo_mtilt_sec2": null,
+        "etilt_sec2": null,
+        "photo_etilt_sec2": null
+      },
+      {
+        "mtilt_sec3": null,
+        "photo_mtilt_sec3": null,
+        "etilt_sec3": null,
+        "photo_etilt_sec3": null
+      }
+    ],
+    "rfConfigAzimuth": [
+      {
+        "before": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        },
+        "after": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        }
+      }
+    ],
+    "rfConfigMTilt": [
+      {
+        "before": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        },
+        "after": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        }
+      }
+    ],
+    "rfConfigETilt": [
+      {
+        "before": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        },
+        "after": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        }
+      }
+    ]
+  },
+  {
+    "site": "BLA003",
+    "region": "Central Java",
+    "cluster": "Solo",
+    "namesite": "Solo_PS",
+    "status": "Ready",
+    "tanggalMinta": "03/07/2024, 11.40.18 PM",
+    "riggerPOS": [
+      {
+        "tower": null
+      },
+      {
+        "rigger": null
+      },
+      {
+        "tag": null
+      }
+    ],
+
+    "panoramic": [
+      {
+        "0": null
+      },
+      {
+        "30": null
+      },
+      {
+        "60": null
+      },
+      {
+        "90": null
+      },
+      {
+        "120": null
+      },
+      {
+        "150": null
+      },
+      {
+        "180": null
+      },
+      {
+        "210": null
+      },
+      {
+        "240": null
+      },
+      {
+        "270": null
+      },
+      {
+        "300": null
+      },
+      {
+        "330": null
+      }
+    ],
+    "antenna": [
+      {
+        "height1": null,
+        "photo_height1": null,
+        "type1": null,
+        "photo_type1": null
+      },
+      {
+        "height2": null,
+        "photo_height2": null,
+        "type2": null,
+        "photo_type2": null
+      },
+      {
+        "height3": null,
+        "photo_height3": null,
+        "type3": null,
+        "photo_type3": null
+      }
+    ],
+    "freqAzimuth": null,
+    "azimuth": [
+      {
+        "sec1": null,
+        "photo_sec1": null,
+        "photo_view_sec1": null
+      },
+      {
+        "sec2": null,
+        "photo_sec2": null,
+        "photo_view_sec2": null
+      },
+      {
+        "sec3": null,
+        "photo_sec3": null,
+        "photo_view_sec3": null
+      }
+    ],
+    "tilting": [
+      {
+        "mtilt_sec1": null,
+        "photo_mtilt_sec1": null,
+        "etilt_sec1": null,
+        "photo_etilt_sec1": null
+      },
+      {
+        "mtilt_sec2": null,
+        "photo_mtilt_sec2": null,
+        "etilt_sec2": null,
+        "photo_etilt_sec2": null
+      },
+      {
+        "mtilt_sec3": null,
+        "photo_mtilt_sec3": null,
+        "etilt_sec3": null,
+        "photo_etilt_sec3": null
+      }
+    ],
+    "rfConfigAzimuth": [
+      {
+        "before": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        },
+        "after": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        }
+      }
+    ],
+    "rfConfigMTilt": [
+      {
+        "before": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        },
+        "after": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        }
+      }
+    ],
+    "rfConfigETilt": [
+      {
+        "before": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        },
+        "after": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        }
+      }
+    ]
+  },
+  {
+    "site": "BLA004",
+    "region": "Central Java",
+    "cluster": "Magelang",
+    "namesite": "Magelang_PS",
+    "status": "Ready",
+    "tanggalMinta": "02/07/2024, 09.40.18 PM",
+    "riggerPOS": [
+      {
+        "tower": null
+      },
+      {
+        "rigger": null
+      },
+      {
+        "tag": null
+      }
+    ],
+
+    "panoramic": [
+      {
+        "0": null
+      },
+      {
+        "30": null
+      },
+      {
+        "60": null
+      },
+      {
+        "90": null
+      },
+      {
+        "120": null
+      },
+      {
+        "150": null
+      },
+      {
+        "180": null
+      },
+      {
+        "210": null
+      },
+      {
+        "240": null
+      },
+      {
+        "270": null
+      },
+      {
+        "300": null
+      },
+      {
+        "330": null
+      }
+    ],
+    "antenna": [
+      {
+        "height1": null,
+        "photo_height1": null,
+        "type1": null,
+        "photo_type1": null
+      },
+      {
+        "height2": null,
+        "photo_height2": null,
+        "type2": null,
+        "photo_type2": null
+      },
+      {
+        "height3": null,
+        "photo_height3": null,
+        "type3": null,
+        "photo_type3": null
+      }
+    ],
+    "freqAzimuth": null,
+    "azimuth": [
+      {
+        "sec1": null,
+        "photo_sec1": null,
+        "photo_view_sec1": null
+      },
+      {
+        "sec2": null,
+        "photo_sec2": null,
+        "photo_view_sec2": null
+      },
+      {
+        "sec3": null,
+        "photo_sec3": null,
+        "photo_view_sec3": null
+      }
+    ],
+    "tilting": [
+      {
+        "mtilt_sec1": null,
+        "photo_mtilt_sec1": null,
+        "etilt_sec1": null,
+        "photo_etilt_sec1": null
+      },
+      {
+        "mtilt_sec2": null,
+        "photo_mtilt_sec2": null,
+        "etilt_sec2": null,
+        "photo_etilt_sec2": null
+      },
+      {
+        "mtilt_sec3": null,
+        "photo_mtilt_sec3": null,
+        "etilt_sec3": null,
+        "photo_etilt_sec3": null
+      }
+    ],
+    "rfConfigAzimuth": [
+      {
+        "before": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        },
+        "after": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        }
+      }
+    ],
+    "rfConfigMTilt": [
+      {
+        "before": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        },
+        "after": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        }
+      }
+    ],
+    "rfConfigETilt": [
+      {
+        "before": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        },
+        "after": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        }
+      }
+    ]
+  },
+  {
+    "site": "BLA005",
+    "region": "Central Java",
+    "cluster": "Kebumen",
+    "namesite": "Kebumen_PS",
+    "status": "On-Process",
+    "tanggalMinta": "02/07/2024, 09.40.18 PM",
+    "riggerPOS": [
+      {
+        "tower": null
+      },
+      {
+        "rigger": null
+      },
+      {
+        "tag": null
+      }
+    ],
+
+    "panoramic": [
+      {
+        "0": null
+      },
+      {
+        "30": null
+      },
+      {
+        "60": null
+      },
+      {
+        "90": null
+      },
+      {
+        "120": null
+      },
+      {
+        "150": null
+      },
+      {
+        "180": null
+      },
+      {
+        "210": null
+      },
+      {
+        "240": null
+      },
+      {
+        "270": null
+      },
+      {
+        "300": null
+      },
+      {
+        "330": null
+      }
+    ],
+    "antenna": [
+      {
+        "height1": null,
+        "photo_height1": null,
+        "type1": null,
+        "photo_type1": null
+      },
+      {
+        "height2": null,
+        "photo_height2": null,
+        "type2": null,
+        "photo_type2": null
+      },
+      {
+        "height3": null,
+        "photo_height3": null,
+        "type3": null,
+        "photo_type3": null
+      }
+    ],
+    "freqAzimuth": null,
+    "azimuth": [
+      {
+        "sec1": null,
+        "photo_sec1": null,
+        "photo_view_sec1": null
+      },
+      {
+        "sec2": null,
+        "photo_sec2": null,
+        "photo_view_sec2": null
+      },
+      {
+        "sec3": null,
+        "photo_sec3": null,
+        "photo_view_sec3": null
+      }
+    ],
+    "tilting": [
+      {
+        "mtilt_sec1": null,
+        "photo_mtilt_sec1": null,
+        "etilt_sec1": null,
+        "photo_etilt_sec1": null
+      },
+      {
+        "mtilt_sec2": null,
+        "photo_mtilt_sec2": null,
+        "etilt_sec2": null,
+        "photo_etilt_sec2": null
+      },
+      {
+        "mtilt_sec3": null,
+        "photo_mtilt_sec3": null,
+        "etilt_sec3": null,
+        "photo_etilt_sec3": null
+      }
+    ],
+    "rfConfigAzimuth": [
+      {
+        "before": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        },
+        "after": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        }
+      }
+    ],
+    "rfConfigMTilt": [
+      {
+        "before": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        },
+        "after": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        }
+      }
+    ],
+    "rfConfigETilt": [
+      {
+        "before": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        },
+        "after": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        }
+      }
+    ]
+  },
+  {
+    "site": "BLA006",
+    "region": "East Java",
+    "cluster": "Malang",
+    "namesite": "Malang_PS",
+    "status": "On-Process",
+    "tanggalMinta": "02/07/2024, 09.40.18 PM",
+    "riggerPOS": [
+      {
+        "tower": null
+      },
+      {
+        "rigger": null
+      },
+      {
+        "tag": null
+      }
+    ],
+
+    "panoramic": [
+      {
+        "0": null
+      },
+      {
+        "30": null
+      },
+      {
+        "60": null
+      },
+      {
+        "90": null
+      },
+      {
+        "120": null
+      },
+      {
+        "150": null
+      },
+      {
+        "180": null
+      },
+      {
+        "210": null
+      },
+      {
+        "240": null
+      },
+      {
+        "270": null
+      },
+      {
+        "300": null
+      },
+      {
+        "330": null
+      }
+    ],
+    "antenna": [
+      {
+        "height1": null,
+        "photo_height1": null,
+        "type1": null,
+        "photo_type1": null
+      },
+      {
+        "height2": null,
+        "photo_height2": null,
+        "type2": null,
+        "photo_type2": null
+      },
+      {
+        "height3": null,
+        "photo_height3": null,
+        "type3": null,
+        "photo_type3": null
+      }
+    ],
+    "freqAzimuth": null,
+    "azimuth": [
+      {
+        "sec1": null,
+        "photo_sec1": null,
+        "photo_view_sec1": null
+      },
+      {
+        "sec2": null,
+        "photo_sec2": null,
+        "photo_view_sec2": null
+      },
+      {
+        "sec3": null,
+        "photo_sec3": null,
+        "photo_view_sec3": null
+      }
+    ],
+    "tilting": [
+      {
+        "mtilt_sec1": null,
+        "photo_mtilt_sec1": null,
+        "etilt_sec1": null,
+        "photo_etilt_sec1": null
+      },
+      {
+        "mtilt_sec2": null,
+        "photo_mtilt_sec2": null,
+        "etilt_sec2": null,
+        "photo_etilt_sec2": null
+      },
+      {
+        "mtilt_sec3": null,
+        "photo_mtilt_sec3": null,
+        "etilt_sec3": null,
+        "photo_etilt_sec3": null
+      }
+    ],
+    "rfConfigAzimuth": [
+      {
+        "before": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        },
+        "after": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        }
+      }
+    ],
+    "rfConfigMTilt": [
+      {
+        "before": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        },
+        "after": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        }
+      }
+    ],
+    "rfConfigETilt": [
+      {
+        "before": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        },
+        "after": {
+          "input": [{ "sec1": null }, { "sec2": null }, { "sec3": null }],
+          "photo": [{ "sec1": null }, { "sec2": null }, { "sec3": null }]
+        }
+      }
+    ]
+  }
+]

@@ -21,45 +21,66 @@
       "330": null
     },
     "antenna": {
-      "photo": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" },
+      "photo": {
+        "H1": null,
+        "T1": null,
+        "H2": null,
+        "T2": null,
+        "H3": null,
+        "T3": null
+      },
       "input": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" }
     },
     "azimuth": {
       "frequency": "",
-      "photo": { "0": "", "90": "", "270": "", "V1": "", "V2": "", "V3": "" },
+      "photo": {
+        "0": null,
+        "90": null,
+        "270": null,
+        "V1": null,
+        "V2": null,
+        "V3": null
+      },
       "input": { "0": "", "90": "", "270": "" }
     },
     "tilting": {
-      "photo": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" },
+      "photo": {
+        "M1": null,
+        "E1": null,
+        "M2": null,
+        "E2": null,
+        "M3": null,
+        "E3": null
+      },
       "input": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" }
     },
     "rfConfigAzimuth": {
       "before": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       },
       "after": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       }
     },
     "rfConfigMTilt": {
       "before": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       },
       "after": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       }
     },
     "rfConfigETilt": {
       "before": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       },
       "after": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       }
     },
@@ -88,45 +109,66 @@
       "330": null
     },
     "antenna": {
-      "photo": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" },
+      "photo": {
+        "H1": null,
+        "T1": null,
+        "H2": null,
+        "T2": null,
+        "H3": null,
+        "T3": null
+      },
       "input": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" }
     },
     "azimuth": {
       "frequency": "",
-      "photo": { "0": "", "90": "", "270": "", "V1": "", "V2": "", "V3": "" },
+      "photo": {
+        "0": null,
+        "90": null,
+        "270": null,
+        "V1": null,
+        "V2": null,
+        "V3": null
+      },
       "input": { "0": "", "90": "", "270": "" }
     },
     "tilting": {
-      "photo": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" },
+      "photo": {
+        "M1": null,
+        "E1": null,
+        "M2": null,
+        "E2": null,
+        "M3": null,
+        "E3": null
+      },
       "input": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" }
     },
     "rfConfigAzimuth": {
       "before": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       },
       "after": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       }
     },
     "rfConfigMTilt": {
       "before": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       },
       "after": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       }
     },
     "rfConfigETilt": {
       "before": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       },
       "after": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       }
     },
@@ -155,45 +197,66 @@
       "330": null
     },
     "antenna": {
-      "photo": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" },
+      "photo": {
+        "H1": null,
+        "T1": null,
+        "H2": null,
+        "T2": null,
+        "H3": null,
+        "T3": null
+      },
       "input": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" }
     },
     "azimuth": {
       "frequency": "",
-      "photo": { "0": "", "90": "", "270": "", "V1": "", "V2": "", "V3": "" },
+      "photo": {
+        "0": null,
+        "90": null,
+        "270": null,
+        "V1": null,
+        "V2": null,
+        "V3": null
+      },
       "input": { "0": "", "90": "", "270": "" }
     },
     "tilting": {
-      "photo": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" },
+      "photo": {
+        "M1": null,
+        "E1": null,
+        "M2": null,
+        "E2": null,
+        "M3": null,
+        "E3": null
+      },
       "input": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" }
     },
     "rfConfigAzimuth": {
       "before": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       },
       "after": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       }
     },
     "rfConfigMTilt": {
       "before": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       },
       "after": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       }
     },
     "rfConfigETilt": {
       "before": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       },
       "after": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       }
     },
@@ -222,45 +285,66 @@
       "330": null
     },
     "antenna": {
-      "photo": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" },
+      "photo": {
+        "H1": null,
+        "T1": null,
+        "H2": null,
+        "T2": null,
+        "H3": null,
+        "T3": null
+      },
       "input": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" }
     },
     "azimuth": {
       "frequency": "",
-      "photo": { "0": "", "90": "", "270": "", "V1": "", "V2": "", "V3": "" },
+      "photo": {
+        "0": null,
+        "90": null,
+        "270": null,
+        "V1": null,
+        "V2": null,
+        "V3": null
+      },
       "input": { "0": "", "90": "", "270": "" }
     },
     "tilting": {
-      "photo": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" },
+      "photo": {
+        "M1": null,
+        "E1": null,
+        "M2": null,
+        "E2": null,
+        "M3": null,
+        "E3": null
+      },
       "input": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" }
     },
     "rfConfigAzimuth": {
       "before": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       },
       "after": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       }
     },
     "rfConfigMTilt": {
       "before": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       },
       "after": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       }
     },
     "rfConfigETilt": {
       "before": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       },
       "after": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       }
     },
@@ -289,45 +373,66 @@
       "330": null
     },
     "antenna": {
-      "photo": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" },
+      "photo": {
+        "H1": null,
+        "T1": null,
+        "H2": null,
+        "T2": null,
+        "H3": null,
+        "T3": null
+      },
       "input": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" }
     },
     "azimuth": {
       "frequency": "",
-      "photo": { "0": "", "90": "", "270": "", "V1": "", "V2": "", "V3": "" },
+      "photo": {
+        "0": null,
+        "90": null,
+        "270": null,
+        "V1": null,
+        "V2": null,
+        "V3": null
+      },
       "input": { "0": "", "90": "", "270": "" }
     },
     "tilting": {
-      "photo": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" },
+      "photo": {
+        "M1": null,
+        "E1": null,
+        "M2": null,
+        "E2": null,
+        "M3": null,
+        "E3": null
+      },
       "input": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" }
     },
     "rfConfigAzimuth": {
       "before": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       },
       "after": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       }
     },
     "rfConfigMTilt": {
       "before": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       },
       "after": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       }
     },
     "rfConfigETilt": {
       "before": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       },
       "after": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       }
     },
@@ -356,45 +461,66 @@
       "330": null
     },
     "antenna": {
-      "photo": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" },
+      "photo": {
+        "H1": null,
+        "T1": null,
+        "H2": null,
+        "T2": null,
+        "H3": null,
+        "T3": null
+      },
       "input": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" }
     },
     "azimuth": {
       "frequency": "",
-      "photo": { "0": "", "90": "", "270": "", "V1": "", "V2": "", "V3": "" },
+      "photo": {
+        "0": null,
+        "90": null,
+        "270": null,
+        "V1": null,
+        "V2": null,
+        "V3": null
+      },
       "input": { "0": "", "90": "", "270": "" }
     },
     "tilting": {
-      "photo": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" },
+      "photo": {
+        "M1": null,
+        "E1": null,
+        "M2": null,
+        "E2": null,
+        "M3": null,
+        "E3": null
+      },
       "input": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" }
     },
     "rfConfigAzimuth": {
       "before": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       },
       "after": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       }
     },
     "rfConfigMTilt": {
       "before": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       },
       "after": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       }
     },
     "rfConfigETilt": {
       "before": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       },
       "after": {
-        "input": { "S1": null, "S2": null, "S3": null },
+        "input": { "S1": "", "S2": "", "S3": "" },
         "photo": { "S1": null, "S2": null, "S3": null }
       }
     },

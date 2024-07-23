@@ -1,0 +1,404 @@
+[
+  {
+    "region": "Central Java",
+    "cluster": "Majene",
+    "site": "BLA001_Majene_PS",
+    "tower": null,
+    "rigger": null,
+    "tag": null,
+    "panoramic": {
+      "0": null,
+      "30": null,
+      "60": null,
+      "90": null,
+      "120": null,
+      "150": null,
+      "180": null,
+      "210": null,
+      "240": null,
+      "270": null,
+      "300": null,
+      "330": null
+    },
+    "antenna": {
+      "photo": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" },
+      "input": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" }
+    },
+    "azimuth": {
+      "frequency": "",
+      "photo": { "0": "", "90": "", "270": "", "V1": "", "V2": "", "V3": "" },
+      "input": { "0": "", "90": "", "270": "" }
+    },
+    "tilting": {
+      "photo": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" },
+      "input": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" }
+    },
+    "rfConfigAzimuth": {
+      "before": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      },
+      "after": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      }
+    },
+    "rfConfigMTilt": {
+      "before": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      },
+      "after": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      }
+    },
+    "rfConfigETilt": {
+      "before": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      },
+      "after": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      }
+    },
+    "createdAt": "02/07/2024, 09.40.18 PM",
+    "status": "Ready"
+  },
+  {
+    "region": "Central Java",
+    "cluster": "Yogyakarta",
+    "site": "BLA002_Yogyakarta_PS",
+    "tower": null,
+    "rigger": null,
+    "tag": null,
+    "panoramic": {
+      "0": null,
+      "30": null,
+      "60": null,
+      "90": null,
+      "120": null,
+      "150": null,
+      "180": null,
+      "210": null,
+      "240": null,
+      "270": null,
+      "300": null,
+      "330": null
+    },
+    "antenna": {
+      "photo": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" },
+      "input": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" }
+    },
+    "azimuth": {
+      "frequency": "",
+      "photo": { "0": "", "90": "", "270": "", "V1": "", "V2": "", "V3": "" },
+      "input": { "0": "", "90": "", "270": "" }
+    },
+    "tilting": {
+      "photo": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" },
+      "input": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" }
+    },
+    "rfConfigAzimuth": {
+      "before": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      },
+      "after": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      }
+    },
+    "rfConfigMTilt": {
+      "before": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      },
+      "after": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      }
+    },
+    "rfConfigETilt": {
+      "before": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      },
+      "after": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      }
+    },
+    "createdAt": "02/07/2024, 09.40.18 PM",
+    "status": "On-Process"
+  },
+  {
+    "region": "Central Java",
+    "cluster": "Solo",
+    "site": "BLA003_Solo_PS",
+    "tower": null,
+    "rigger": null,
+    "tag": null,
+    "panoramic": {
+      "0": null,
+      "30": null,
+      "60": null,
+      "90": null,
+      "120": null,
+      "150": null,
+      "180": null,
+      "210": null,
+      "240": null,
+      "270": null,
+      "300": null,
+      "330": null
+    },
+    "antenna": {
+      "photo": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" },
+      "input": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" }
+    },
+    "azimuth": {
+      "frequency": "",
+      "photo": { "0": "", "90": "", "270": "", "V1": "", "V2": "", "V3": "" },
+      "input": { "0": "", "90": "", "270": "" }
+    },
+    "tilting": {
+      "photo": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" },
+      "input": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" }
+    },
+    "rfConfigAzimuth": {
+      "before": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      },
+      "after": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      }
+    },
+    "rfConfigMTilt": {
+      "before": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      },
+      "after": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      }
+    },
+    "rfConfigETilt": {
+      "before": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      },
+      "after": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      }
+    },
+    "createdAt": "03/07/2024, 11.40.18 PM",
+    "status": "Ready"
+  },
+  {
+    "region": "Central Java",
+    "cluster": "Magelang",
+    "site": "BLA004_Magelang_PS",
+    "tower": null,
+    "rigger": null,
+    "tag": null,
+    "panoramic": {
+      "0": null,
+      "30": null,
+      "60": null,
+      "90": null,
+      "120": null,
+      "150": null,
+      "180": null,
+      "210": null,
+      "240": null,
+      "270": null,
+      "300": null,
+      "330": null
+    },
+    "antenna": {
+      "photo": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" },
+      "input": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" }
+    },
+    "azimuth": {
+      "frequency": "",
+      "photo": { "0": "", "90": "", "270": "", "V1": "", "V2": "", "V3": "" },
+      "input": { "0": "", "90": "", "270": "" }
+    },
+    "tilting": {
+      "photo": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" },
+      "input": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" }
+    },
+    "rfConfigAzimuth": {
+      "before": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      },
+      "after": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      }
+    },
+    "rfConfigMTilt": {
+      "before": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      },
+      "after": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      }
+    },
+    "rfConfigETilt": {
+      "before": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      },
+      "after": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      }
+    },
+    "createdAt": "02/07/2024, 09.40.18 PM",
+    "status": "Ready"
+  },
+  {
+    "region": "Central Java",
+    "cluster": "Kebumen",
+    "site": "BLA005_Kebumen_PS",
+    "tower": null,
+    "rigger": null,
+    "tag": null,
+    "panoramic": {
+      "0": null,
+      "30": null,
+      "60": null,
+      "90": null,
+      "120": null,
+      "150": null,
+      "180": null,
+      "210": null,
+      "240": null,
+      "270": null,
+      "300": null,
+      "330": null
+    },
+    "antenna": {
+      "photo": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" },
+      "input": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" }
+    },
+    "azimuth": {
+      "frequency": "",
+      "photo": { "0": "", "90": "", "270": "", "V1": "", "V2": "", "V3": "" },
+      "input": { "0": "", "90": "", "270": "" }
+    },
+    "tilting": {
+      "photo": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" },
+      "input": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" }
+    },
+    "rfConfigAzimuth": {
+      "before": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      },
+      "after": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      }
+    },
+    "rfConfigMTilt": {
+      "before": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      },
+      "after": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      }
+    },
+    "rfConfigETilt": {
+      "before": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      },
+      "after": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      }
+    },
+    "createdAt": "02/07/2024, 09.40.18 PM",
+    "status": "On-Process"
+  },
+  {
+    "region": "East Java",
+    "cluster": "Malang",
+    "site": "BLA006_Malang_PS",
+    "tower": null,
+    "rigger": null,
+    "tag": null,
+    "panoramic": {
+      "0": null,
+      "30": null,
+      "60": null,
+      "90": null,
+      "120": null,
+      "150": null,
+      "180": null,
+      "210": null,
+      "240": null,
+      "270": null,
+      "300": null,
+      "330": null
+    },
+    "antenna": {
+      "photo": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" },
+      "input": { "H1": "", "T1": "", "H2": "", "T2": "", "H3": "", "T3": "" }
+    },
+    "azimuth": {
+      "frequency": "",
+      "photo": { "0": "", "90": "", "270": "", "V1": "", "V2": "", "V3": "" },
+      "input": { "0": "", "90": "", "270": "" }
+    },
+    "tilting": {
+      "photo": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" },
+      "input": { "M1": "", "E1": "", "M2": "", "E2": "", "M3": "", "E3": "" }
+    },
+    "rfConfigAzimuth": {
+      "before": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      },
+      "after": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      }
+    },
+    "rfConfigMTilt": {
+      "before": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      },
+      "after": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      }
+    },
+    "rfConfigETilt": {
+      "before": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      },
+      "after": {
+        "input": { "S1": null, "S2": null, "S3": null },
+        "photo": { "S1": null, "S2": null, "S3": null }
+      }
+    },
+    "createdAt": "02/07/2024, 09.40.18 PM",
+    "status": "On-Process"
+  }
+]

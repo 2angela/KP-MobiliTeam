@@ -6,6 +6,7 @@ import {
   Pressable,
   ScrollView,
   TextInput,
+  Image,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useState, useRef, Fragment } from "react";
@@ -44,7 +45,7 @@ export default function AOREntry({ navigation }) {
       categories: ["Tower", "Rigger", "Tag"],
     },
     {
-      name: "Fuel Meter",
+      name: "Panoramic",
       categories: [
         "0",
         "30",
@@ -140,6 +141,7 @@ export default function AOREntry({ navigation }) {
     // save input to app cache (?)
   };
 
+  const handlePhotoUpload = (category, index, value) => {};
   const numOfErrors = Object.keys(input).length; // set number of fields in the screen with error conditions
   const [errors, setErrors] = useState(Array(numOfErrors).fill(false));
 
@@ -191,6 +193,10 @@ export default function AOREntry({ navigation }) {
         return input.cluster;
       case "Site":
         return input.site;
+      case "Frequency":
+        return input.azimuth.frequency;
+      case "Azimuth":
+        return input.azimuth.photo;
       default:
         return "";
     }

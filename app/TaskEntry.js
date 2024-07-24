@@ -3,15 +3,15 @@ import { useState, useRef } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import get from "lodash/get";
 import set from "lodash/set";
-import { bbmFormat as inputFormat } from "../data/inputFormat";
+import { taskFormat as inputFormat } from "../data/inputFormat";
 import ScreenTitle from "../components/screenTitle";
 import DropdownField from "../components/dropdownField";
-import NumberField from "../components/numberField";
+import TextField from "../components/textField";
 import ButtonClearHalf from "../components/buttonClearHalf";
 import ButtonBlueHalf from "../components/buttonBlueHalf";
 import ButtonWhite from "../components/buttonWhite";
 
-export default function BBMEntry({ navigation }) {
+export default function TaskEntry({ navigation }) {
   const categories = [
     {
       category: "Region",
@@ -22,9 +22,12 @@ export default function BBMEntry({ navigation }) {
       options: ["Cluster 1", "Cluster 2", "Cluster 3"],
     },
     { category: "Site", options: ["Site 1", "Site 2", "Site 3"] },
-    { category: "BBM Request Amount", unit: "liter" },
-    { category: "Fuel Meter", unit: "liter" },
-    { category: "Running Hour", unit: "hours" },
+    { category: "Task Type", options: ["Type 1", "Type 2", "Type 3"] },
+    {
+      category: "Task Category",
+      options: ["Category 1", "Category 2", "Category 3"],
+    },
+    { category: "Description" },
   ];
 
   const numOfField = categories.length; // set number of fields in the screen with active/inactive states
@@ -96,12 +99,12 @@ export default function BBMEntry({ navigation }) {
         return "cluster";
       case "Site":
         return "site";
-      case "BBM Request Amount":
-        return "volume";
-      case "Fuel Meter":
-        return "fuel";
-      case "Running Hour":
-        return "runninghour";
+      case "Task Type":
+        return "type";
+      case "Task Category":
+        return "category";
+      case "Description":
+        return "description";
       default:
         return undefined;
     }
@@ -113,7 +116,7 @@ export default function BBMEntry({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScreenTitle screenName="BBM Request Entry" navigation={navigation} />
+      <ScreenTitle screenName="New Task Entry" navigation={navigation} />
       <ButtonWhite label="Clear" action={clearInput} marginRight={20} />
       <KeyboardAwareScrollView style={styles.innerContainer} bounces={false}>
         <View
@@ -143,10 +146,10 @@ export default function BBMEntry({ navigation }) {
         </View>
         <View style={styles.fieldsContainer}>
           {categories.map((item, index) => {
-            if (index == 3 || index == 4)
+            if (index >= 3 && index <= 4)
               return (
                 <View key={index}>
-                  <NumberField
+                  <DropdownField
                     item={item}
                     index={index}
                     errors={errors}
@@ -171,7 +174,7 @@ export default function BBMEntry({ navigation }) {
             if (index == 5)
               return (
                 <View key={index}>
-                  <NumberField
+                  <TextField
                     item={item}
                     index={index}
                     errors={errors}
@@ -181,6 +184,7 @@ export default function BBMEntry({ navigation }) {
                     findValue={findValue}
                     handleInputChange={handleInputChange}
                     validate={validate}
+                    numOfLines={5}
                   />
                 </View>
               );

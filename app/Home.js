@@ -30,7 +30,7 @@ export default function Home({ navigation }) {
     {
       title: "COP",
       options: [
-        { label: "Entry", screenName: "" },
+        { label: "Entry", screenName: "COPEntry" },
         { label: "List", screenName: "" },
       ],
       color: "#379777",
@@ -47,7 +47,7 @@ export default function Home({ navigation }) {
     {
       title: "Tower",
       options: [
-        { label: "New Site", screenName: "" },
+        { label: "New Site", screenName: "NewSite" },
         { label: "List", screenName: "" },
       ],
       color: "#7C3E66",
@@ -137,6 +137,7 @@ export default function Home({ navigation }) {
             styles.shadowY4R10,
             pressed ? styles.clicked : null,
           ]}
+          onPress={() => navigation.push("TaskEntry")}
         >
           <View style={styles.addIconContainer}>
             <Add width="25" height="25" fill="white" />

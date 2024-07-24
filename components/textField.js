@@ -1,8 +1,9 @@
 import { Fragment } from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { TextInput } from "react-native-gesture-handler";
 import { HelperText } from "react-native-paper";
 
-export default function InputField({
+export default function TextField({
   item,
   index,
   errors,
@@ -12,6 +13,7 @@ export default function InputField({
   findValue,
   handleInputChange,
   validate,
+  numOfLines,
 }) {
   const handleActiveState = (index) => {
     const newActive = active.map((item, i) => (i == index ? !item : item)); // change state of the item to the opposite
@@ -26,11 +28,17 @@ export default function InputField({
 
   return (
     <Fragment>
-      <View style={styles.field}>
+      <View
+        style={[
+          styles.field,
+          active[index] ? styles.fieldActive : null,
+          errors[index] ? styles.fieldError : null,
+        ]}
+      >
         <View
           style={[
             styles.labelContainer,
-            findValue(item.category) != "" ? styles.fieldActive : null,
+            findValue(item.category) != "" ? styles.labelFilled : null,
             active[index] ? styles.labelActive : null,
           ]}
         >
@@ -47,30 +55,27 @@ export default function InputField({
             {item.category}
           </Text>
         </View>
-        <View
+        <TextInput
           style={[
-            styles.input,
-            active[index] ? styles.fieldActive : null,
-            errors[index] ? styles.fieldError : null,
+            styles.textInput,
+            numOfLines > 0 ? { marginTop: 5 } : { marginTop: 10 },
           ]}
-        >
-          <TextInput
-            placeholder="XX"
-            onChangeText={(e) => handleInputChange(item.category, e)}
-            onFocus={() => {
-              handleActiveState(index);
-            }}
-            onBlur={() => {
-              handleActiveState(index);
-              validate();
-            }}
-            value={findValue(item.category)}
-            inputMode={item.unit ? "decimal" : "text"}
-            clearButtonMode="while-editing"
-            enterKeyHint="next"
-          />
-        </View>
-        {item.unit ? <Text style={styles.inputUnit}>{item.unit}</Text> : null}
+          onFocus={() => {
+            handleActiveState(index);
+          }}
+          onBlur={() => {
+            handleActiveState(index);
+            validate();
+          }}
+          placeholder={item.category}
+          onChangeText={(e) => {
+            handleInputChange(item.category, e);
+          }}
+          value={findValue(item.category)}
+          clearButtonMode="while-editing"
+          multiline={numOfLines > 0}
+          rows={numOfLines}
+        />
       </View>
       <HelperText type="error" visible={errors[index]} style={styles.helper}>
         This field cannot be empty
@@ -80,13 +85,40 @@ export default function InputField({
 }
 
 const styles = StyleSheet.create({
+  field: {
+    display: "flex",
+    width: "100%",
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    marginTop: 10,
+    borderRadius: 10,
+    borderColor: "#B1B1D0",
+    borderWidth: 1,
+    backgroundColor: "white",
+  },
   fieldError: {
     borderColor: "red",
     borderWidth: 1,
   },
   fieldActive: {
     borderColor: "#3B3B89",
+    borderWidth: 1,
+  },
+  labelFilled: {
+    borderColor: "#3B3B89",
     borderWidth: 2,
+  },
+  labelContainer: {
+    display: "flex",
+    position: "absolute",
+    top: -15,
+    left: "5%",
+    backgroundColor: "white",
+    paddingVertical: 5,
+    paddingHorizontal: 30,
+    borderRadius: 10,
+    borderColor: "black",
+    borderWidth: 1,
   },
   label: {
     fontFamily: "MontserratBold",
@@ -96,42 +128,15 @@ const styles = StyleSheet.create({
   labelActive: {
     backgroundColor: "#3B3B89",
     borderColor: "#3B3B89",
-    borderWidth: 2,
   },
-  field: {
+  textInput: {
     display: "flex",
-    flexDirection: "row",
     width: "100%",
-  },
-  labelContainer: {
-    display: "flex",
-    flex: 3,
-    backgroundColor: "white",
-    borderColor: "black",
-    borderWidth: 1,
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10,
-    padding: 10,
-  },
-  input: {
-    display: "flex",
-    flex: 3,
     justifyContent: "center",
-    backgroundColor: "white",
-    borderColor: "#B1B1D0",
-    borderWidth: 1,
-    borderLeftColor: "transparent",
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
-    padding: 10,
-  },
-  inputUnit: {
-    display: "flex",
-    textAlign: "center",
-    alignSelf: "center",
-    flex: 1,
-    fontFamily: "MontserratSemiBold",
-    fontSize: 12,
+    alignItems: "center",
+    fontFamily: "MontserratRegular",
+    fontSize: 14,
+    color: "black",
   },
   helper: {
     fontFamily: "MontserratRegular",

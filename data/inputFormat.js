@@ -1,4 +1,44 @@
-export const inputFormat = {
+export const taskFormat = {
+  region: "",
+  cluster: "",
+  site: "",
+  type: "",
+  category: "",
+  description: "",
+};
+
+export const bbmFormat = {
+  region: "",
+  cluster: "",
+  site: "",
+  volume: "",
+  fuel: "",
+  runninghour: "",
+};
+
+export const copFormat = {
+  region: "",
+  cluster: "",
+  site: "",
+  sow: "",
+  parentactivity: "",
+  activity: "",
+  type: "",
+  cop: "",
+  visitamount: "",
+  resource: "",
+};
+
+export const siteFormat = {
+  site: "",
+  name: "",
+  latitude: "",
+  longitude: "",
+  region: "",
+  cluster: "",
+};
+
+export const aorFormat = {
   region: "",
   cluster: "",
   site: "",

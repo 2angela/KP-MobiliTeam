@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import get from "lodash/get";
 import set from "lodash/set";
-import { bbmFormat as inputFormat } from "../data/inputFormat";
+import { copFormat as inputFormat } from "../data/inputFormat";
 import ScreenTitle from "../components/screenTitle";
 import DropdownField from "../components/dropdownField";
 import NumberField from "../components/numberField";
@@ -11,7 +11,7 @@ import ButtonClearHalf from "../components/buttonClearHalf";
 import ButtonBlueHalf from "../components/buttonBlueHalf";
 import ButtonWhite from "../components/buttonWhite";
 
-export default function BBMEntry({ navigation }) {
+export default function COPEntry({ navigation }) {
   const categories = [
     {
       category: "Region",
@@ -22,9 +22,18 @@ export default function BBMEntry({ navigation }) {
       options: ["Cluster 1", "Cluster 2", "Cluster 3"],
     },
     { category: "Site", options: ["Site 1", "Site 2", "Site 3"] },
-    { category: "BBM Request Amount", unit: "liter" },
-    { category: "Fuel Meter", unit: "liter" },
-    { category: "Running Hour", unit: "hours" },
+    { category: "Sow", options: ["Sow 1", "Sow 2", "Sow 3"] },
+    {
+      category: "Parent Activity",
+      options: ["Parent 1", "Parent 2", "Parent 3"],
+    },
+    {
+      category: "Activity",
+      options: ["Activity 1", "Activity 2", "Activity 3"],
+    },
+    { category: "COP Type", options: ["Type 1", "Type 2", "Type 3"] },
+    { category: "COP", unit: "Rupiah" },
+    { category: "Visit Amount", unit: "" },
   ];
 
   const numOfField = categories.length; // set number of fields in the screen with active/inactive states
@@ -96,12 +105,18 @@ export default function BBMEntry({ navigation }) {
         return "cluster";
       case "Site":
         return "site";
-      case "BBM Request Amount":
-        return "volume";
-      case "Fuel Meter":
-        return "fuel";
-      case "Running Hour":
-        return "runninghour";
+      case "Sow":
+        return "sow";
+      case "Parent Activity":
+        return "parentactivity";
+      case "Activity":
+        return "activity";
+      case "COP Type":
+        return "type";
+      case "COP":
+        return "cop";
+      case "Visit Amount":
+        return "visitamount";
       default:
         return undefined;
     }
@@ -113,7 +128,7 @@ export default function BBMEntry({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScreenTitle screenName="BBM Request Entry" navigation={navigation} />
+      <ScreenTitle screenName="COP Request Entry" navigation={navigation} />
       <ButtonWhite label="Clear" action={clearInput} marginRight={20} />
       <KeyboardAwareScrollView style={styles.innerContainer} bounces={false}>
         <View
@@ -143,7 +158,43 @@ export default function BBMEntry({ navigation }) {
         </View>
         <View style={styles.fieldsContainer}>
           {categories.map((item, index) => {
-            if (index == 3 || index == 4)
+            if (index >= 3 && index <= 5)
+              return (
+                <View key={index}>
+                  <DropdownField
+                    item={item}
+                    index={index}
+                    errors={errors}
+                    setErrors={setErrors}
+                    active={active}
+                    setActive={setActive}
+                    findValue={findValue}
+                    handleInputChange={handleInputChange}
+                    validate={validate}
+                  />
+                </View>
+              );
+          })}
+        </View>
+        <View style={styles.fieldsContainer}>
+          {categories.map((item, index) => {
+            if (index == 6)
+              return (
+                <View key={index}>
+                  <DropdownField
+                    item={item}
+                    index={index}
+                    errors={errors}
+                    setErrors={setErrors}
+                    active={active}
+                    setActive={setActive}
+                    findValue={findValue}
+                    handleInputChange={handleInputChange}
+                    validate={validate}
+                  />
+                </View>
+              );
+            else if (index == 7)
               return (
                 <View key={index}>
                   <NumberField
@@ -168,7 +219,7 @@ export default function BBMEntry({ navigation }) {
           ]}
         >
           {categories.map((item, index) => {
-            if (index == 5)
+            if (index == 8)
               return (
                 <View key={index}>
                   <NumberField

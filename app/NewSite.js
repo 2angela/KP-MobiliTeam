@@ -3,16 +3,21 @@ import { useState, useRef } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import get from "lodash/get";
 import set from "lodash/set";
-import { bbmFormat as inputFormat } from "../data/inputFormat";
+import { siteFormat as inputFormat } from "../data/inputFormat";
 import ScreenTitle from "../components/screenTitle";
 import DropdownField from "../components/dropdownField";
 import NumberField from "../components/numberField";
+import TextField from "../components/textField";
 import ButtonClearHalf from "../components/buttonClearHalf";
 import ButtonBlueHalf from "../components/buttonBlueHalf";
 import ButtonWhite from "../components/buttonWhite";
 
-export default function BBMEntry({ navigation }) {
+export default function NewSite({ navigation }) {
   const categories = [
+    { category: "Site ID" },
+    { category: "Site Name" },
+    { category: "Latitude", unit: "degrees" },
+    { category: "Longitude", unit: "degrees" },
     {
       category: "Region",
       options: ["Region 1", "Region 2", "Region 3"],
@@ -21,10 +26,6 @@ export default function BBMEntry({ navigation }) {
       category: "Cluster",
       options: ["Cluster 1", "Cluster 2", "Cluster 3"],
     },
-    { category: "Site", options: ["Site 1", "Site 2", "Site 3"] },
-    { category: "BBM Request Amount", unit: "liter" },
-    { category: "Fuel Meter", unit: "liter" },
-    { category: "Running Hour", unit: "hours" },
   ];
 
   const numOfField = categories.length; // set number of fields in the screen with active/inactive states
@@ -90,18 +91,18 @@ export default function BBMEntry({ navigation }) {
 
   const findPath = (category) => {
     switch (category) {
+      case "Site ID":
+        return "site";
+      case "Site Name":
+        return "name";
+      case "Latitude":
+        return "latitude";
+      case "Longitude":
+        return "longitude";
       case "Region":
         return "region";
       case "Cluster":
         return "cluster";
-      case "Site":
-        return "site";
-      case "BBM Request Amount":
-        return "volume";
-      case "Fuel Meter":
-        return "fuel";
-      case "Running Hour":
-        return "runninghour";
       default:
         return undefined;
     }
@@ -113,7 +114,10 @@ export default function BBMEntry({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScreenTitle screenName="BBM Request Entry" navigation={navigation} />
+      <ScreenTitle
+        screenName="Register New Project Site"
+        navigation={navigation}
+      />
       <ButtonWhite label="Clear" action={clearInput} marginRight={20} />
       <KeyboardAwareScrollView style={styles.innerContainer} bounces={false}>
         <View
@@ -123,10 +127,10 @@ export default function BBMEntry({ navigation }) {
           ]}
         >
           {categories.map((item, index) => {
-            if (index <= 2)
+            if (index <= 1)
               return (
                 <View key={index}>
-                  <DropdownField
+                  <TextField
                     item={item}
                     index={index}
                     errors={errors}
@@ -136,6 +140,7 @@ export default function BBMEntry({ navigation }) {
                     findValue={findValue}
                     handleInputChange={handleInputChange}
                     validate={validate}
+                    numOfLines={0}
                   />
                 </View>
               );
@@ -143,7 +148,7 @@ export default function BBMEntry({ navigation }) {
         </View>
         <View style={styles.fieldsContainer}>
           {categories.map((item, index) => {
-            if (index == 3 || index == 4)
+            if (index >= 2 && index <= 3)
               return (
                 <View key={index}>
                   <NumberField
@@ -168,10 +173,10 @@ export default function BBMEntry({ navigation }) {
           ]}
         >
           {categories.map((item, index) => {
-            if (index == 5)
+            if (index >= 4)
               return (
                 <View key={index}>
-                  <NumberField
+                  <DropdownField
                     item={item}
                     index={index}
                     errors={errors}

@@ -11,6 +11,9 @@ import Notify from "./app/Notify";
 import BBMEntry from "./app/BBMEntry";
 import Tasks from "./app/Tasks";
 import AOREntry from "./app/AOREntry";
+import COPEntry from "./app/COPEntry";
+import NewSite from "./app/NewSite";
+import TaskEntry from "./app/TaskEntry";
 import { useFonts } from "expo-font";
 import {
   Montserrat_300Light,
@@ -53,6 +56,9 @@ export default function App() {
           <Stack.Screen name="BBMEntry" component={BBMEntry}></Stack.Screen>
           <Stack.Screen name="Tasks" component={Tasks}></Stack.Screen>
           <Stack.Screen name="AOREntry" component={AOREntry}></Stack.Screen>
+          <Stack.Screen name="COPEntry" component={COPEntry}></Stack.Screen>
+          <Stack.Screen name="NewSite" component={NewSite}></Stack.Screen>
+          <Stack.Screen name="TaskEntry" component={TaskEntry}></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     );

@@ -13,7 +13,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { useState, useRef, Fragment, useEffect } from "react";
 import set from "lodash/set";
 import cloneDeep from "lodash/cloneDeep";
-import { inputFormat } from "../data/aorFormat.js";
+import { aorFormat as inputFormat } from "../data/inputFormat.js";
 import ScreenTitle from "../components/screenTitle";
 import Back from "../assets/icons/back_fill.svg";
 import Camera from "../assets/icons/photo-camera.svg";
@@ -21,7 +21,7 @@ import ButtonWhite from "../components/buttonWhite";
 import DropdownField from "../components/dropdownField";
 import ButtonClearHalf from "../components/buttonClearHalf";
 import ButtonBlueHalf from "../components/buttonBlueHalf";
-import InputField from "../components/inputField";
+import NumberField from "../components/numberField.js";
 import NoPhoto from "../assets/no-photo.svg";
 import Connector from "../assets/connector.svg";
 import Divider from "../assets/divider.svg";
@@ -299,7 +299,7 @@ export default function AOREntry({ navigation }) {
   // customize valid conditions for dropdown and input fields here
   // example: checking empty condition
   const isEmpty = (input) => {
-    return input ? false : true;
+    return input || input !== "" ? false : true;
   };
   // error checking if found an empty field in one of the screen
   const foundEmpty = (category) => {
@@ -544,8 +544,8 @@ export default function AOREntry({ navigation }) {
       >
         {currentScreen == "Azimuth" ? (
           <View style={styles.inputContainer}>
-            <InputField
-              item={{ category: "Frequency", unit: "Hz" }}
+            <NumberField
+              item={{ category: "Frequency", unit: "Hertz" }}
               index="0"
               errors={errors}
               setErrors={setErrors}

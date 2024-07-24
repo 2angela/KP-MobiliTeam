@@ -2,7 +2,6 @@ import { Fragment } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import { HelperText } from "react-native-paper";
-import { AntDesign } from "@expo/vector-icons";
 
 export default function DropdownField({
   item,

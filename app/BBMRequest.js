@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { TextInput } from "react-native-paper";
 import { Table, Row, Rows } from "react-native-table-component";
@@ -97,8 +98,8 @@ const ListTab = ({ filter, data }) => {
   );
 
   return (
-    <View
-      style={{
+    <ScrollView
+      contentContainerStyle={{
         display: "flex",
         width: "100%",
         alignItems: "center",
@@ -158,7 +159,7 @@ const ListTab = ({ filter, data }) => {
               </View>
             </View>
           ))}
-    </View>
+    </ScrollView>
   );
 };
 
@@ -188,7 +189,7 @@ const TableTab = ({ data }) => {
 
   const parseDate = (dateStr) => {
     const [day, month, year] = dateStr.split("/");
-    const date = new Date(`${year}-${month}-${day}T00:00:00`);
+    const date = new Date(`${year}-${month}-${day}`);
     return isNaN(date) ? null : date;
   };
 

@@ -5,7 +5,6 @@ import {
   Text,
   Pressable,
   ScrollView,
-  Image,
   Modal,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -48,7 +47,7 @@ export default function AOREntry({ navigation }) {
       categories: ["Tower", "Rigger", "Tag"],
     },
     {
-      name: "Panoramic",
+      name: "Panoramic View",
       categories: [
         "0",
         "30",
@@ -150,7 +149,7 @@ export default function AOREntry({ navigation }) {
         temp.rigger = null;
         temp.tag = null;
         break;
-      case "Panoramic":
+      case "Panoramic View":
         temp.panoramic = cloneDeep(inputFormat.panoramic);
         break;
       case "Antenna":
@@ -184,16 +183,13 @@ export default function AOREntry({ navigation }) {
     // save input to app cache (?)
   };
 
-  // get random photo from Lorem Picsum
-  const randomPhoto = () => {
-    return "https://picsum.photos/50?random=1";
-  };
-
   // Get data path for the input (every input has different paths)
   const getInputPath = (screen, category, type, optionalType) => {
     let mainPath = "";
     switch (screen) {
-      case "Panoramic":
+      case "Panoramic View":
+        mainPath = "panoramic.";
+        break;
       case "Antenna":
       case "Azimuth":
       case "Tilting":
@@ -216,11 +212,12 @@ export default function AOREntry({ navigation }) {
         break;
     }
     const splitCategory = category[0] + category[category.length - 1];
+    const splitCategory2 = category[0] + category[4];
     const typePath = type + ".";
     switch (screen) {
       case "Rigger Photo On Site":
         return category.toLowerCase();
-      case "Panoramic":
+      case "Panoramic View":
         return mainPath + category;
       case "Antenna":
       case "Tilting":
@@ -229,7 +226,7 @@ export default function AOREntry({ navigation }) {
         return (
           mainPath +
           typePath +
-          `${category.includes("=") ? category.substring(8) : splitCategory}`
+          `${category.includes("=") ? splitCategory2 : splitCategory}`
         );
       case "RF Config Azimuth":
       case "RF Config M-Tilt":
@@ -279,11 +276,11 @@ export default function AOREntry({ navigation }) {
   // customize valid conditions for dropdown and input fields here
   // example: checking empty condition
   const isEmpty = (input) => {
-    return input || input !== "" ? false : true;
+    return input && input !== "" ? false : true;
   };
   // error checking if found an empty field in one of the screen
   const foundEmpty = (category) => {
-    let values = [];
+    let isEmptyValues = [];
     const isLeaf = (val) => {
       // is leaf if it's not an object or if it's null
       return typeof val !== "object" || val == null;
@@ -292,13 +289,13 @@ export default function AOREntry({ navigation }) {
       for (const key in currentObj) {
         const value = currentObj[key];
         if (isLeaf(value)) {
-          values.push(isEmpty(value));
+          isEmptyValues.push(isEmpty(value));
         } else traverse(value);
       }
     };
 
     traverse(category);
-    return values.includes(true);
+    return isEmptyValues.includes(true);
   };
 
   // only check errors after submit button is first pressed
@@ -308,6 +305,7 @@ export default function AOREntry({ navigation }) {
   const findErrorInScreens = () => {
     if (!firstSubmit.current) {
       const newErrorScreen = screens.map((screen) => {
+        console.log(input);
         switch (screen.name) {
           case "Site Information":
             console.log("checking site information... errors =", errors);
@@ -322,7 +320,7 @@ export default function AOREntry({ navigation }) {
               input.rigger === inputFormat.rigger ||
               input.tag === inputFormat.tag
             );
-          case "Panoramic":
+          case "Panoramic View":
             return foundEmpty(input.panoramic);
           case "Antenna":
             return (
@@ -455,6 +453,10 @@ export default function AOREntry({ navigation }) {
   // Error invalid data modal
   const [errorModal, setErrorModal] = useState(false);
 
+  // useEffect(() => {
+
+  // }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScreenTitle screenName="AOR Capture Entry" navigation={navigation} />
@@ -473,10 +475,10 @@ export default function AOREntry({ navigation }) {
               <Pressable
                 style={[
                   styles.step,
+                  errorScreen[index] ? styles.stepError : null,
                   currentScreen == screen
                     ? { backgroundColor: "#D8D8E7" }
                     : null,
-                  errorScreen[index] ? { borderColor: "red" } : null,
                 ]}
                 onLayout={(event) => {
                   const layout = event.nativeEvent.layout;
@@ -836,6 +838,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     paddingVertical: 10,
     paddingHorizontal: 20,
+  },
+  stepError: {
+    borderColor: "red",
+    backgroundColor: "#F3DDD7",
   },
   label: {
     fontFamily: "MontserratBold",

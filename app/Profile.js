@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     aspectRatio: 1 / 1,
     left: "35%",
     top: 80,
-    borderRadius: "100%",
+    borderRadius: 100,
   },
   innerContainer: {
     display: "flex",

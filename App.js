@@ -14,6 +14,7 @@ import AOREntry from "./app/AOREntry";
 import COPEntry from "./app/COPEntry";
 import NewSite from "./app/NewSite";
 import TaskEntry from "./app/TaskEntry";
+import AOR46 from "./app/AOR46";
 import { useFonts } from "expo-font";
 import {
   Montserrat_300Light,
@@ -59,6 +60,7 @@ export default function App() {
           <Stack.Screen name="COPEntry" component={COPEntry}></Stack.Screen>
           <Stack.Screen name="NewSite" component={NewSite}></Stack.Screen>
           <Stack.Screen name="TaskEntry" component={TaskEntry}></Stack.Screen>
+          <Stack.Screen name="AOR46" component={AOR46}></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     );

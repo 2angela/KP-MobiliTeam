@@ -91,6 +91,7 @@ export default function COPEntry({ navigation }) {
       setInput((prevState) => ({
         ...prevState,
         createdAt: date.toLocaleString(),
+        status: "Pending",
       }));
 
       navigation.push("MainPage");

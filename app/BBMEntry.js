@@ -1,8 +1,9 @@
 import { View, StyleSheet, SafeAreaView } from "react-native";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import get from "lodash/get";
 import set from "lodash/set";
+import RNFS from "react-native-fs";
 import { bbmFormat as inputFormat } from "../data/inputFormat";
 import ScreenTitle from "../components/screenTitle";
 import DropdownField from "../components/dropdownField";
@@ -82,10 +83,21 @@ export default function BBMEntry({ navigation }) {
       setInput((prevState) => ({
         ...prevState,
         createdAt: date.toLocaleString(),
+        status: "Pending",
       }));
-
-      navigation.push("MainPage");
+      writeFile(input);
     }
+  };
+  const filePath = RNFS.DocumentDirectoryPath + "/data/bbm.json";
+  const writeFile = (data) => {
+    RNFS.writeFile(filePath, data, "utf8")
+      .then((success) => {
+        console.log("Data written to file", filePath);
+        navigation.push("MainPage");
+      })
+      .catch((error) => {
+        console.error("Error while writing file", error);
+      });
   };
 
   const findPath = (category) => {
@@ -110,6 +122,10 @@ export default function BBMEntry({ navigation }) {
   const findValue = (category) => {
     return get(input, findPath(category));
   };
+
+  useEffect(() => {
+    console.log(filePath);
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>

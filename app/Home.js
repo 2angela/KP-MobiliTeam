@@ -39,7 +39,7 @@ export default function Home({ navigation }) {
       title: "AOR",
       options: [
         { label: "Entry", screenName: "AOREntry" },
-        { label: "AOR 4-6", screenName: "" },
+        { label: "AOR 4-6", screenName: "AOR46" },
         { label: "Doc", screenName: "" },
       ],
       color: "#7D8ABC",

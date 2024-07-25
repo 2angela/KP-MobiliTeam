@@ -85,6 +85,7 @@ export default function TaskEntry({ navigation }) {
       setInput((prevState) => ({
         ...prevState,
         createdAt: date.toLocaleString(),
+        status: "Pending",
       }));
 
       navigation.push("MainPage");

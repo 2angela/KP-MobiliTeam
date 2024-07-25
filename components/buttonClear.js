@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "80%",
     paddingVertical: 10,
-    backgroundColor: "transparent",
+    backgroundColor: "rgba(255, 255, 255, 0)",
     borderColor: "white",
     borderStyle: "solid",
     borderWidth: 1,
@@ -43,10 +43,11 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 4,
     elevation: 4,
-    shadowOpacity: 0,
+    shadowOpacity: 1,
   },
   buttonPressed: {
-    backgroundColor: "rgba(255, 255, 255, 0.3)",
-    shadowOpacity: 1,
+    backgroundColor: "#D8D8E7",
+    shadowOpacity: 0,
+    borderColor: "transparent",
   },
 });

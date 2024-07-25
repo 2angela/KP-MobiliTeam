@@ -4,14 +4,13 @@ import {
   Text,
   StyleSheet,
   SafeAreaView,
-  Image,
   TouchableOpacity,
   ScrollView,
 } from "react-native";
 import { TextInput } from "react-native-paper";
 import { Table, Row, Rows } from "react-native-table-component";
-import ButtonSmall from "../components/buttonsmall";
-import * as BBMdata from "../data/bbmreq.json";
+import ButtonSmall from "../components/buttonSmall";
+import * as BBMdata from "../data/bbm.json";
 import Search from "../assets/icons/search.svg";
 import Download from "../assets/icons/download.svg";
 import ButtonWhite from "../components/buttonWhite";

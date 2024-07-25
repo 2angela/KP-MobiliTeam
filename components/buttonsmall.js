@@ -1,16 +1,27 @@
 import { Text, StyleSheet, Pressable } from "react-native";
 
-export default function ButtonSmall({ label, action, marginTop, selected }) {
+export default function ButtonSmall({
+  label,
+  action,
+  selected,
+  selectedColor,
+}) {
   return (
     <Pressable
       style={[
         styles.buttonStyle,
-        { marginTop: marginTop },
-        selected ? styles.buttonSelected : null,
+        selected && { backgroundColor: selectedColor, shadowOpacity: 0 },
       ]}
       onPress={action}
     >
-      <Text style={styles.buttonText}>{label}</Text>
+      <Text
+        style={[
+          styles.buttonText,
+          selected && label == "All" ? { color: "white" } : null,
+        ]}
+      >
+        {label}
+      </Text>
     </Pressable>
   );
 }
@@ -18,22 +29,16 @@ export default function ButtonSmall({ label, action, marginTop, selected }) {
 const styles = StyleSheet.create({
   buttonText: {
     fontFamily: "MontserratSemiBold",
-    fontSize: 10,
-    color: "white",
+    fontSize: 11,
+    color: "black",
   },
   buttonStyle: {
     display: "flex",
     alignItems: "center",
     width: "20%",
-    paddingVertical: 12,
-    backgroundColor: "#B1B1D0",
+    paddingVertical: 10,
+    backgroundColor: "#ECECEC",
     borderRadius: 40,
     elevation: 4,
-    marginLeft: 10,
-    marginRight: 0,
-  },
-  buttonSelected: {
-    backgroundColor: "#3B3B89",
-    shadowOpacity: 0,
   },
 });

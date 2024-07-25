@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Button, SafeAreaView } from "react-native";
 import { useState } from "react";
 import Navigation from "../components/navigation";
 import Home from "./Home";
-// import Profile from "./Profile";
+import Profile from "./Profile";
 
 export default function MainPage({ navigation }) {
   const [activeScreen, setActiveScreen] = useState("Home");

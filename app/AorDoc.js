@@ -123,23 +123,23 @@ const TableTab = ({ data, selectedTab }) => {
     setSearchQuery("");
   };
 
-  const handleDownload = async () => {
-    const workbook = XLSX.utils.book_new();
+  // const handleDownload = async () => {
+  //   const workbook = XLSX.utils.book_new();
 
-    const worksheetData = [columnNames, ...tableData];
-    const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+  //   const worksheetData = [columnNames, ...tableData];
+  //   const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
 
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+  //   XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
 
-    const fileUri = FileSystem.documentDirectory + "Project_Site_List.xlsx";
-    const wbout = XLSX.write(workbook, { type: "base64", bookType: "xlsx" });
+  //   const fileUri = FileSystem.documentDirectory + "Project_Site_List.xlsx";
+  //   const wbout = XLSX.write(workbook, { type: "base64", bookType: "xlsx" });
 
-    await FileSystem.writeAsStringAsync(fileUri, wbout, {
-      encoding: FileSystem.EncodingType.Base64,
-    });
+  //   await FileSystem.writeAsStringAsync(fileUri, wbout, {
+  //     encoding: FileSystem.EncodingType.Base64,
+  //   });
 
-    await Sharing.shareAsync(fileUri);
-  };
+  //   await Sharing.shareAsync(fileUri);
+  // };
 
   const renderHeader = (text, columnIndex) => {
     const getSortImage = () => {

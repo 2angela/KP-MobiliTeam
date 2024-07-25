@@ -34,14 +34,14 @@
     "azimuth": {
       "frequency": "",
       "photo": {
-        "0": null,
-        "90": null,
-        "270": null,
+        "S1": null,
+        "S2": null,
+        "S3": null,
         "V1": null,
         "V2": null,
         "V3": null
       },
-      "input": { "0": "", "90": "", "270": "" }
+      "input": { "S1": "", "S2": "", "S3": "" }
     },
     "tilting": {
       "photo": {

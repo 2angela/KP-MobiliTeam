@@ -1,0 +1,38 @@
+[
+  {
+    "site": "28MAAJ001_RDTO_MALUNDAK_SUMBA_EP",
+    "region": "Kalisumpa",
+    "cluster": "Majene",
+    "type": "Preventive",
+    "category": "Maintenance",
+    "status": "Done",
+    "createdAt": "20/07/2024, 11.50.20 AM"
+  },
+  {
+    "site": "28MAAJ001_RDTO_MALUNDAK_SUMBA_EP",
+    "region": "Kalisumpa",
+    "cluster": "Majene",
+    "type": "Preventive",
+    "category": "Maintenance",
+    "status": "Pending",
+    "createdAt": "20/07/2024, 11.50.20 AM"
+  },
+  {
+    "site": "28MAAJ001_RDTO_MALUNDAK_SUMBA_EP",
+    "region": "Kalisumpa",
+    "cluster": "Majene",
+    "type": "Preventive",
+    "category": "Maintenance",
+    "status": "Cancelled",
+    "createdAt": "20/07/2024, 11.50.20 AM"
+  },
+  {
+    "site": "28MAAJ001_RDTO_MALUNDAK_SUMBA_EP",
+    "region": "Kalisumpa",
+    "cluster": "Majene",
+    "type": "Preventive",
+    "category": "Maintenance",
+    "status": "On Progress",
+    "createdAt": "20/07/2024, 11.50.20 AM"
+  }
+]

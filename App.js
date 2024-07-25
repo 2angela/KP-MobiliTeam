@@ -16,6 +16,12 @@ import NewSite from "./app/NewSite";
 import TaskEntry from "./app/TaskEntry";
 import AOR46 from "./app/AOR46";
 import { useFonts } from "expo-font";
+import ClockIn from "./app/ClockIn";
+import ClockOut from "./app/ClockOut";
+import BBMRequest from "./app/BBMRequest";
+import Site from "./app/Site";
+import AORDoc from "./app/AorDoc";
+import CopHistory from "./app/CopHistory";
 import {
   Montserrat_300Light,
   Montserrat_400Regular,
@@ -61,6 +67,12 @@ export default function App() {
           <Stack.Screen name="NewSite" component={NewSite}></Stack.Screen>
           <Stack.Screen name="TaskEntry" component={TaskEntry}></Stack.Screen>
           <Stack.Screen name="AOR46" component={AOR46}></Stack.Screen>
+          <Stack.Screen name="ClockIn" component={ClockIn}></Stack.Screen>
+          <Stack.Screen name="ClockOut" component={ClockOut}></Stack.Screen>
+          <Stack.Screen name="BBMRequest" component={BBMRequest}></Stack.Screen>
+          <Stack.Screen name="Site" component={Site}></Stack.Screen>
+          <Stack.Screen name="AORDoc" component={AORDoc}></Stack.Screen>
+          <Stack.Screen name="CopHistory" component={CopHistory}></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     );

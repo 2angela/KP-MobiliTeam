@@ -53,7 +53,7 @@ export default function Landing({ navigation }) {
     validate();
     if (valid == true) {
       if (screen == "Login") {
-        return navigation.push("MainPage");
+        return navigation.push("ClockIn");
       } else if (screen == "SignUp") {
         return navigation.push("SignUp");
       }

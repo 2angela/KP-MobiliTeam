@@ -56,11 +56,12 @@ const TableTab = ({ data, selectedTab }) => {
   useEffect(() => {
     const filteredData = data
       .filter((item) => item.status === selectedTab)
-      .map((item) => [
+      .map((item, index) => [
         item.namesite,
         item.createdAt.split(", ")[0],
         selectedTab === "Ready" ? (
           <View
+            key={index}
             style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
           >
             <Download width={24} height={24} fill="black" />

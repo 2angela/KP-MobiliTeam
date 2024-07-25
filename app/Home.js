@@ -23,7 +23,7 @@ export default function Home({ navigation }) {
       title: "BBM",
       options: [
         { label: "Entry", screenName: "BBMEntry" },
-        { label: "List", screenName: "" },
+        { label: "List", screenName: "BBMRequest" },
       ],
       color: "#C6A969",
     },
@@ -31,7 +31,7 @@ export default function Home({ navigation }) {
       title: "COP",
       options: [
         { label: "Entry", screenName: "COPEntry" },
-        { label: "List", screenName: "" },
+        { label: "List", screenName: "COPHistory" },
       ],
       color: "#379777",
     },
@@ -40,7 +40,7 @@ export default function Home({ navigation }) {
       options: [
         { label: "Entry", screenName: "AOREntry" },
         { label: "AOR 4-6", screenName: "AOR46" },
-        { label: "Doc", screenName: "" },
+        { label: "Doc", screenName: "AORDoc" },
       ],
       color: "#7D8ABC",
     },
@@ -48,7 +48,7 @@ export default function Home({ navigation }) {
       title: "Tower",
       options: [
         { label: "New Site", screenName: "NewSite" },
-        { label: "List", screenName: "" },
+        { label: "List", screenName: "Site" },
       ],
       color: "#7C3E66",
     },

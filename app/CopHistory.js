@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { LineChart } from "react-native-gifted-charts";
 import ScreenTitle from "../components/screenTitle";
 import Tabbar from "../components/tabbar";
@@ -22,14 +22,12 @@ import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as XLSX from "xlsx";
 import Delete from "../assets/icons/delete.svg";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
 export default function COPHistory({ navigation }) {
   const [selectedTab, setSelectedTab] = useState("List");
   const initialData = Object.values(COPData);
   const [data, setData] = useState(initialData);
   const [search, setSearch] = useState("");
-  const filePath = FileSystem.documentDirectory + "cop.json";
+  // const filePath = FileSystem.documentDirectory + "cop.json";
 
   const calculateCOPMonthlyTotals = (data) => {
     const currentDate = new Date();
@@ -258,7 +256,6 @@ const list = StyleSheet.create({
   },
   boxcontainer: {
     padding: 20,
-    marginTop: 10,
     borderRadius: 15,
     borderColor: "#D9D9D9",
     borderWidth: 1,

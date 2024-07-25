@@ -7,12 +7,11 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 export default function ClockOut({ navigation }) {
   const getCurrentDate = () => {
-    var day = new Date().toLocaleString("en-us", { weekday: "long" });
-    var date = new Date().getDate();
-    var month = new Date().toLocaleString("en-us", { month: "long" });
-    var year = new Date().getFullYear();
-
-    return day + ", " + date + " " + month + " " + year; // format: d-m-y;
+    const day = new Date().toLocaleString("en-us", { weekday: "long" });
+    const date = new Date().getDate();
+    const month = new Date().toLocaleString("en-us", { month: "long" });
+    const year = new Date().getFullYear();
+    return `${day}, ${date} ${month} ${year}`;
   };
 
   const getCurrentTime = () => {
@@ -28,11 +27,16 @@ export default function ClockOut({ navigation }) {
   const [isReasonValid, setIsReasonValid] = useState(true);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(getCurrentTime());
-    }, 1000);
+    let animationFrameId;
 
-    return () => clearInterval(timer); // Cleanup the interval on component unmount
+    const updateCurrentTime = () => {
+      setCurrentTime(getCurrentTime());
+      animationFrameId = requestAnimationFrame(updateCurrentTime);
+    };
+
+    updateCurrentTime();
+
+    return () => cancelAnimationFrame(animationFrameId);
   }, []);
 
   const handleClockOut = () => {
@@ -41,13 +45,12 @@ export default function ClockOut({ navigation }) {
       Alert.alert("Validation Error", "Please provide a reason.");
       return;
     }
-    // Handle clock-out logic here (e.g., API call, navigation)
-    // For now, let's just navigate back
+
     navigation.goBack();
   };
 
   const handleCancel = () => {
-    navigation.goBack(); // Navigate back when "Cancel" button is pressed
+    navigation.goBack();
   };
 
   return (
@@ -168,7 +171,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   timeBox: {
-    padding: 10,
     backgroundColor: "#F2F9FE",
     borderRadius: 10,
     marginHorizontal: 5,

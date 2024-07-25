@@ -1,18 +1,9 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ActivityIndicator,
-  Image,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 import { Divider } from "react-native-paper";
-// import RadialGradient from "react-native-radial-gradient";
 
 export default function Notice({ navigation }) {
-
   return (
     <View style={styles.container}>
       <View style={styles.box}>

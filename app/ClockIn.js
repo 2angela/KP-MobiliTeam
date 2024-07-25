@@ -7,23 +7,27 @@ import ButtonMedium from "../components/buttonMedium";
 
 export default function ClockIn({ navigation }) {
   const getCurrentDate = () => {
-    var day = new Date().toLocaleString("en-us", { weekday: "long" });
-    var date = new Date().getDate();
-    var month = new Date().toLocaleString("en-us", { month: "long" });
-    var year = new Date().getFullYear();
-
-    return day + ", " + date + " " + month + " " + year; // format: d-m-y;
+    const day = new Date().toLocaleString("en-us", { weekday: "long" });
+    const date = new Date().getDate();
+    const month = new Date().toLocaleString("en-us", { month: "long" });
+    const year = new Date().getFullYear();
+    return `${day}, ${date} ${month} ${year}`;
   };
+
   const getCurrentMinute = () => {
-    var minute = new Date().getMinutes;
-  };
-
-  const handleCancel = () => {
-    navigation.goBack(); // Navigate back when "Cancel" button is pressed
+    return new Date().getMinutes().toString().padStart(2, "0");
   };
 
   const getCurrentHours = () => {
-    var hours = new Date().getHours.toString;
+    return new Date().getHours().toString().padStart(2, "0");
+  };
+
+  const handleCancel = () => {
+    navigation.goBack();
+  };
+
+  const handleClockIn = () => {
+    navigation.push("Home");
   };
 
   const [currentTime, setCurrentTime] = useState({
@@ -33,52 +37,33 @@ export default function ClockIn({ navigation }) {
   });
 
   useEffect(() => {
-    const timer = setInterval(() => {
+    const updateCurrentTime = () => {
       const now = new Date();
       const hours = String(now.getHours()).padStart(2, "0");
       const minutes = String(now.getMinutes()).padStart(2, "0");
       const seconds = String(now.getSeconds()).padStart(2, "0");
       setCurrentTime({ hours, minutes, seconds });
-    }, 1000);
+      requestAnimationFrame(updateCurrentTime);
+    };
 
-    return () => clearInterval(timer); // Cleanup the interval on component unmount
+    updateCurrentTime();
+
+    return () => cancelAnimationFrame(updateCurrentTime);
   }, []);
 
-  const requestLocationPermission = async () => {
-    try {
-      const result = await request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
-      switch (result) {
-        case result.GRANTED:
-          Geolocation.getCurrentPosition(
-            (position) => {
-              s;
-              console.log("Location access granted:", position);
-            },
-            (error) => {
-              console.error("Error accessing location:", error);
-            },
-            { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-          );
-          break;
-        case result.DENIED:
-          Alert.alert(
-            "Permission Denied",
-            "Location permission denied by user."
-          );
-          break;
-        case result.BLOCKED:
-          Alert.alert(
-            "Permission Blocked",
-            "Location permission is blocked by user."
-          );
-          break;
-        default:
-          break;
-      }
-    } catch (error) {
-      console.error("Error requesting location permission:", error);
-    }
-  };
+  // const handleNavigate = (screen) => {
+  //   validate();
+  //   if (valid == true) {
+  //     if (screen == "Login") {
+  //       return navigation.push("ClockIn");
+  //     } else if (screen == "SignUp") {
+  //       return navigation.push("SignUp");
+  //     }
+  //   } else {
+  //     return null;
+  //   }
+  // };
+
   return (
     <View style={styles.container}>
       <Text style={styles.titletext}>Clock-In Now</Text>
@@ -124,12 +109,8 @@ export default function ClockIn({ navigation }) {
         ></AnalogClock>
       </View>
       <View style={{ display: "flex", flexDirection: "row" }}>
-        <ButtonMedium
-          label="Clock In"
-          action={requestLocationPermission}
-          marginTop={50}
-        />
-        <ButtonMedium label="Absent" action={null} marginTop={50} />
+        <ButtonMedium label="Clock In" action={handleClockIn} marginTop={50} />
+        <ButtonMedium label="Absent" action={handleClockIn} marginTop={50} />
       </View>
       <ButtonLarge
         label="Cancel"
@@ -160,7 +141,6 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingLeft: 20,
     paddingBottom: 15,
-
     backgroundColor: "#F2F9FE",
     borderRadius: 10,
     alignItems: "left",
@@ -191,7 +171,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   timeBox: {
-    padding: 10,
     backgroundColor: "#F2F9FE",
     borderRadius: 10,
     marginHorizontal: 5,

@@ -5,7 +5,6 @@ import {
   Text,
   Pressable,
   ScrollView,
-  TextInput,
   Image,
   Modal,
 } from "react-native";
@@ -16,15 +15,14 @@ import cloneDeep from "lodash/cloneDeep";
 import { aorFormat as inputFormat } from "../data/inputFormat.js";
 import ScreenTitle from "../components/screenTitle";
 import Back from "../assets/icons/back_fill.svg";
-import Camera from "../assets/icons/photo-camera.svg";
 import ButtonWhite from "../components/buttonWhite";
 import DropdownField from "../components/dropdownField";
 import ButtonClearHalf from "../components/buttonClearHalf";
 import ButtonBlueHalf from "../components/buttonBlueHalf";
 import NumberField from "../components/numberField.js";
-import NoPhoto from "../assets/no-photo.svg";
 import Connector from "../assets/connector.svg";
 import Divider from "../assets/divider.svg";
+import { PhotoUpload, PhotoInput } from "../components/aorFields.js";
 
 export default function AOREntry({ navigation }) {
   // track current screen
@@ -189,24 +187,6 @@ export default function AOREntry({ navigation }) {
   // get random photo from Lorem Picsum
   const randomPhoto = () => {
     return "https://picsum.photos/50?random=1";
-  };
-
-  // Generate Random Photo component
-  const RandomPhoto = () => {
-    return (
-      <Image
-        source={{ uri: randomPhoto() }}
-        style={{
-          minWidth: 50,
-          minHeight: 50,
-          width: 50,
-          height: 50,
-          marginTop: 5,
-          marginBottom: 5,
-          marginLeft: "10%",
-        }}
-      />
-    );
   };
 
   // Get data path for the input (every input has different paths)
@@ -475,10 +455,6 @@ export default function AOREntry({ navigation }) {
   // Error invalid data modal
   const [errorModal, setErrorModal] = useState(false);
 
-  useEffect(() => {
-    console.log(errorScreen);
-  }, [errorScreen]);
-
   return (
     <SafeAreaView style={styles.container}>
       <ScreenTitle screenName="AOR Capture Entry" navigation={navigation} />
@@ -597,48 +573,12 @@ export default function AOREntry({ navigation }) {
                   const photoVal = findValueFromPath(currentPhotoPath);
                   return (
                     <Fragment key={index}>
-                      <Pressable
-                        style={({ pressed }) => [
-                          styles.container2,
-                          pressed ? styles.fieldPressed : null,
-                        ]}
-                        onPress={() =>
-                          handleInputUpload(currentPhotoPath, randomPhoto())
-                        }
-                      >
-                        {!photoVal ? (
-                          <NoPhoto
-                            width="50"
-                            height="50"
-                            marginTop={5}
-                            marginBottom={5}
-                            marginLeft="10%"
-                          />
-                        ) : (
-                          <RandomPhoto />
-                        )}
-
-                        <View style={styles.textContent}>
-                          <Text style={styles.title}>
-                            {category.toUpperCase()}
-                          </Text>
-                          <Text style={styles.capture}>Capture Photo</Text>
-                        </View>
-                        <View
-                          style={[
-                            styles.cameraContainer,
-                            { borderBottomRightRadius: "30%" },
-                          ]}
-                        >
-                          <Camera
-                            width="100"
-                            height="100"
-                            fill="#3B3B89"
-                            right="-5%"
-                            top="5%"
-                          />
-                        </View>
-                      </Pressable>
+                      <PhotoUpload
+                        category={category}
+                        currentPhotoPath={currentPhotoPath}
+                        photoVal={photoVal}
+                        handleInputUpload={handleInputUpload}
+                      />
                     </Fragment>
                   );
                 }
@@ -658,58 +598,14 @@ export default function AOREntry({ navigation }) {
                   const inputVal = findValueFromPath(currentInputPath);
                   return (
                     <Fragment key={index}>
-                      <Pressable
-                        style={({ pressed }) => [
-                          styles.container4,
-                          pressed ? styles.fieldPressed : null,
-                        ]}
-                        onPress={() =>
-                          handleInputUpload(currentPhotoPath, randomPhoto())
-                        }
-                      >
-                        <View style={styles.container3}>
-                          {!photoVal ? (
-                            <NoPhoto
-                              width="50"
-                              height="50"
-                              marginTop={5}
-                              marginBottom={5}
-                              marginLeft="10%"
-                            />
-                          ) : (
-                            <RandomPhoto />
-                          )}
-                          <View style={styles.textContent}>
-                            <Text style={styles.title}>
-                              {category.toUpperCase()}
-                            </Text>
-                            <Text style={styles.capture}>Capture Photo</Text>
-                          </View>
-                        </View>
-                        <TextInput
-                          placeholder={category}
-                          style={[styles.input, styles.textStyle]}
-                          inputMode="decimal"
-                          value={inputVal}
-                          onChangeText={(e) =>
-                            handleInputUpload(currentInputPath, e)
-                          }
-                        />
-                        <View
-                          style={[
-                            styles.cameraContainer,
-                            { borderRadius: "47%" },
-                          ]}
-                        >
-                          <Camera
-                            width="100"
-                            height="100"
-                            fill="#3B3B89"
-                            right="-5%"
-                            top="5%"
-                          />
-                        </View>
-                      </Pressable>
+                      <PhotoInput
+                        category={category}
+                        currentPhotoPath={currentPhotoPath}
+                        photoVal={photoVal}
+                        currentInputPath={currentInputPath}
+                        inputVal={inputVal}
+                        handleInputUpload={handleInputUpload}
+                      />
                     </Fragment>
                   );
 
@@ -743,58 +639,14 @@ export default function AOREntry({ navigation }) {
                           <Divider width="100%" />
                         </View>
                       ) : null}
-                      <Pressable
-                        style={({ pressed }) => [
-                          styles.container4,
-                          pressed ? styles.fieldPressed : null,
-                        ]}
-                        onPress={() =>
-                          handleInputUpload(currentPhotoPath, randomPhoto())
-                        }
-                      >
-                        <View style={styles.container3}>
-                          {!photoVal ? (
-                            <NoPhoto
-                              width="50"
-                              height="50"
-                              marginTop={5}
-                              marginBottom={5}
-                              marginLeft="10%"
-                            />
-                          ) : (
-                            <RandomPhoto />
-                          )}
-                          <View style={styles.textContent}>
-                            <Text style={styles.title}>
-                              {category.toUpperCase()}
-                            </Text>
-                            <Text style={styles.capture}>Capture Photo</Text>
-                          </View>
-                        </View>
-                        <TextInput
-                          placeholder={category}
-                          style={[styles.input, styles.textStyle]}
-                          inputMode="decimal"
-                          value={inputVal}
-                          onChangeText={(e) =>
-                            handleInputUpload(currentInputPath, e)
-                          }
-                        />
-                        <View
-                          style={[
-                            styles.cameraContainer,
-                            { borderRadius: "47%" },
-                          ]}
-                        >
-                          <Camera
-                            width="100"
-                            height="100"
-                            fill="#3B3B89"
-                            right="-5%"
-                            top="5%"
-                          />
-                        </View>
-                      </Pressable>
+                      <PhotoInput
+                        category={category}
+                        currentPhotoPath={currentPhotoPath}
+                        photoVal={photoVal}
+                        currentInputPath={currentInputPath}
+                        inputVal={inputVal}
+                        handleInputUpload={handleInputUpload}
+                      />
                     </Fragment>
                   );
                 }
@@ -965,83 +817,6 @@ const styles = StyleSheet.create({
   },
   fieldPressed: {
     backgroundColor: "#ECECEC",
-  },
-  container4: {
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-    backgroundColor: "white",
-    borderRadius: 50,
-    borderColor: "#B1B1D0",
-    borderWidth: 1,
-    shadowColor: "rgba(0, 0, 0, 0.25)",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowRadius: 2,
-    elevation: 4,
-    shadowOpacity: 1,
-  },
-  container3: {
-    display: "flex",
-    flexDirection: "row",
-    width: "100%",
-    alignItems: "center",
-    gap: 10,
-  },
-  container2: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    width: "100%",
-    backgroundColor: "white",
-    gap: 10,
-    borderRadius: 50,
-    borderColor: "#B1B1D0",
-    borderWidth: 1,
-    shadowColor: "rgba(0, 0, 0, 0.25)",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowRadius: 2,
-    elevation: 4,
-    shadowOpacity: 1,
-  },
-  input: {
-    display: "flex",
-    width: "80%",
-    backgroundColor: "white",
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: "#D8D8E7",
-    padding: 10,
-    marginHorizontal: "10%",
-    marginBottom: 5,
-  },
-  textContent: {
-    display: "flex",
-    gap: 5,
-    paddingVertical: 5,
-  },
-  title: {
-    fontFamily: "MontserratLight",
-    fontSize: 11,
-  },
-  capture: {
-    fontFamily: "MontserratBold",
-    fontSize: 12,
-  },
-  cameraContainer: {
-    opacity: 0.2,
-    display: "flex",
-    alignItems: "flex-end",
-    height: "100%",
-    position: "absolute",
-    overflow: "hidden",
-    right: 0,
-    zIndex: -1,
   },
   formSteps: {
     display: "flex",

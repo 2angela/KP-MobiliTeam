@@ -24,7 +24,7 @@ import * as XLSX from "xlsx";
 import Delete from "../assets/icons/delete.svg";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function CopHistory({ navigation }) {
+export default function COPHistory({ navigation }) {
   const [selectedTab, setSelectedTab] = useState("List");
   const initialData = Object.values(COPData);
   const [data, setData] = useState(initialData);

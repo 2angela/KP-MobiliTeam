@@ -4,8 +4,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import Home from "./app/Home";
 import Landing from "./app/Landing";
 import Notice from "./app/Notice";
-import ClockIn from "./app/ClockIn"
-import ClockOut from "./app/ClockOut"
+import ClockIn from "./app/ClockIn";
+import ClockOut from "./app/ClockOut";
+import BBMRequest from "./app/BBMRequest";
+import Site from "./app/Site";
+import MainPage from "./app/MainPage";
+import AORDoc from "./app/AorDoc";
+import CopHistory from "./app/CopHistory";
 import {
   useFonts,
   Montserrat_300Light,
@@ -43,7 +48,11 @@ export default function App() {
           <Stack.Screen name="Notice" component={Notice}></Stack.Screen>
           <Stack.Screen name="ClockIn" component={ClockIn}></Stack.Screen>
           <Stack.Screen name="ClockOut" component={ClockOut}></Stack.Screen>
-
+          <Stack.Screen name="BBMRequest" component={BBMRequest}></Stack.Screen>
+          <Stack.Screen name="Site" component={Site}></Stack.Screen>
+          <Stack.Screen name="MainPage" component={MainPage}></Stack.Screen>
+          <Stack.Screen name="AORDoc" component={AORDoc}></Stack.Screen>
+          <Stack.Screen name="CopHistory" component={CopHistory}></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     );

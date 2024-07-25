@@ -1,6 +1,14 @@
-{"bbmreq": 
-[{"site": "BLA001", "region": "Central Java", "cluster": "Majene",  "volume": 45, "runninghour": "20", "status": "Done", "createdAt" : "15/07/2024, 11.40.18 AM"},
-{
+[
+  {
+    "site": "BLA001",
+    "region": "Central Java",
+    "cluster": "Majene",
+    "volume": 45,
+    "runninghour": 20,
+    "status": "Done",
+    "createdAt": "15/07/2024, 11.40.18 AM"
+  },
+  {
     "site": "BLA001",
     "region": "Central Java",
     "cluster": "Semarang",
@@ -8,7 +16,6 @@
     "runninghour": 15,
     "status": "Done",
     "createdAt": "04/07/2024, 11.49.18 AM"
-
   },
   {
     "site": "BLA002",
@@ -24,7 +31,7 @@
     "region": "Central Java",
     "cluster": "Solo",
     "volume": 35,
-    "runninghour": 15, 
+    "runninghour": 15,
     "status": "Pending",
     "createdAt": "02/07/2024, 1.40.18 PM"
   },
@@ -44,7 +51,15 @@
     "volume": 25,
     "runninghour": 10,
     "status": "On-progress",
-    "createdAt":"02/07/2024, 09.40.18 PM"
+    "createdAt": "02/07/2024, 09.40.18 PM"
+  },
+  {
+    "site": "BLA006",
+    "region": "East Java",
+    "cluster": "Malang",
+    "volume": 20,
+    "runninghour": 10,
+    "status": "Done",
+    "createdAt": "30/06/2024, 09.40.18 PM"
   }
 ]
-}

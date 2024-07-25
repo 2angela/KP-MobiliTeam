@@ -18,6 +18,10 @@ export default function ClockIn({ navigation }) {
     var minute = new Date().getMinutes;
   };
 
+  const handleCancel = () => {
+    navigation.goBack(); // Navigate back when "Cancel" button is pressed
+  };
+
   const getCurrentHours = () => {
     var hours = new Date().getHours.toString;
   };
@@ -40,6 +44,41 @@ export default function ClockIn({ navigation }) {
     return () => clearInterval(timer); // Cleanup the interval on component unmount
   }, []);
 
+  const requestLocationPermission = async () => {
+    try {
+      const result = await request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
+      switch (result) {
+        case result.GRANTED:
+          Geolocation.getCurrentPosition(
+            (position) => {
+              s;
+              console.log("Location access granted:", position);
+            },
+            (error) => {
+              console.error("Error accessing location:", error);
+            },
+            { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+          );
+          break;
+        case result.DENIED:
+          Alert.alert(
+            "Permission Denied",
+            "Location permission denied by user."
+          );
+          break;
+        case result.BLOCKED:
+          Alert.alert(
+            "Permission Blocked",
+            "Location permission is blocked by user."
+          );
+          break;
+        default:
+          break;
+      }
+    } catch (error) {
+      console.error("Error requesting location permission:", error);
+    }
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.titletext}>Clock-In Now</Text>
@@ -85,12 +124,16 @@ export default function ClockIn({ navigation }) {
         ></AnalogClock>
       </View>
       <View style={{ display: "flex", flexDirection: "row" }}>
-        <ButtonMedium label="Clock In" action={null} marginTop={50} />
+        <ButtonMedium
+          label="Clock In"
+          action={requestLocationPermission}
+          marginTop={50}
+        />
         <ButtonMedium label="Absent" action={null} marginTop={50} />
       </View>
       <ButtonLarge
         label="Cancel"
-        action={null}
+        action={handleCancel}
         marginTop={20}
         marginBottom={40}
       />

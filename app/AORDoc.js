@@ -18,7 +18,7 @@ import ButtonAOR from "../components/buttonAOR";
 import ButtonWhite from "../components/buttonWhite";
 
 export default function AORDoc({ navigation }) {
-  const [selectedTab, setSelectedTab] = useState("On-Process");
+  const [selectedTab, setSelectedTab] = useState("On-Progress");
   const data = Object.values(AorData);
 
   const handleFilterChange = (status) => {
@@ -30,9 +30,9 @@ export default function AORDoc({ navigation }) {
       <ScreenTitle screenName={"AOR Doc"} navigation={navigation} />
       <View style={styles.buttonContainer}>
         <ButtonAOR
-          label="On-Process"
-          action={() => handleFilterChange("On-Process")}
-          selected={selectedTab === "On-Process"}
+          label="On-Progress"
+          action={() => handleFilterChange("On-Progress")}
+          selected={selectedTab === "On-Progress"}
         />
         <ButtonAOR
           label="Ready"
@@ -57,7 +57,7 @@ const TableTab = ({ data, selectedTab }) => {
     const filteredData = data
       .filter((item) => item.status === selectedTab)
       .map((item, index) => [
-        item.namesite,
+        item.site,
         item.createdAt.split(", ")[0],
         selectedTab === "Ready" ? (
           <View
@@ -99,7 +99,7 @@ const TableTab = ({ data, selectedTab }) => {
     const filteredData = data
       .filter((item) => item.status === selectedTab)
       .map((item) => [
-        item.namesite,
+        item.site,
         item.createdAt.split(", ")[0],
         selectedTab === "Ready" ? <Download width={20} height={20} /> : null,
       ])

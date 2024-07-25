@@ -39,6 +39,5 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     backgroundColor: "#ECECEC",
     borderRadius: 40,
-    elevation: 4,
   },
 });

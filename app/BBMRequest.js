@@ -52,21 +52,25 @@ export default function BBMRequest({ navigation }) {
             label="All"
             action={() => handleFilterChange("All")}
             selected={filter === "All"}
+            selectedColor={"#3B3B89"}
           />
           <ButtonSmall
             label="Pending"
             action={() => handleFilterChange("Pending")}
             selected={filter === "Pending"}
+            selectedColor={"#F3DDD7"}
           />
           <ButtonSmall
-            label="On-progress"
-            action={() => handleFilterChange("On-progress")}
-            selected={filter === "On-progress"}
+            label="On-Progress"
+            action={() => handleFilterChange("On-Progress")}
+            selected={filter === "On-Progress"}
+            selectedColor={"#D7DDF3"}
           />
           <ButtonSmall
             label="Done"
             action={() => handleFilterChange("Done")}
             selected={filter === "Done"}
+            selectedColor={"#CDF1CA"}
           />
         </View>
       )}
@@ -82,7 +86,7 @@ const getStatusColor = (status) => {
   switch (status) {
     case "Pending":
       return { backgroundColor: "#F3DDD7", color: "#E91111" };
-    case "On-progress":
+    case "On-Progress":
       return { backgroundColor: "#D7DDF3", color: "#1126E9" };
     case "Done":
       return { backgroundColor: "#CDF1CA", color: "#6AC432" };

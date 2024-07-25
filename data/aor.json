@@ -173,7 +173,7 @@
       }
     },
     "createdAt": "02/07/2024, 09.40.18 PM",
-    "status": "On-Process"
+    "status": "On-Progress"
   },
   {
     "region": "Central Java",
@@ -437,7 +437,7 @@
       }
     },
     "createdAt": "02/07/2024, 09.40.18 PM",
-    "status": "On-Process"
+    "status": "On-Progress"
   },
   {
     "region": "East Java",
@@ -525,6 +525,6 @@
       }
     },
     "createdAt": "02/07/2024, 09.40.18 PM",
-    "status": "On-Process"
+    "status": "On-Progress"
   }
 ]

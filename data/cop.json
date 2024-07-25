@@ -1,6 +1,5 @@
 [
   {
-    "no": 1,
     "region": "Central Java",
     "cluster": "Majene",
     "site": "E_APR005MD01_Sidemen-TBG_MD0",
@@ -14,7 +13,6 @@
     "type": "New COP"
   },
   {
-    "no": 2,
     "region": "Central Java",
     "cluster": "Majene",
     "site": "E_APR005MD02_Sidemen-TBG_MD0",
@@ -28,7 +26,6 @@
     "type": "New COP"
   },
   {
-    "no": 3,
     "region": "Central Java",
     "cluster": "Majene",
     "site": "E_APR005MD03_Sidemen-TBG_MD0",
@@ -42,7 +39,6 @@
     "type": "New COP"
   },
   {
-    "no": 4,
     "region": "Central Java",
     "cluster": "Majene",
     "site": "E_APR005MD04_Sidemen-TBG_MD0",
@@ -56,7 +52,6 @@
     "type": "New COP"
   },
   {
-    "no": 5,
     "region": "Central Java",
     "cluster": "Majene",
     "site": "E_APR005MD05_Sidemen-TBG_MD0",
@@ -70,7 +65,6 @@
     "type": "New COP"
   },
   {
-    "no": 6,
     "region": "Central Java",
     "cluster": "Majene",
     "site": "E_APR005MD06_Sidemen-TBG_MD0",
@@ -84,7 +78,6 @@
     "type": "New COP"
   },
   {
-    "no": 7,
     "region": "Central Java",
     "cluster": "Majene",
     "site": "E_APR005MD07_Sidemen-TBG_MD0",
@@ -98,7 +91,6 @@
     "type": "New COP"
   },
   {
-    "no": 8,
     "region": "Central Java",
     "cluster": "Majene",
     "site": "E_APR005MD08_Sidemen-TBG_MD0",
@@ -112,7 +104,6 @@
     "type": "New COP"
   },
   {
-    "no": 9,
     "region": "Central Java",
     "cluster": "Majene",
     "site": "E_APR005MD09_Sidemen-TBG_MD0",
@@ -126,7 +117,6 @@
     "type": "New COP"
   },
   {
-    "no": 10,
     "region": "Central Java",
     "cluster": "Majene",
     "site": "E_APR005MD10_Sidemen-TBG_MD0",

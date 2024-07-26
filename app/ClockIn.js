@@ -15,11 +15,11 @@ export default function ClockIn({ navigation }) {
   };
 
   const getCurrentMinute = () => {
-    return new Date().getMinutes().toString().padStart(2, "0");
+    return new Date().getMinutes();
   };
 
   const getCurrentHours = () => {
-    return new Date().getHours().toString().padStart(2, "0");
+    return new Date().getHours();
   };
 
   const handleCancel = () => {
@@ -27,7 +27,7 @@ export default function ClockIn({ navigation }) {
   };
 
   const handleClockIn = () => {
-    navigation.push("Home");
+    navigation.push("MainPage");
   };
 
   const [currentTime, setCurrentTime] = useState({
@@ -110,7 +110,7 @@ export default function ClockIn({ navigation }) {
       </View>
       <View style={{ display: "flex", flexDirection: "row" }}>
         <ButtonMedium label="Clock In" action={handleClockIn} marginTop={50} />
-        <ButtonMedium label="Absent" action={handleClockIn} marginTop={50} />
+        <ButtonMedium label="Absent" action={null} marginTop={50} />
       </View>
       <ButtonLarge
         label="Cancel"

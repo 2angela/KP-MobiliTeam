@@ -73,8 +73,8 @@ export default function TextField({
           }}
           value={findValue(item.category)}
           clearButtonMode="while-editing"
-          multiline={numOfLines > 0}
-          rows={numOfLines}
+          multiline={numOfLines > 0 ? true : false}
+          rows={numOfLines > 0 ? numOfLines : null}
         />
       </View>
       <HelperText type="error" visible={errors[index]} style={styles.helper}>

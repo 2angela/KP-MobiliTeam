@@ -76,6 +76,14 @@ export default function Navigation({
 }
 
 const styles = StyleSheet.create({
+  shadowContainer: {
+    position: "absolute",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "90%",
+  },
   container: {
     position: "absolute",
     display: "flex",
@@ -87,6 +95,8 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     paddingTop: 10,
     paddingBottom: 15,
+    borderColor: "rgba(59, 59, 137, 0.1)",
+    borderWidth: 1,
     shadowColor: "rgba(59, 59, 137, 0.25)",
     shadowOffset: {
       width: 0,
@@ -94,7 +104,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: "0.5",
     shadowRadius: "10",
-    elevation: 1,
+    elevation: 50,
     bottom: "2%",
     fontFamily: "MontserratRegular",
   },
@@ -131,7 +141,7 @@ const styles = StyleSheet.create({
     width: "26%",
     aspectRatio: 1 / 1,
     borderRadius: 100,
-    borderColor: "rgba(59, 59, 137, 0.25)",
+    borderColor: "rgba(59, 59, 137, 0.1)",
     borderWidth: 1,
     backgroundColor: "white",
     shadowColor: "rgba(59, 59, 137, 0.5)",

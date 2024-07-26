@@ -4,9 +4,9 @@ import {
   SafeAreaView,
   Text,
   Pressable,
-  ScrollView,
   Modal,
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useState, useRef, Fragment, useEffect } from "react";
 import set from "lodash/set";
@@ -467,6 +467,7 @@ export default function AOREntry({ navigation }) {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         alwaysBounceVertical={false}
+        horizontal
         ref={xScroll}
       >
         {getScreenNames().map((screen, index) => {
@@ -493,9 +494,9 @@ export default function AOREntry({ navigation }) {
               </Pressable>
               <Connector
                 height="100%"
-                zIndex="2"
+                zIndex={2}
                 display={index < getScreenNames().length - 1 ? "flex" : "none"}
-                marginHorizontal="-1%"
+                marginHorizontal={-5}
               />
             </Fragment>
           );
@@ -506,7 +507,13 @@ export default function AOREntry({ navigation }) {
       <View style={styles.topButtons}>
         <ButtonWhite label="Clear" action={clearInput} marginRight={20} />
         {isFirstStep() ? null : (
-          <Pressable style={styles.back} onPress={() => handleStep("back")}>
+          <Pressable
+            style={styles.back}
+            onPress={() => {
+              handleStep("back");
+              stepScroll(currentScreenIndex() - 1);
+            }}
+          >
             <Back width="20" height="20" fill="black" />
             <Text style={styles.textStyle}>previous</Text>
           </Pressable>
@@ -822,9 +829,8 @@ const styles = StyleSheet.create({
   },
   formSteps: {
     display: "flex",
-    width: "100%",
-    flexDirection: "row",
     alignItems: "center",
+    height: "50%",
     marginTop: "5%",
     marginBottom: "10%",
     paddingHorizontal: "5%",
@@ -864,7 +870,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     marginVertical: "75%",
     borderWidth: 1,
-    borderRadius: "10",
+    borderRadius: 10,
   },
   modalTitle: {
     fontFamily: "MontserratBold",

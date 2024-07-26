@@ -90,6 +90,6 @@ const styles = StyleSheet.create({
     display: "flex",
     width: "90%",
     paddingTop: 15,
-    gap: "20%",
+    gap: 20,
   },
 });

@@ -11,6 +11,7 @@ import TextField from "../components/textField";
 import ButtonClearHalf from "../components/buttonClearHalf";
 import ButtonBlueHalf from "../components/buttonBlueHalf";
 import ButtonWhite from "../components/buttonWhite";
+import GradientBG from "../components/gradientBG";
 
 export default function NewSite({ navigation }) {
   const categories = [
@@ -114,6 +115,7 @@ export default function NewSite({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <GradientBG />
       <ScreenTitle
         screenName="Register New Project Site"
         navigation={navigation}
@@ -218,7 +220,6 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "#DEDEFF",
   },
   fieldsContainer: {
     display: "flex",

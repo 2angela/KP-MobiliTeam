@@ -548,6 +548,7 @@ export default function AOR46({ navigation }) {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         alwaysBounceVertical={false}
+        horizontal
         ref={xScroll}
       >
         {getScreenNames().map((screen, index) => {
@@ -574,9 +575,9 @@ export default function AOR46({ navigation }) {
               </Pressable>
               <Connector
                 height="100%"
-                zIndex="2"
+                zIndex={2}
                 display={index < getScreenNames().length - 1 ? "flex" : "none"}
-                marginHorizontal="-1%"
+                marginHorizontal={-1}
               />
             </Fragment>
           );
@@ -903,9 +904,8 @@ const styles = StyleSheet.create({
   },
   formSteps: {
     display: "flex",
-    width: "100%",
-    flexDirection: "row",
     alignItems: "center",
+    height: "50%",
     marginTop: "5%",
     marginBottom: "10%",
     paddingHorizontal: "5%",
@@ -945,7 +945,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     marginVertical: "75%",
     borderWidth: 1,
-    borderRadius: "10",
+    borderRadius: 10,
   },
   modalTitle: {
     fontFamily: "MontserratBold",

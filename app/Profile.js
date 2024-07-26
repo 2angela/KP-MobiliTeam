@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(59, 59, 137)",
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
+    marginBottom: 60,
   },
   imageContainer: {
     display: "flex",
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
     width: "80%",
     height: "auto",
     gap: 5,
-    marginTop: "10%",
+    marginTop: "5%",
   },
   detail: {
     display: "flex",

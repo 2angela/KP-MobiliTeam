@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { HelperText, Icon } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import ButtonBlue from "../components/buttonBlue";
 import ButtonClear from "../components/buttonClear";
@@ -28,34 +28,41 @@ export default function Landing({ navigation }) {
 
   // true if invalid/error input, false if valid input
   const [errors, setErrors] = useState(Array(numOfErrors).fill(false));
-  const [valid, setValid] = useState(false);
 
   const handleActiveState = (index) => {
     const newActive = active.map((item, i) => (i == index ? !item : item)); // change state of the item to the opposite
     setActive(newActive);
   };
 
+  const firstSubmit = useRef(true);
   const validate = () => {
-    //handle credential validation
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const invalidEmail = !email || regex.test(email) == false;
-    const invalidPass = !password;
+    if (!firstSubmit.current) {
+      //handle credential validation
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const invalidEmail = !email || regex.test(email) == false;
+      const invalidPass = !password;
 
-    if (!invalidEmail && !invalidPass) {
-      setValid(true);
-    } else setValid(false);
+      const newErrors = [invalidEmail, invalidPass];
+      setErrors(newErrors);
 
-    const newErrors = [invalidEmail, invalidPass];
-    setErrors(newErrors);
+      if (!invalidEmail && !invalidPass) {
+        return true;
+      } else return false;
+    } else {
+      console.log("Submit First!");
+    }
   };
 
   const handleNavigate = (screen) => {
-    validate();
-    if (valid == true) {
+    if (firstSubmit.current) {
+      firstSubmit.current = false;
+    }
+    const isValid = validate();
+    if (isValid) {
       if (screen == "Login") {
-        return navigation.push("ClockIn");
+        navigation.push("ClockIn");
       } else if (screen == "SignUp") {
-        return navigation.push("SignUp");
+        navigation.push("SignUp");
       }
     } else {
       return null;
@@ -224,7 +231,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   inputActive: {
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.6)",
     shadowColor: "rgba(0, 0, 0, 0.25)",
     shadowOffset: {
       width: 0,
@@ -255,6 +262,7 @@ const styles = StyleSheet.create({
   helper: {
     fontFamily: "MontserratRegular",
     paddingVertical: 0,
+    color: "white",
   },
   pocaLogo: {
     width: "10%",

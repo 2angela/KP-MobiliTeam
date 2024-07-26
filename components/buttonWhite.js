@@ -39,6 +39,8 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "white",
     borderRadius: 50,
+    borderColor: "rgba(0, 0, 0, 0.1)",
+    borderWidth: 1,
     gap: 2,
     shadowColor: "rgba(0, 0, 0, 0.25)",
     shadowOffset: {

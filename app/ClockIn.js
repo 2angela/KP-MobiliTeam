@@ -27,7 +27,7 @@ export default function ClockIn({ navigation }) {
   };
 
   const handleClockIn = () => {
-    navigation.push("Home");
+    navigation.push("MainPage");
   };
 
   const [currentTime, setCurrentTime] = useState({

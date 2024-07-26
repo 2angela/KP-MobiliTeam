@@ -24,30 +24,32 @@ export default function NotificationModal({ visible, onClose }) {
           onClose();
         }}
       >
-        <TouchableWithoutFeedback onPress={onClose}>
-          <View style={styles.centeredView}>
-            <TouchableWithoutFeedback>
-              <View style={styles.modalView}>
-                <Text style={styles.modalText}>Send a notification</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Message (optional)"
-                  value={notification}
-                  onChangeText={setNotification}
-                />
-                <Pressable
-                  style={({ pressed }) => [
-                    styles.buttonStyle,
-                    pressed ? styles.buttonPressed : null,
-                  ]}
-                  onPress={onClose}
-                >
-                  <Text style={styles.buttonText}>Send</Text>
-                </Pressable>
-              </View>
-            </TouchableWithoutFeedback>
-          </View>
-        </TouchableWithoutFeedback>
+        <View style={styles.overlay}>
+          <TouchableWithoutFeedback onPress={onClose}>
+            <View style={styles.centeredView}>
+              <TouchableWithoutFeedback>
+                <View style={styles.modalView}>
+                  <Text style={styles.modalText}>Send a notification</Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Message (optional)"
+                    value={notification}
+                    onChangeText={setNotification}
+                  />
+                  <Pressable
+                    style={({ pressed }) => [
+                      styles.buttonStyle,
+                      pressed ? styles.buttonPressed : null,
+                    ]}
+                    onPress={onClose}
+                  >
+                    <Text style={styles.buttonText}>Send</Text>
+                  </Pressable>
+                </View>
+              </TouchableWithoutFeedback>
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
       </Modal>
     </View>
   );
@@ -59,6 +61,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22,
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Dark semi-transparent background
+    justifyContent: "center",
+    alignItems: "center",
   },
   modalView: {
     margin: 20,

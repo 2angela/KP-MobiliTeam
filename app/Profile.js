@@ -1,6 +1,12 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import pfp from "../assets/profile-photo-placeholder.jpg";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useEffect, useState } from "react";
 import Mail from "../assets/icons/mail_fill.svg";
 import Role from "../assets/icons/work_fill.svg";
@@ -110,6 +116,7 @@ const styles = StyleSheet.create({
     display: "flex",
     width: "100%",
     alignItems: "center",
+    marginTop: "10%",
   },
   h1: {
     marginTop: 10,
@@ -121,7 +128,7 @@ const styles = StyleSheet.create({
     width: "80%",
     height: "auto",
     gap: 5,
-    marginTop: "10%",
+    marginTop: "5%",
   },
   detail: {
     display: "flex",

@@ -10,6 +10,7 @@ import NumberField from "../components/numberField";
 import ButtonClearHalf from "../components/buttonClearHalf";
 import ButtonBlueHalf from "../components/buttonBlueHalf";
 import ButtonWhite from "../components/buttonWhite";
+import GradientBG from "../components/gradientBG";
 
 export default function COPEntry({ navigation }) {
   const categories = [
@@ -129,6 +130,7 @@ export default function COPEntry({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <GradientBG />
       <ScreenTitle screenName="COP Request Entry" navigation={navigation} />
       <ButtonWhite label="Clear" action={clearInput} marginRight={20} />
       <KeyboardAwareScrollView style={styles.innerContainer} bounces={false}>
@@ -265,7 +267,6 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "#DEDEFF",
   },
   fieldsContainer: {
     display: "flex",

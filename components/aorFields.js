@@ -63,9 +63,7 @@ export const PhotoUpload = ({
         <Text style={styles.title}>{category.toUpperCase()}</Text>
         <Text style={styles.capture}>Capture Photo</Text>
       </View>
-      <View
-        style={[styles.cameraContainer, { borderBottomRightRadius: "30%" }]}
-      >
+      <View style={[styles.cameraContainer, { borderBottomRightRadius: 30 }]}>
         <Camera width="100" height="100" fill="#3B3B89" right="-5%" top="5%" />
       </View>
     </Pressable>
@@ -113,7 +111,7 @@ export const PhotoInput = ({
         value={inputVal}
         onChangeText={(e) => handleInputUpload(currentInputPath, e)}
       />
-      <View style={[styles.cameraContainer, { borderRadius: "47%" }]}>
+      <View style={[styles.cameraContainer, { borderRadius: 47 }]}>
         <Camera width="100" height="100" fill="#3B3B89" right="-5%" top="5%" />
       </View>
     </Pressable>

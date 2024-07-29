@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import { View, Text, TextInput, StyleSheet, Platform } from "react-native";
 import { HelperText } from "react-native-paper";
 
 export default function NumberField({
@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
   },
   labelContainer: {
     display: "flex",
+    justifyContent: "center",
     flex: 2,
     backgroundColor: "white",
     borderColor: "black",
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderColor: "#B1B1D0",
     borderWidth: 1,
-    borderLeftColor: "transparent",
+    borderLeftColor: Platform.OS === "ios" ? "transparent" : null,
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
     padding: 10,

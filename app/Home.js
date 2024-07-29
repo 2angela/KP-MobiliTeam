@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Button, Pressable } from "react-native";
+import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
 import { useEffect, useState } from "react";
 import Clock from "../assets/icons/clock_fill.svg";
 import Add from "../assets/icons/add_fill.svg";
@@ -95,7 +95,10 @@ export default function Home({ navigation }) {
   // }, []);
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      alwaysBounceVertical={false}
+    >
       <View style={styles.header}>
         <View style={styles.headerLeft}>
           <Text style={[styles.h1, styles.bold]}>Lorem Ipsum Dolor</Text>
@@ -236,7 +239,8 @@ export default function Home({ navigation }) {
           );
         })}
       </View>
-    </View>
+      <View style={styles.emptySpace} />
+    </ScrollView>
   );
 }
 
@@ -244,7 +248,6 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     width: "100%",
-    height: "100%",
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "center",
@@ -339,6 +342,8 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: "white",
     borderRadius: 30,
+    borderColor: "rgba(0,0,0,0.1)",
+    borderWidth: 1,
   },
   addIconContainer: {
     display: "flex",
@@ -383,6 +388,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 10,
+    backgroundColor: "white",
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#ECECEC",
@@ -405,6 +411,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 30,
     gap: 20,
+    borderColor: "rgba(0,0,0,0.1)",
+    borderWidth: 1,
   },
   menu: {
     display: "flex",
@@ -436,5 +444,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#ECECEC",
     borderColor: "black",
     borderWidth: 1,
+  },
+  emptySpace: {
+    display: "flex",
+    margin: "20%",
   },
 });

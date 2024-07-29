@@ -1,9 +1,8 @@
-import { View, StyleSheet, SafeAreaView } from "react-native";
+import { View, StyleSheet, SafeAreaView, ImageBackground } from "react-native";
 import { useState, useRef, useEffect } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import get from "lodash/get";
 import set from "lodash/set";
-// import RNFS from "react-native-fs";
 import { bbmFormat as inputFormat } from "../data/inputFormat";
 import ScreenTitle from "../components/screenTitle";
 import DropdownField from "../components/dropdownField";
@@ -11,6 +10,7 @@ import NumberField from "../components/numberField";
 import ButtonClearHalf from "../components/buttonClearHalf";
 import ButtonBlueHalf from "../components/buttonBlueHalf";
 import ButtonWhite from "../components/buttonWhite";
+import GradientBG from "../components/gradientBG";
 
 export default function BBMEntry({ navigation }) {
   const categories = [
@@ -85,20 +85,9 @@ export default function BBMEntry({ navigation }) {
         createdAt: date.toLocaleString(),
         status: "Pending",
       }));
-      // writeFile(input);
+      navigation.navigate("MainPage");
     }
   };
-  // const filePath = RNFS.DocumentDirectoryPath + "/data/bbm.json";
-  // const writeFile = (data) => {
-  //   RNFS.writeFile(filePath, data, "utf8")
-  //     .then((success) => {
-  //       console.log("Data written to file", filePath);
-  //       navigation.push("MainPage");
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error while writing file", error);
-  //     });
-  // };
 
   const findPath = (category) => {
     switch (category) {
@@ -123,12 +112,9 @@ export default function BBMEntry({ navigation }) {
     return get(input, findPath(category));
   };
 
-  useEffect(() => {
-    // console.log(filePath);
-  }, []);
-
   return (
     <SafeAreaView style={styles.container}>
+      <GradientBG />
       <ScreenTitle screenName="BBM Request Entry" navigation={navigation} />
       <ButtonWhite label="Clear" action={clearInput} marginRight={20} />
       <KeyboardAwareScrollView style={styles.innerContainer} bounces={false}>
@@ -229,7 +215,6 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "#DEDEFF",
   },
   fieldsContainer: {
     display: "flex",

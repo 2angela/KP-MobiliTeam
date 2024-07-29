@@ -130,6 +130,7 @@ export default function Home({ navigation }) {
               styles.shadowXY0,
               pressed ? styles.clicked : null,
             ]}
+            onPress={() => navigation.push("ClockOut")}
           >
             <Clock width="30" height="30" fill="#3B3B89" />
           </Pressable>

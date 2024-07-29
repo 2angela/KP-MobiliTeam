@@ -37,10 +37,20 @@ export default function Notice({ navigation }) {
           distance to your task site will be saved.
         </Text>
         <View style={{ flexDirection: "row" }}>
-          <TouchableOpacity style={styles.button} onPress={() => {}}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              navigation.push("SignUp");
+            }}
+          >
             <Text style={styles.buttonText}>Disagree</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => {}}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              navigation.push("MainPage");
+            }}
+          >
             <Text style={styles.buttonText}>Agree</Text>
           </TouchableOpacity>
         </View>

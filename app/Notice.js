@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-
 import { Divider } from "react-native-paper";
 
 export default function Notice({ navigation }) {
@@ -11,11 +10,10 @@ export default function Notice({ navigation }) {
           <Image
             style={styles.imagestyle}
             source={require("../assets/Mobiliteam.jpg")}
-          ></Image>
+          />
         </View>
-        {/* <Image style={styles.imagestyle} source={require('../assets/Mobiliteam.jpg')}></Image> */}
         <Text style={styles.title}>Mobiliteam App Notice</Text>
-        <Divider />
+        <View style={styles.line}></View>
         <Text style={styles.text1}>
           It’s important that you understand what information RPJS MOBILE
           collects and uses. We explain in detail in our updated Privacy Policy
@@ -29,8 +27,8 @@ export default function Notice({ navigation }) {
         </Text>
         <Text style={styles.text2}>Location and Activity</Text>
         <Text style={styles.text3}>
-          This may include you route details, distances, and your exact location
-          coordinate.
+          This may include your route details, distances, and your exact
+          location coordinate.
         </Text>
         <Text style={styles.text2}>Example Location Usage</Text>
         <Text style={styles.text3}>
@@ -60,7 +58,7 @@ const styles = StyleSheet.create({
   },
   box: {
     width: "100%",
-    padding: 20,
+    // padding: 20,
     backgroundColor: "white",
     borderRadius: 10,
     borderColor: "black",
@@ -73,22 +71,26 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   text1: {
-    fontFamily: "MontserratRegular",
-    fontSize: 8,
+    paddingLeft: 20,
+
+    fontFamily: "MontserratMedium",
+    fontSize: 10,
     textAlign: "left",
     marginBottom: 8,
     paddingTop: 15,
   },
   text2: {
+    paddingLeft: 20,
     fontFamily: "MontserratBold",
-    fontSize: 10,
+    fontSize: 12,
     textAlign: "left",
-    marginTop: 16,
+    marginTop: 12,
     marginBottom: 8,
   },
   text3: {
-    fontFamily: "MontserratRegular",
-    fontSize: 8,
+    paddingLeft: 20,
+    fontFamily: "MontserratMedium",
+    fontSize: 10,
     textAlign: "left",
     marginBottom: 8,
   },
@@ -108,10 +110,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#3b3b89",
   },
-  dividercolor: {
-    backgroundColor: "#000000",
-  },
   imagestyle: {
+    marginTop: 20,
     width: 35,
     height: 35,
     alignItems: "center",
@@ -120,5 +120,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingBottom: 10,
+  },
+  line: {
+    height: 0.5,
+    backgroundColor: "black",
+    width: "100%",
+    alignSelf: "stretch",
   },
 });

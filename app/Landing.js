@@ -5,9 +5,9 @@ import {
   ImageBackground,
   Image,
   TextInput,
+  SafeAreaView,
 } from "react-native";
 import { HelperText, Icon } from "react-native-paper";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useState, useRef } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import ButtonBlue from "../components/buttonBlue";
@@ -54,18 +54,18 @@ export default function Landing({ navigation }) {
   };
 
   const handleNavigate = (screen) => {
-    if (firstSubmit.current) {
-      firstSubmit.current = false;
-    }
-    const isValid = validate();
-    if (isValid) {
-      if (screen == "Login") {
-        navigation.push("ClockIn");
-      } else if (screen == "SignUp") {
-        navigation.push("SignUp");
+    if (screen == "SignUp") {
+      navigation.push("SignUp");
+    } else if (screen == "Login") {
+      if (firstSubmit.current) {
+        firstSubmit.current = false;
       }
-    } else {
-      return null;
+      const isValid = validate();
+      if (isValid) {
+        navigation.push("ClockIn");
+      } else {
+        return null;
+      }
     }
   };
 
@@ -105,7 +105,7 @@ export default function Landing({ navigation }) {
                   errors[0] ? styles.textError : null,
                 ]}
                 placeholder="Enter your email"
-                placeholderTextColor={errors[0] ? "red" : "black"}
+                placeholderTextColor={errors[0] ? "red" : "#7F7F7F"}
                 onFocus={() => handleActiveState(0)}
                 onBlur={() => {
                   handleActiveState(0);
@@ -140,7 +140,7 @@ export default function Landing({ navigation }) {
                   errors[1] ? styles.textError : null,
                 ]}
                 placeholder="Enter your password"
-                placeholderTextColor={errors[1] ? "red" : "black"}
+                placeholderTextColor={errors[1] ? "red" : "#7F7F7F"}
                 secureTextEntry={true}
                 onFocus={() => handleActiveState(1)}
                 onBlur={() => {

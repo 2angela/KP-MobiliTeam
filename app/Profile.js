@@ -1,6 +1,5 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, SafeAreaView } from "react-native";
 import pfp from "../assets/profile-photo-placeholder.jpg";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useEffect, useState } from "react";
 import Mail from "../assets/icons/mail_fill.svg";
 import Role from "../assets/icons/work_fill.svg";
@@ -77,7 +76,6 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(59, 59, 137)",
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
-    marginBottom: 60,
   },
   imageContainer: {
     display: "flex",
@@ -97,6 +95,7 @@ const styles = StyleSheet.create({
     display: "flex",
     width: "100%",
     alignItems: "center",
+    marginTop: "10%",
   },
   h1: {
     fontFamily: "MontserratBold",

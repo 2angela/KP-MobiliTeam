@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)", // Dark semi-transparent background
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   buttonStyle: {
     display: "flex",
     alignItems: "center",
-    width: 300,
+    width: 350,
     paddingVertical: 15,
     backgroundColor: "rgb(59, 59, 137)",
     borderRadius: 30,
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 50,
-    width: 300,
+    width: 350,
     borderColor: "gray",
     borderWidth: 1,
     marginBottom: 20,

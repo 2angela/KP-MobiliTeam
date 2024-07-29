@@ -577,7 +577,7 @@ export default function AOR46({ navigation }) {
                 height="100%"
                 zIndex={2}
                 display={index < getScreenNames().length - 1 ? "flex" : "none"}
-                marginHorizontal={-1}
+                marginHorizontal={-5}
               />
             </Fragment>
           );

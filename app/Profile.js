@@ -47,7 +47,10 @@ export default function Profile({ navigation }) {
     <View style={styles.container}>
       <View style={styles.header}>
         <SafeAreaView style={styles.imageContainer}>
-          <TouchableOpacity onPress={handlePfpClick}>
+          <TouchableOpacity
+            style={styles.pfpContainer}
+            onPress={handlePfpClick}
+          >
             <Image source={pfp} style={styles.pfp} />
           </TouchableOpacity>
         </SafeAreaView>
@@ -103,23 +106,26 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  pfp: {
+  pfpContainer: {
     position: "absolute",
     width: "30%",
     height: "auto",
     aspectRatio: 1 / 1,
     left: "35%",
     top: 80,
+  },
+  pfp: {
+    width: "100%",
+    height: "100%",
     borderRadius: 100,
   },
   innerContainer: {
     display: "flex",
     width: "100%",
     alignItems: "center",
-    marginTop: "10%",
+    marginTop: "15%",
   },
   h1: {
-    marginTop: 10,
     fontFamily: "MontserratBold",
     fontSize: 20,
   },
@@ -141,6 +147,7 @@ const styles = StyleSheet.create({
     borderColor: "#D8D8E7",
     borderWidth: 1,
     gap: 10,
+    backgroundColor: "white",
   },
   p: {
     fontFamily: "MontserratRegular",

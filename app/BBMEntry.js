@@ -1,4 +1,4 @@
-import { View, StyleSheet, SafeAreaView, ImageBackground } from "react-native";
+import { View, StyleSheet, SafeAreaView } from "react-native";
 import { useState, useRef, useEffect } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import get from "lodash/get";

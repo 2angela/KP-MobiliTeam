@@ -8,7 +8,7 @@ export default function Notice({ navigation }) {
         <View style={styles.imagecontainer}>
           <Image
             style={styles.imagestyle}
-            source={require("../assets/Mobiliteam.jpg")}
+            source={require("../assets/icon.png")}
           />
         </View>
         <Text style={styles.title}>Mobiliteam App Notice</Text>

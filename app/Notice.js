@@ -1,9 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import GradientBG from "../components/gradientBG";
 
 export default function Notice({ navigation }) {
   return (
     <View style={styles.container}>
+      <GradientBG />
       <View style={styles.box}>
         <View style={styles.imagecontainer}>
           <Image

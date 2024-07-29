@@ -116,7 +116,7 @@ export default function Landing({ navigation }) {
     }
     const isValid = validate("second");
     if (isValid) {
-      navigation.push("ClockIn");
+      navigation.push("Notice");
     } else {
       return null;
     }

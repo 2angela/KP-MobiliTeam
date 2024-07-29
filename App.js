@@ -7,7 +7,6 @@ import MainPage from "./app/MainPage";
 import Home from "./app/Home";
 import Profile from "./app/Profile";
 import Notice from "./app/Notice";
-import Notify from "./app/Notify";
 import BBMEntry from "./app/BBMEntry";
 import Tasks from "./app/Tasks";
 import AOREntry from "./app/AOREntry";
@@ -59,7 +58,6 @@ export default function App() {
           <Stack.Screen name="Home" component={Home}></Stack.Screen>
           <Stack.Screen name="Profile" component={Profile}></Stack.Screen>
           <Stack.Screen name="Notice" component={Notice}></Stack.Screen>
-          <Stack.Screen name="Notify" component={Notify}></Stack.Screen>
           <Stack.Screen name="BBMEntry" component={BBMEntry}></Stack.Screen>
           <Stack.Screen name="Tasks" component={Tasks}></Stack.Screen>
           <Stack.Screen name="AOREntry" component={AOREntry}></Stack.Screen>

@@ -22,17 +22,15 @@ import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as XLSX from "xlsx";
 import Delete from "../assets/icons/delete.svg";
+
 export default function COPHistory({ navigation }) {
   const [selectedTab, setSelectedTab] = useState("List");
   const initialData = Object.values(COPData);
   const [data, setData] = useState(initialData);
   const [search, setSearch] = useState("");
-  // const filePath = FileSystem.documentDirectory + "cop.json";
 
   const calculateCOPMonthlyTotals = (data) => {
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth() + 1;
-    const totals = Array(currentMonth).fill(0);
+    const totals = Array(12).fill(0);
 
     data.slice(0, -1).forEach((item) => {
       const date = item.createdAt;
@@ -77,32 +75,35 @@ const ListTab = ({ copMonthlyTotals, data, setData }) => {
     year: "numeric",
   })}`;
 
-  // const removeItem = async (index) => {
-  //   const updatedData = data.filter((item) => item.index !== index);
-  //   setData(updatedData);
-  //   await writeFile(updatedData);
-  // };
-
   const handleDelete = async (index) => {
     setData((prevData) => prevData.filter((_, i) => i !== index));
-
-    // const updatedData = [...data];
-    // updatedData.splice(index, 1);
-    // data.remove(data[index]);
-    // console.log(data);
-
-    // try {
-    //   await AsyncStorage.setItem("COPData", JSON.stringify(updatedData));
-    //   console.log("Data saved successfully");
-    // } catch (error) {
-    //   console.error("Error saving data: ", error);
-    // }
   };
 
-  const lineChartData = copMonthlyTotals.map((total, index) => ({
-    value: total,
-    label: new Date(0, index).toLocaleString("en-US", { month: "short" }),
-  }));
+  // const lineChartData = copMonthlyTotals.map((total, index) => ({
+  //   value: total,
+  //   label: new Date(0, index).toLocaleString("en-US", { month: "short" }),
+  // }));
+
+  const lineChartData = copMonthlyTotals.map((total, index) => {
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    return {
+      value: total,
+      label: monthNames[index],
+    };
+  });
 
   return (
     <ScrollView contentContainerStyle={list.listContainer}>

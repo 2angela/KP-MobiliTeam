@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { Divider } from "react-native-paper";
 
 export default function Notice({ navigation }) {
   return (

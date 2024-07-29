@@ -1,20 +1,34 @@
+import React, { useState } from "react";
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import Home from "../assets/icons/home_fill.svg";
 import Profile from "../assets/icons/account-circle.svg";
 import Bell from "../assets/icons/bell_fill.svg";
+import NotificationModal from "./modal";
 
 export default function Navigation({
   navigation,
   screenName,
   setCurrentScreen,
 }) {
+  const [modalVisible, setModalVisible] = useState(false);
+
   const highlightTab = (tabName) => {
-    if (tabName == screenName) {
-      return "#3B3B89";
-    } else return "black";
+    return tabName === screenName ? "#3B3B89" : "black";
   };
+
   return (
     <View style={styles.container}>
+      <Pressable
+        style={({ pressed }) => [
+          styles.middleTab,
+          pressed ? { backgroundColor: "#3B3B89" } : null,
+        ]}
+        onPress={() => setModalVisible(true)}
+      >
+        {({ pressed }) => (
+          <Bell width="35px" height="35px" fill={pressed ? "white" : "black"} />
+        )}
+      </Pressable>
       <View style={styles.tabs}>
         <Pressable
           style={styles.tab}
@@ -26,7 +40,7 @@ export default function Navigation({
           <View
             style={[
               styles.line,
-              screenName == "Home" ? { display: "flex" } : { display: "none" },
+              screenName === "Home" ? { display: "flex" } : { display: "none" },
             ]}
           />
           <Home width="35px" height="35px" fill={highlightTab("Home")} />
@@ -44,7 +58,7 @@ export default function Navigation({
           <View
             style={[
               styles.line,
-              screenName == "Profile"
+              screenName === "Profile"
                 ? { display: "flex" }
                 : { display: "none" },
             ]}
@@ -55,22 +69,10 @@ export default function Navigation({
           </Text>
         </Pressable>
       </View>
-      <Pressable
-        style={({ pressed }) => [
-          styles.middleTab,
-          pressed ? { backgroundColor: "#3B3B89" } : null,
-        ]}
-      >
-        {({ pressed }) => {
-          return (
-            <Bell
-              width="35px"
-              height="35px"
-              fill={pressed ? "white" : "black"}
-            />
-          );
-        }}
-      </Pressable>
+      <NotificationModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+      />
     </View>
   );
 }
@@ -92,11 +94,19 @@ const styles = StyleSheet.create({
       width: 0,
       height: 0,
     },
-    shadowOpacity: "0.5",
-    shadowRadius: "10",
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
     elevation: 1,
     bottom: "2%",
     fontFamily: "MontserratRegular",
+  },
+  tabs: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 50,
   },
   tab: {
     display: "flex",
@@ -104,17 +114,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  tabs: {
-    display: "flex",
-    flexDirection: "row",
-    width: "70%",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
   line: {
     display: "flex",
     width: "100%",
-    height: "3px",
+    height: 3,
     borderWidth: 2,
     borderColor: "rgb(59, 59, 137)",
     borderRadius: 5,
@@ -122,14 +125,14 @@ const styles = StyleSheet.create({
   },
   middleTab: {
     position: "absolute",
-    bottom: "50%",
-    left: "37%",
-    transform: "translate: -50%, -50%",
+    top: -45,
+    left: "50%",
+    transform: [{ translateX: -50 }],
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    width: "26%",
-    aspectRatio: 1 / 1,
+    width: 100,
+    height: 100,
     borderRadius: 100,
     borderColor: "rgba(59, 59, 137, 0.25)",
     borderWidth: 1,
@@ -139,8 +142,8 @@ const styles = StyleSheet.create({
       width: 0,
       height: 0,
     },
-    shadowOpacity: "0.5",
-    shadowRadius: "10",
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
   },
   textStyle: {
     fontFamily: "MontserratRegular",

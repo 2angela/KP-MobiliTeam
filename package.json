@@ -11,6 +11,7 @@
   "dependencies": {
     "@expo-google-fonts/montserrat": "^0.2.3",
     "@react-native-async-storage/async-storage": "^1.24.0",
+    "@react-native-community/blur": "^4.4.0",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/stack": "^6.4.0",
     "erfan-clock-analog": "^0.1.0",
@@ -28,6 +29,7 @@
     "react-native-fs": "^2.20.0",
     "react-native-gesture-handler": "~2.16.1",
     "react-native-gifted-charts": "^1.4.19",
+    "react-native-image-picker": "^7.1.2",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-linear-gradient": "^2.8.3",
     "react-native-paper": "^5.12.3",

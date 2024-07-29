@@ -528,6 +528,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 20,
-    gap: 10,
+    marginLeft: 4,
   },
 });

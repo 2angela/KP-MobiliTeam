@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import pfp from "../assets/profile-photo-placeholder.jpg";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useEffect, useState } from "react";
@@ -6,6 +6,7 @@ import Mail from "../assets/icons/mail_fill.svg";
 import Role from "../assets/icons/work_fill.svg";
 import Project from "../assets/icons/project_fill.svg";
 import ButtonBlue from "../components/buttonBlue";
+import ModalEditProfile from "../components/modalEditProfile";
 
 export default function Profile({ navigation }) {
   const [user, setUser] = useState({
@@ -14,6 +15,7 @@ export default function Profile({ navigation }) {
     role: "",
     project: "",
   });
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     // set user example
@@ -26,11 +28,22 @@ export default function Profile({ navigation }) {
     setUser(userExample);
   }, []);
 
+  const handlePfpClick = () => {
+    console.log("Profile picture clicked");
+    setModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <SafeAreaView style={styles.imageContainer}>
-          <Image source={pfp} style={styles.pfp} />
+          <TouchableOpacity onPress={handlePfpClick}>
+            <Image source={pfp} style={styles.pfp} />
+          </TouchableOpacity>
         </SafeAreaView>
       </View>
       <SafeAreaView style={styles.innerContainer}>
@@ -56,6 +69,7 @@ export default function Profile({ navigation }) {
           marginBottom={0}
         />
       </SafeAreaView>
+      <ModalEditProfile visible={modalVisible} onClose={handleCloseModal} />
     </View>
   );
 }
@@ -98,6 +112,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   h1: {
+    marginTop: 10,
     fontFamily: "MontserratBold",
     fontSize: 20,
   },

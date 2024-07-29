@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Modal,
+  PermissionsAndroid,
+  Alert,
+} from "react-native";
 import AnalogClock from "react-native-clock-analog";
 import { Icon } from "react-native-paper";
 import ButtonLarge from "../components/buttonLarge";
 import ButtonMedium from "../components/buttonMedium";
+import ButtonLocation from "../components/buttonLocation";
+import Location from "../assets/icons/location.svg";
 
 export default function ClockIn({ navigation }) {
   const getCurrentDate = () => {
@@ -14,27 +23,16 @@ export default function ClockIn({ navigation }) {
     return `${day}, ${date} ${month} ${year}`;
   };
 
-  const getCurrentMinute = () => {
-    return new Date().getMinutes();
-  };
-
-  const getCurrentHours = () => {
-    return new Date().getHours();
-  };
-
-  const handleCancel = () => {
-    navigation.goBack();
-  };
-
-  const handleClockIn = () => {
-    navigation.push("MainPage");
-  };
+  const getCurrentMinute = () => new Date().getMinutes();
+  const getCurrentHours = () => new Date().getHours();
 
   const [currentTime, setCurrentTime] = useState({
     hours: "00",
     minutes: "00",
     seconds: "00",
   });
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     const updateCurrentTime = () => {
@@ -51,18 +49,50 @@ export default function ClockIn({ navigation }) {
     return () => cancelAnimationFrame(updateCurrentTime);
   }, []);
 
-  // const handleNavigate = (screen) => {
-  //   validate();
-  //   if (valid == true) {
-  //     if (screen == "Login") {
-  //       return navigation.push("ClockIn");
-  //     } else if (screen == "SignUp") {
-  //       return navigation.push("SignUp");
-  //     }
-  //   } else {
-  //     return null;
-  //   }
-  // };
+  const requestLocationPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: "Location Permission",
+          message:
+            "This app needs access to your location " +
+            "so we can know where you are.",
+          buttonNeutral: "Ask Me Later",
+          buttonNegative: "Cancel",
+          buttonPositive: "OK",
+        }
+      );
+
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        Alert.alert("You can use the location");
+      } else {
+        Alert.alert(
+          "Alert",
+          "Failed to find location. Attendance cannot be proceeded."
+        );
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
+  const handleClockIn = () => {
+    setModalVisible(true);
+  };
+
+  const handleAbsent = () => {
+    navigation.push("MainPage");
+  };
+
+  const handlePermissionChoice = (choice) => {
+    setModalVisible(false);
+    if (choice === "allow") {
+      navigation.push("MainPage");
+    } else if (choice === "deny") {
+      requestLocationPermission();
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -110,14 +140,44 @@ export default function ClockIn({ navigation }) {
       </View>
       <View style={{ display: "flex", flexDirection: "row" }}>
         <ButtonMedium label="Clock In" action={handleClockIn} marginTop={50} />
-        <ButtonMedium label="Absent" action={null} marginTop={50} />
+        <ButtonMedium label="Absent" action={handleAbsent} marginTop={50} />
       </View>
       <ButtonLarge
         label="Cancel"
-        action={handleCancel}
+        action={() => navigation.goBack()}
         marginTop={20}
         marginBottom={40}
       />
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.modalBackground}>
+          <View style={styles.modalView}>
+            <Location width={40} height={40} fill="#3b3b89" />
+            <Text style={styles.modalText}>
+              Allow MobiliTeam App to access this device location?
+            </Text>
+            <ButtonLocation
+              label="Allow While Using the App"
+              action={() => handlePermissionChoice("allow")}
+            />
+            <ButtonLocation
+              label="Allow This Time"
+              action={() => handlePermissionChoice("allow")}
+            />
+            <ButtonLocation
+              label="Don't Allow"
+              action={() => handlePermissionChoice("deny")}
+            />
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -126,7 +186,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    width: "100%", // Adjust the container width to allow left alignment
+    width: "100%",
     padding: 20,
     backgroundColor: "white",
   },
@@ -135,7 +195,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: "left",
     paddingBottom: 20,
-    alignSelf: "flex-start", // Align text to the left
+    alignSelf: "flex-start",
   },
   dateBox: {
     paddingTop: 15,
@@ -208,5 +268,47 @@ const styles = StyleSheet.create({
     fontFamily: "MontserratSemiBold",
     paddingLeft: 5,
     paddingTop: 1,
+  },
+  modalBackground: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+    fontSize: 18,
+    fontWeight: "bold",
+    marginTop: 9,
+  },
+  buttonlocation: {
+    borderRadius: 5,
+    borderColor: "#3B3B89",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white",
+    margin: 8,
+  },
+  textLocationButton: {
+    fontFamily: "MontserratSemiBold",
+    color: "#3B3B89",
+    fontSize: 10,
+    textAlign: "center",
   },
 });

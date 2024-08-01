@@ -11,6 +11,8 @@ import {
 import { HelperText, Icon } from "react-native-paper";
 import { useState, useRef, Fragment, useEffect } from "react";
 import set from "lodash/set";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/actions";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import ButtonClear from "../components/buttonClear";
 import Back from "../assets/icons/back_fill.svg";
@@ -30,7 +32,7 @@ export default function Landing({ navigation }) {
     project: "",
     role: "",
   };
-  const [user, setUser] = useState(signUpFormat);
+  const [user, setCurrentUser] = useState(signUpFormat);
   const fields = [
     { name: "Name", icon: "account-circle" },
     { name: "Email", icon: "at" },
@@ -110,12 +112,22 @@ export default function Landing({ navigation }) {
       setNext(true);
     }
   };
+
+  const dispatch = useDispatch();
   const handleSubmit = () => {
     if (firstSubmit.current) {
       firstSubmit.current = false;
     }
     const isValid = validate("second");
     if (isValid) {
+      const currentUser = {
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        project: user.project,
+      };
+      console.log("current user =", currentUser);
+      dispatch(setUser(currentUser));
       navigation.push("Notice");
     } else {
       return null;
@@ -138,12 +150,13 @@ export default function Landing({ navigation }) {
         <SafeAreaView style={styles.container2}>
           <Image source={logo} style={styles.logo} resizeMode="fill" />
           <Text style={styles.screenname}>Sign Up</Text>
-          {next ? (
-            <Pressable style={styles.back} onPress={() => setNext(false)}>
-              <Back width="20" height="20" fill="white" />
-              <Text style={styles.textStyle}>back</Text>
-            </Pressable>
-          ) : null}
+          <Pressable
+            style={styles.back}
+            onPress={() => (next ? setNext(false) : navigation.goBack())}
+          >
+            <Back width="20" height="20" fill="white" />
+            <Text style={styles.textStyle}>back</Text>
+          </Pressable>
 
           {/* Map the fields */}
           {fields.map((item, index) => {
@@ -154,7 +167,7 @@ export default function Landing({ navigation }) {
                     item={item}
                     index={index}
                     user={user}
-                    setUser={setUser}
+                    setCurrentUser={setCurrentUser}
                     active={active}
                     setActive={setActive}
                     errors={errors}
@@ -169,7 +182,7 @@ export default function Landing({ navigation }) {
                     item={item}
                     index={index}
                     user={user}
-                    setUser={setUser}
+                    setCurrentUser={setCurrentUser}
                     active={active}
                     setActive={setActive}
                     errors={errors}
@@ -197,7 +210,7 @@ const InputField = ({
   item,
   index,
   user,
-  setUser,
+  setCurrentUser,
   active,
   setActive,
   errors,
@@ -215,7 +228,7 @@ const InputField = ({
 
   const handleChange = (field, value) => {
     const newUser = set({ ...user }, convertToPath(field), value);
-    setUser(newUser);
+    setCurrentUser(newUser);
   };
   return (
     <Fragment>

@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import { HelperText, Icon } from "react-native-paper";
 import { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/actions";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import ButtonBlue from "../components/buttonBlue";
 import ButtonClear from "../components/buttonClear";
@@ -53,6 +55,7 @@ export default function Landing({ navigation }) {
     }
   };
 
+  const dispatch = useDispatch();
   const handleNavigate = (screen) => {
     if (screen == "SignUp") {
       navigation.push("SignUp");
@@ -62,6 +65,13 @@ export default function Landing({ navigation }) {
       }
       const isValid = validate();
       if (isValid) {
+        const currentUser = {
+          name: "Lorem Ipsum Dolor",
+          email: email,
+          role: "Project Manager",
+          project: "IOH NPM",
+        };
+        dispatch(setUser(currentUser));
         navigation.push("ClockIn");
       } else {
         return null;

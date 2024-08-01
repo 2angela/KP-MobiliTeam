@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TextInput, Alert } from "react-native";
+import { useDispatch } from "react-redux";
+import { clockOut } from "../redux/actions";
 import AnalogClock from "react-native-clock-analog";
 import { Icon } from "react-native-paper";
 import ButtonMedium from "../components/buttonMedium";
@@ -39,14 +41,15 @@ export default function ClockOut({ navigation }) {
     return () => cancelAnimationFrame(animationFrameId);
   }, []);
 
+  const dispatch = useDispatch();
   const handleClockOut = () => {
     if (!reason.trim()) {
       setIsReasonValid(false);
       Alert.alert("Validation Error", "Please provide a reason.");
-      return;
+    } else {
+      dispatch(clockOut());
+      navigation.goBack();
     }
-
-    navigation.goBack();
   };
 
   const handleCancel = () => {

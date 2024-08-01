@@ -18,7 +18,7 @@ import background from "../assets/landing-photo.png";
 import logo from "../assets/app-logo.png";
 import poca from "../assets/poca-logo.png";
 
-export default function Landing({ navigation }) {
+export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

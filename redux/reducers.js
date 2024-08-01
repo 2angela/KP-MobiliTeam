@@ -3,6 +3,7 @@ import {
   bbmFormat,
   copFormat,
   aorFormat,
+  aor46Format,
   siteFormat,
 } from "../data/inputFormat";
 
@@ -18,6 +19,7 @@ const initialState = {
   bbm: bbmFormat,
   cop: copFormat,
   aor: aorFormat,
+  aor46: aor46Format,
   site: siteFormat,
 };
 
@@ -63,6 +65,11 @@ const counterReducer = (state = initialState, action) => {
       return {
         ...state,
         aor: { ...state.aor, ...action.payload },
+      };
+    case "SAVEAOR46":
+      return {
+        ...state,
+        aor46: { ...state.aor46, ...action.payload },
       };
     case "SAVESITE":
       return {

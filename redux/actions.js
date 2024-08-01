@@ -51,6 +51,13 @@ export const saveAOR = (data) => {
   };
 };
 
+export const saveAOR46 = (data) => {
+  return {
+    type: "SAVEAOR46",
+    payload: data,
+  };
+};
+
 export const saveSite = (data) => {
   return {
     type: "SAVESITE",

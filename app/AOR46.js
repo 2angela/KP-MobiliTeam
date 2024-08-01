@@ -11,6 +11,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { useState, useRef, Fragment, useEffect } from "react";
 import set from "lodash/set";
 import cloneDeep from "lodash/cloneDeep";
+import { useDispatch, useSelector } from "react-redux";
+import { saveAOR46 } from "../redux/actions";
 import { aor46Format as inputFormat } from "../data/inputFormat.js";
 import ScreenTitle from "../components/screenTitle";
 import Back from "../assets/icons/back_fill.svg";
@@ -22,6 +24,7 @@ import NumberField from "../components/numberField.js";
 import Connector from "../assets/connector.svg";
 import Divider from "../assets/divider.svg";
 import { PhotoUpload, PhotoInput } from "../components/aorFields.js";
+import SaveModal from "../components/saveModal";
 
 export default function AOR46({ navigation }) {
   // track current screen
@@ -250,8 +253,12 @@ export default function AOR46({ navigation }) {
     firstSubmit.current = true;
   };
 
+  const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
   const handleSave = () => {
-    // save input to app cache (?)
+    // save input to global state
+    setShowModal(true);
+    dispatch(saveAOR46(cloneDeep(input)));
   };
 
   // Get data path for the input (every input has different paths)
@@ -534,9 +541,10 @@ export default function AOR46({ navigation }) {
   // Error invalid data modal
   const [errorModal, setErrorModal] = useState(false);
 
-  // useEffect(() => {
-
-  // }, []);
+  const savedInput = useSelector((state) => state.aor46);
+  useEffect(() => {
+    setInput(cloneDeep(savedInput));
+  }, [savedInput]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -747,7 +755,7 @@ export default function AOR46({ navigation }) {
             label={
               currentScreen == "Site Information" ? "Save Site" : "Save Changes"
             }
-            action={null}
+            action={handleSave}
             marginTop={0}
             marginBottom={0}
           />
@@ -828,6 +836,7 @@ export default function AOR46({ navigation }) {
           </View>
         </View>
       </Modal>
+      {showModal ? <SaveModal setShowModal={setShowModal} /> : null}
     </SafeAreaView>
   );
 }

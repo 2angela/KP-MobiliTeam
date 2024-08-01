@@ -63,7 +63,7 @@ export default function Profile({ navigation }) {
           label="Sign Out"
           action={() => {
             dispatch(resetUser());
-            navigation.navigate("Landing");
+            navigation.navigate("Login");
           }}
           marginTop={20}
           marginBottom={0}

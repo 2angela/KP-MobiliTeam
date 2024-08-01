@@ -19,7 +19,7 @@ import Back from "../assets/icons/back_fill.svg";
 import background from "../assets/landing-photo.png";
 import logo from "../assets/app-logo.png";
 
-export default function Landing({ navigation }) {
+export default function SignUp({ navigation }) {
   const signUpFormat = {
     name: "",
     email: "",

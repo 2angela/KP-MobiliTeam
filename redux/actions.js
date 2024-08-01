@@ -10,15 +10,50 @@ export const clockOut = () => {
   };
 };
 
-export const setUser = (userData) => {
+export const setUser = (data) => {
   return {
     type: "SETUSER",
-    payload: userData,
+    payload: data,
   };
 };
 
 export const resetUser = () => {
   return {
     type: "RESETUSER",
+  };
+};
+
+export const saveTask = (data) => {
+  return {
+    type: "SAVETASK",
+    payload: data,
+  };
+};
+
+export const saveBBM = (data) => {
+  return {
+    type: "SAVEBBM",
+    payload: data,
+  };
+};
+
+export const saveCOP = (data) => {
+  return {
+    type: "SAVECOP",
+    payload: data,
+  };
+};
+
+export const saveAOR = (data) => {
+  return {
+    type: "SAVEAOR",
+    payload: data,
+  };
+};
+
+export const saveSite = (data) => {
+  return {
+    type: "SAVESITE",
+    payload: data,
   };
 };

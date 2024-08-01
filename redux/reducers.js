@@ -1,3 +1,11 @@
+import {
+  taskFormat,
+  bbmFormat,
+  copFormat,
+  aorFormat,
+  siteFormat,
+} from "../data/inputFormat";
+
 const initialState = {
   clockedIn: false,
   user: {
@@ -6,6 +14,11 @@ const initialState = {
     role: "",
     project: "",
   },
+  task: taskFormat,
+  bbm: bbmFormat,
+  cop: copFormat,
+  aor: aorFormat,
+  site: siteFormat,
 };
 
 const counterReducer = (state = initialState, action) => {
@@ -31,6 +44,31 @@ const counterReducer = (state = initialState, action) => {
         user: initialState.user,
       };
     }
+    case "SAVETASK":
+      return {
+        ...state,
+        task: { ...state.task, ...action.payload },
+      };
+    case "SAVEBBM":
+      return {
+        ...state,
+        bbm: { ...state.bbm, ...action.payload },
+      };
+    case "SAVECOP":
+      return {
+        ...state,
+        cop: { ...state.cop, ...action.payload },
+      };
+    case "SAVEAOR":
+      return {
+        ...state,
+        aor: { ...state.aor, ...action.payload },
+      };
+    case "SAVESITE":
+      return {
+        ...state,
+        site: { ...state.site, ...action.payload },
+      };
     default:
       return state;
   }

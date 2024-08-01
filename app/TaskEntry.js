@@ -1,8 +1,10 @@
 import { View, StyleSheet, SafeAreaView } from "react-native";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import get from "lodash/get";
 import set from "lodash/set";
+import { useDispatch, useSelector } from "react-redux";
+import { saveTask } from "../redux/actions";
 import { taskFormat as inputFormat } from "../data/inputFormat";
 import ScreenTitle from "../components/screenTitle";
 import DropdownField from "../components/dropdownField";
@@ -10,6 +12,7 @@ import TextField from "../components/textField";
 import ButtonClearHalf from "../components/buttonClearHalf";
 import ButtonBlueHalf from "../components/buttonBlueHalf";
 import ButtonWhite from "../components/buttonWhite";
+import SaveModal from "../components/saveModal";
 
 export default function TaskEntry({ navigation }) {
   const categories = [
@@ -41,16 +44,19 @@ export default function TaskEntry({ navigation }) {
   const clearInput = () => {
     const temp = { ...inputFormat };
     setInput(temp);
-    setErrors(Array(numOfErrors).fill(false));
+    setErrors(Array(numOfField).fill(false));
     firstSubmit.current = true;
   };
 
+  const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
   const handleSave = () => {
-    // save input to app cache (?)
+    // save input to global state
+    setShowModal(true);
+    dispatch(saveTask(input));
   };
 
-  const numOfErrors = Object.keys(input).length; // set number of fields in the screen with error conditions
-  const [errors, setErrors] = useState(Array(numOfErrors).fill(false));
+  const [errors, setErrors] = useState(Array(numOfField).fill(false));
 
   // customize valid conditions here
   // example checking empty condition
@@ -91,6 +97,11 @@ export default function TaskEntry({ navigation }) {
       navigation.push("MainPage");
     }
   };
+
+  const savedInput = useSelector((state) => state.task);
+  useEffect(() => {
+    setInput(savedInput);
+  }, [savedInput]);
 
   const findPath = (category) => {
     switch (category) {
@@ -194,7 +205,7 @@ export default function TaskEntry({ navigation }) {
         <View style={styles.buttonsContainer}>
           <ButtonClearHalf
             label="Save Entry"
-            action={null}
+            action={handleSave}
             marginTop={15}
             marginBottom={0}
           />
@@ -205,6 +216,7 @@ export default function TaskEntry({ navigation }) {
             marginBottom={0}
           />
         </View>
+        {showModal ? <SaveModal setShowModal={setShowModal} /> : null}
       </KeyboardAwareScrollView>
     </SafeAreaView>
   );

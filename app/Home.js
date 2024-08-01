@@ -78,22 +78,22 @@ export default function Home({ navigation }) {
       return navigation.push(screenName);
     }
   };
-  // useEffect(() => {
-  //   //example changing task count values (without fetching data from API/database)
-  //   const newTasks = tasks.map((item) => {
-  //     if (item.category == "Done") {
-  //       return { ...item, count: 5 };
-  //     } else if (item.category == "On Progress") {
-  //       return { ...item, count: 2 };
-  //     } else if (item.category == "Cancelled") {
-  //       return { ...item, count: 1 };
-  //     } else {
-  //       return item;
-  //     }
-  //   });
-  //   setTasks(newTasks);
-  //   console.log(newTasks);
-  // }, []);
+  useEffect(() => {
+    //example changing task count values (without fetching data from API/database)
+    const newTasks = tasks.map((item) => {
+      if (item.category == "Done") {
+        return { ...item, count: 5 };
+      } else if (item.category == "On Progress") {
+        return { ...item, count: 2 };
+      } else if (item.category == "Cancelled") {
+        return { ...item, count: 1 };
+      } else {
+        return item;
+      }
+    });
+    setTasks(newTasks);
+    console.log(newTasks);
+  }, []);
 
   const clockedIn = useSelector((state) => state.clockedIn);
 

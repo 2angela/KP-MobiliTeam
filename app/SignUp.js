@@ -14,6 +14,7 @@ import set from "lodash/set";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/actions";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { Dropdown } from "react-native-element-dropdown";
 import ButtonClear from "../components/buttonClear";
 import Back from "../assets/icons/back_fill.svg";
 import background from "../assets/landing-photo.png";
@@ -45,11 +46,32 @@ export default function SignUp({ navigation }) {
     { name: "Project", icon: "clipboard-outline" },
     { name: "Role", icon: "briefcase" },
   ];
+  const dropdownOptions = [
+    ["Region 1", "Region 2", "Region 3", "Region 4", "Region 5"],
+    ["Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5"],
+    ["Project 1", "Project 2", "Project 3", "Project 4", "Project 5"],
+    ["Role 1", "Role 2", "Role 3", "Role 4", "Role 5"],
+  ];
 
   const numOfField = Object.keys(user).length; // set number of fields with active/inactive states and error conditions
 
   // true if field is active (on Focus), false otherwise
   const [active, setActive] = useState(Array(numOfField).fill(false));
+
+  const handleActiveState = (index) => {
+    const newActive = active.map((item, i) => (i == index ? !item : item)); // change state of the item to the opposite
+    setActive(newActive);
+  };
+
+  const handleChange = (field, value) => {
+    const newUser = set({ ...user }, convertToPath(field), value);
+    setCurrentUser(newUser);
+  };
+
+  // convert field name to user property name
+  const convertToPath = (name) => {
+    return name.split(" ")[0].toLowerCase();
+  };
 
   // determine how many error conditions for each field
   const errArray1 = Array(2).fill(false);
@@ -144,6 +166,7 @@ export default function SignUp({ navigation }) {
       firstNext.current = false;
     }
     const isValid = validate("first");
+    // const isValid = true;
     if (isValid) {
       setNext(true);
     }
@@ -169,11 +192,9 @@ export default function SignUp({ navigation }) {
     }
   };
 
-  useEffect(() => {
-    const temp = [false];
-    console.log("does error 6 have false", errors[6].includes(false));
-    console.log(errors);
-  }, [errors]);
+  // useEffect(() => {
+
+  // }, []);
 
   return (
     <KeyboardAwareScrollView
@@ -205,33 +226,64 @@ export default function SignUp({ navigation }) {
                     item={item}
                     index={index}
                     user={user}
-                    setCurrentUser={setCurrentUser}
                     active={active}
-                    setActive={setActive}
                     errors={errors}
                     indexHT={indexHT}
+                    handleActiveState={handleActiveState}
+                    handleChange={handleChange}
                   />
                 </View>
               );
             } else if (next && index >= 6 && index < 10) {
-              console.log(
-                "is errors on index",
-                index,
-                "true ?",
-                errors[index].includes(true)
-              );
+              const activeState = active[index];
+              const errorState = errors[index].includes(true);
               return (
                 <View key={index} style={styles.field}>
-                  <InputField
-                    item={item}
-                    index={index}
-                    user={user}
-                    setCurrentUser={setCurrentUser}
-                    active={active}
-                    setActive={setActive}
-                    errors={errors}
-                    indexHT={indexHT}
-                  />
+                  <View
+                    style={[
+                      styles.input,
+                      activeState ? styles.inputActive : null,
+                      errorState ? styles.inputError : null,
+                    ]}
+                  >
+                    <Icon source={item.icon} size={25} />
+                    <Dropdown
+                      style={styles.dropdown}
+                      onFocus={() => {
+                        handleActiveState(index);
+                      }}
+                      onBlur={() => {
+                        handleActiveState(index);
+                        validate();
+                      }}
+                      placeholder={"Choose your " + item.name.toLowerCase()}
+                      placeholderStyle={[
+                        styles.textFont,
+                        { color: "#7F7F7F" },
+                        errorState ? styles.textError : null,
+                      ]}
+                      itemTextStyle={styles.textFont}
+                      labelField="label"
+                      valueField="value"
+                      data={dropdownOptions[index - 6].map((option) => ({
+                        label: option,
+                        value: option,
+                      }))}
+                      onChange={(e) => {
+                        handleChange(item.name, e.value);
+                      }}
+                      value={Object.values(user)[index]}
+                      selectedTextStyle={styles.textFont}
+                      activeColor="#D8D8E7"
+                    />
+                  </View>
+                  <HelperText
+                    type="error"
+                    visible={errorState}
+                    style={styles.helper}
+                  >
+                    This field cannot be empty
+                  </HelperText>
                 </View>
               );
             }
@@ -254,17 +306,12 @@ const InputField = ({
   item,
   index,
   user,
-  setCurrentUser,
   active,
-  setActive,
   errors,
   indexHT,
+  handleActiveState,
+  handleChange,
 }) => {
-  // convert field name to user property name
-  const convertToPath = (name) => {
-    return name.split(" ")[0].toLowerCase();
-  };
-
   // helper text variations
   const helper1 = "This field cannot be empty";
   const helpers = [
@@ -276,15 +323,6 @@ const InputField = ({
     [helper1, "Confirm password does not match"],
   ];
 
-  const handleActiveState = (index) => {
-    const newActive = active.map((item, i) => (i == index ? !item : item)); // change state of the item to the opposite
-    setActive(newActive);
-  };
-
-  const handleChange = (field, value) => {
-    const newUser = set({ ...user }, convertToPath(field), value);
-    setCurrentUser(newUser);
-  };
   const activeState = active[index];
   const errorState = errors[index].includes(true);
   return (
@@ -310,7 +348,6 @@ const InputField = ({
           onBlur={() => {
             handleActiveState(index);
           }}
-          name={convertToPath(item.name)}
           value={Object.values(user)[index]}
           inputMode={
             item.name == "Phone Number"
@@ -436,5 +473,9 @@ const styles = StyleSheet.create({
     fontFamily: "MontserratRegular",
     fontSize: 12,
     color: "white",
+  },
+  dropdown: {
+    display: "flex",
+    width: "85%",
   },
 });

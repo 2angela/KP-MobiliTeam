@@ -55,12 +55,32 @@ export default function App() {
             initialRouteName="Login"
             screenOptions={{ headerShown: false }}
           >
-            <Stack.Screen name="Login" component={Login}></Stack.Screen>
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{ gestureEnabled: false }}
+            ></Stack.Screen>
             <Stack.Screen name="SignUp" component={SignUp}></Stack.Screen>
-            <Stack.Screen name="MainPage" component={MainPage}></Stack.Screen>
-            <Stack.Screen name="Home" component={Home}></Stack.Screen>
-            <Stack.Screen name="Profile" component={Profile}></Stack.Screen>
-            <Stack.Screen name="Notice" component={Notice}></Stack.Screen>
+            <Stack.Screen
+              name="MainPage"
+              component={MainPage}
+              options={{ gestureEnabled: false }}
+            ></Stack.Screen>
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{ gestureEnabled: false }}
+            ></Stack.Screen>
+            <Stack.Screen
+              name="Profile"
+              component={Profile}
+              options={{ gestureEnabled: false }}
+            ></Stack.Screen>
+            <Stack.Screen
+              name="Notice"
+              component={Notice}
+              options={{ gestureEnabled: false }}
+            ></Stack.Screen>
             <Stack.Screen name="BBMEntry" component={BBMEntry}></Stack.Screen>
             <Stack.Screen name="Tasks" component={Tasks}></Stack.Screen>
             <Stack.Screen name="AOREntry" component={AOREntry}></Stack.Screen>

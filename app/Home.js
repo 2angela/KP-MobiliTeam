@@ -92,7 +92,6 @@ export default function Home({ navigation }) {
       }
     });
     setTasks(newTasks);
-    console.log(newTasks);
   }, []);
 
   const clockedIn = useSelector((state) => state.clockedIn);

@@ -51,21 +51,45 @@ export default function SignUp({ navigation }) {
   // true if field is active (on Focus), false otherwise
   const [active, setActive] = useState(Array(numOfField).fill(false));
 
+  // determine how many error conditions for each field
+  const errArray1 = Array(2).fill(false);
+  const errArray2 = Array(1).fill(false);
   // true if invalid/error input, false if valid input
-  const [errors, setErrors] = useState(Array(numOfField).fill(false));
+  const [errors, setErrors] = useState(
+    Array(6).fill(errArray1).concat(Array(4).fill(errArray2))
+  );
+
+  // helper text variations
+  const [indexHT, setIndexHT] = useState(Array(6).fill(0));
 
   const firstNext = useRef(true);
   const firstSubmit = useRef(true);
   const [next, setNext] = useState(false);
   const validate = (step) => {
     if (!firstNext.current) {
+      // different error conditions for each fields
       const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const errName = !user.name;
-      const errEmail = !user.email || regex.test(user.email) == false;
-      const errPhone = !user.phone;
-      const errNik = !user.nik;
-      const errPass = !user.password;
-      const errConf = !user.confirm || user.confirm != user.password;
+      // name must at least have first and last name (separated with space)
+      const errName = [!user.name, !user.name.includes(" ")];
+      // email must be in the foo@bar.com format and is poca email
+      const errEmail = [
+        !user.email,
+        regex.test(user.email) == false || !user.email.includes("poca"),
+      ];
+      // phone must be at least 11 chars long and start with either 0 or +
+      const errPhone = [
+        !user.phone,
+        user.phone.length < 11 ||
+          (!user.phone[0] == 0 && !user.phone[0] == "+"),
+      ];
+      // nik must be at least 15 chars long
+      const errNik = [!user.nik, user.nik.length < 15];
+      // nik must be at least 8 chars long
+      const errPass = [!user.password, user.password.length < 8];
+      // confirm pass must match with password
+      const errConf = [!user.confirm, user.confirm != user.password];
+
+      // set new errors
       let newErrors = [...errors];
       newErrors[0] = errName;
       newErrors[1] = errEmail;
@@ -74,27 +98,39 @@ export default function SignUp({ navigation }) {
       newErrors[4] = errPass;
       newErrors[5] = errConf;
       setErrors(newErrors);
+
+      // determine which helper text to use based on the error found
+      const newIndexHT = indexHT.map((item, index) =>
+        newErrors[index].indexOf(true)
+      );
+      setIndexHT(newIndexHT);
+
       if (step == "first") {
         //handle credential validation for the first 6 fields
-        const tempErr = errors.slice(0, 6);
-        if (newErrors.includes(true)) {
-          return false;
-        } else return true;
+        for (const item of newErrors) {
+          if (item.includes(true)) {
+            return false;
+          }
+        }
+        return true;
       } else if (step == "second") {
         if (!firstSubmit.current) {
-          const errReg = !user.region;
-          const errClus = !user.cluster;
-          const errProj = !user.project;
-          const errRole = !user.role;
+          const errReg = [!user.region];
+          const errClus = [!user.cluster];
+          const errProj = [!user.project];
+          const errRole = [!user.role];
           newErrors[6] = errReg;
           newErrors[7] = errClus;
           newErrors[8] = errProj;
           newErrors[9] = errRole;
           //handle credential validation for the last 4 fields
           setErrors(newErrors);
-          if (newErrors.includes(true)) {
-            return false;
-          } else return true;
+          for (const item of newErrors) {
+            if (item.includes(true)) {
+              return false;
+            }
+          }
+          return true;
         } else {
           console.log("Submit First!");
         }
@@ -126,7 +162,6 @@ export default function SignUp({ navigation }) {
         role: user.role,
         project: user.project,
       };
-      console.log("current user =", currentUser);
       dispatch(setUser(currentUser));
       navigation.push("Notice");
     } else {
@@ -134,8 +169,11 @@ export default function SignUp({ navigation }) {
     }
   };
 
-  // useEffect(() => {
-  // }, []);
+  useEffect(() => {
+    const temp = [false];
+    console.log("does error 6 have false", errors[6].includes(false));
+    console.log(errors);
+  }, [errors]);
 
   return (
     <KeyboardAwareScrollView
@@ -171,11 +209,17 @@ export default function SignUp({ navigation }) {
                     active={active}
                     setActive={setActive}
                     errors={errors}
-                    validate={validate}
+                    indexHT={indexHT}
                   />
                 </View>
               );
             } else if (next && index >= 6 && index < 10) {
+              console.log(
+                "is errors on index",
+                index,
+                "true ?",
+                errors[index].includes(true)
+              );
               return (
                 <View key={index} style={styles.field}>
                   <InputField
@@ -186,7 +230,7 @@ export default function SignUp({ navigation }) {
                     active={active}
                     setActive={setActive}
                     errors={errors}
-                    validate={validate}
+                    indexHT={indexHT}
                   />
                 </View>
               );
@@ -214,12 +258,23 @@ const InputField = ({
   active,
   setActive,
   errors,
-  validate,
+  indexHT,
 }) => {
   // convert field name to user property name
   const convertToPath = (name) => {
     return name.split(" ")[0].toLowerCase();
   };
+
+  // helper text variations
+  const helper1 = "This field cannot be empty";
+  const helpers = [
+    [helper1, "Must consist of First Name and Last Name"],
+    [helper1, "Please enter a valid poca email"],
+    [helper1, "Please enter a valid phone number"],
+    [helper1, "Please enter a valid NIK"],
+    [helper1, "Password must be at least 8 characters long"],
+    [helper1, "Confirm password does not match"],
+  ];
 
   const handleActiveState = (index) => {
     const newActive = active.map((item, i) => (i == index ? !item : item)); // change state of the item to the opposite
@@ -230,29 +285,30 @@ const InputField = ({
     const newUser = set({ ...user }, convertToPath(field), value);
     setCurrentUser(newUser);
   };
+  const activeState = active[index];
+  const errorState = errors[index].includes(true);
   return (
     <Fragment>
       <Text style={styles.label}>{item.name}</Text>
       <View
         style={[
           styles.input,
-          active[index] ? styles.inputActive : null,
-          errors[index] ? styles.inputError : null,
+          activeState ? styles.inputActive : null,
+          errorState ? styles.inputError : null,
         ]}
       >
         <Icon source={item.icon} size={25} />
         <TextInput
-          style={[styles.textFont, errors[index] ? styles.textError : null]}
+          style={[styles.textFont, errorState ? styles.textError : null]}
           placeholder={
             item.name == "Confirm Password"
               ? "Re-enter your password"
               : "Enter your " + item.name.toLowerCase()
           }
-          placeholderTextColor={errors[index] ? "red" : "#7F7F7F"}
+          placeholderTextColor={errorState ? "red" : "#7F7F7F"}
           onFocus={() => handleActiveState(index)}
           onBlur={() => {
             handleActiveState(index);
-            validate();
           }}
           name={convertToPath(item.name)}
           value={Object.values(user)[index]}
@@ -267,8 +323,8 @@ const InputField = ({
           secureTextEntry={item.name.includes("Password")}
         />
       </View>
-      <HelperText type="error" visible={errors[index]} style={styles.helper}>
-        This field cannot be empty
+      <HelperText type="error" visible={errorState} style={styles.helper}>
+        {errors[index].length > 1 ? helpers[index][indexHT[index]] : helper1}
       </HelperText>
     </Fragment>
   );

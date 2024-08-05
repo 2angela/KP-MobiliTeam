@@ -24,11 +24,17 @@ export default function NewSite({ navigation }) {
     { category: "Longitude", unit: "degrees" },
     {
       category: "Region",
-      options: ["Region 1", "Region 2", "Region 3"],
+      options: ["Region 1", "Region 2", "Region 3", "Region 4", "Region 5"],
     },
     {
       category: "Cluster",
-      options: ["Cluster 1", "Cluster 2", "Cluster 3"],
+      options: [
+        "Cluster 1",
+        "Cluster 2",
+        "Cluster 3",
+        "Cluster 4",
+        "Cluster 5",
+      ],
     },
   ];
 

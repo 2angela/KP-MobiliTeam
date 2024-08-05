@@ -19,17 +19,35 @@ export default function TaskEntry({ navigation }) {
   const categories = [
     {
       category: "Region",
-      options: ["Region 1", "Region 2", "Region 3"],
+      options: ["Region 1", "Region 2", "Region 3", "Region 4", "Region 5"],
     },
     {
       category: "Cluster",
-      options: ["Cluster 1", "Cluster 2", "Cluster 3"],
+      options: [
+        "Cluster 1",
+        "Cluster 2",
+        "Cluster 3",
+        "Cluster 4",
+        "Cluster 5",
+      ],
     },
-    { category: "Site", options: ["Site 1", "Site 2", "Site 3"] },
-    { category: "Task Type", options: ["Type 1", "Type 2", "Type 3"] },
+    {
+      category: "Site",
+      options: ["Site 1", "Site 2", "Site 3", "Site 4", "Site 5"],
+    },
+    {
+      category: "Task Type",
+      options: ["Type 1", "Type 2", "Type 3", "Type 4", "Type 5"],
+    },
     {
       category: "Task Category",
-      options: ["Category 1", "Category 2", "Category 3"],
+      options: [
+        "Category 1",
+        "Category 2",
+        "Category 3",
+        "Category 4",
+        "Category 5",
+      ],
     },
     { category: "Description" },
   ];

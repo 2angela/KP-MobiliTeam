@@ -19,23 +19,41 @@ export default function COPEntry({ navigation }) {
   const categories = [
     {
       category: "Region",
-      options: ["Region 1", "Region 2", "Region 3"],
+      options: ["Region 1", "Region 2", "Region 3", "Region 4", "Region 5"],
     },
     {
       category: "Cluster",
-      options: ["Cluster 1", "Cluster 2", "Cluster 3"],
+      options: [
+        "Cluster 1",
+        "Cluster 2",
+        "Cluster 3",
+        "Cluster 4",
+        "Cluster 5",
+      ],
     },
-    { category: "Site", options: ["Site 1", "Site 2", "Site 3"] },
-    { category: "Sow", options: ["Sow 1", "Sow 2", "Sow 3"] },
+    {
+      category: "Site",
+      options: ["Site 1", "Site 2", "Site 3", "Site 4", "Site 5"],
+    },
+    { category: "Sow", options: ["Sow 1", "Sow 2", "Sow 3", "Sow 4", "Sow 5"] },
     {
       category: "Parent Activity",
-      options: ["Parent 1", "Parent 2", "Parent 3"],
+      options: ["Parent 1", "Parent 2", "Parent 3", "Parent 4", "Parent 5"],
     },
     {
       category: "Activity",
-      options: ["Activity 1", "Activity 2", "Activity 3"],
+      options: [
+        "Activity 1",
+        "Activity 2",
+        "Activity 3",
+        "Activity 4",
+        "Activity 5",
+      ],
     },
-    { category: "COP Type", options: ["Type 1", "Type 2", "Type 3"] },
+    {
+      category: "COP Type",
+      options: ["Type 1", "Type 2", "Type 3", "Type 4", "Type 5"],
+    },
     { category: "COP", unit: "Rupiah" },
     { category: "Visit Amount", unit: "" },
   ];

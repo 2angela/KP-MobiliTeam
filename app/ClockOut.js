@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, TextInput, Alert } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Alert,
+  SafeAreaView,
+} from "react-native";
 import AnalogClock from "react-native-clock-analog";
 import { Icon } from "react-native-paper";
 import ButtonMedium from "../components/buttonMedium";
@@ -54,71 +61,81 @@ export default function ClockOut({ navigation }) {
   };
 
   return (
-    <KeyboardAwareScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.titletext}>Clock-Out Now</Text>
-      <View style={styles.dateBox}>
-        <View style={{ flexDirection: "row", alignSelf: "flex-start" }}>
-          <Icon source="calendar" size={12} style={styles.iconstyle}></Icon>
-          <Text style={styles.textdate}>Current Date</Text>
+    <SafeAreaView style={styles.container}>
+      <KeyboardAwareScrollView>
+        <Text style={styles.titletext}>Clock-Out Now</Text>
+        <View style={styles.dateBox}>
+          <View style={{ flexDirection: "row", alignSelf: "flex-start" }}>
+            <Icon source="calendar" size={12} style={styles.iconstyle} />
+            <Text style={styles.textdate}>Current Date</Text>
+          </View>
+          <Text style={styles.text1}>{getCurrentDate()}</Text>
         </View>
-        <Text style={styles.text1}>{getCurrentDate()}</Text>
-      </View>
-      <View
-        style={{
-          borderBottomColor: "#BBB686",
-          borderBottomWidth: 1,
-          paddingTop: 20,
-        }}
-      ></View>
-      <Text style={styles.text2}>Current Time</Text>
-      <View style={styles.boxtime}>
-        <View style={styles.timeContainer}>
-          <View style={styles.timeBox}>
-            <Text style={styles.timeText}>{currentTime.hours}</Text>
+        <View
+          style={{
+            borderBottomColor: "#BBB686",
+            borderBottomWidth: 1,
+            paddingTop: 20,
+            marginLeft: 20,
+            marginRight: 20,
+          }}
+        />
+        <Text style={styles.text2}>Current Time</Text>
+        <View style={styles.boxtime}>
+          <View style={styles.timeContainer}>
+            <View style={styles.timeBox}>
+              <Text style={styles.timeText}>{currentTime.hours}</Text>
+            </View>
+            <Text style={styles.separator}>:</Text>
+            <View style={styles.timeBox}>
+              <Text style={styles.timeText}>{currentTime.minutes}</Text>
+            </View>
+            <Text style={styles.separator}>:</Text>
+            <View style={styles.timeBox}>
+              <Text style={styles.timeText}>{currentTime.seconds}</Text>
+            </View>
           </View>
-          <Text style={styles.separator}>:</Text>
-          <View style={styles.timeBox}>
-            <Text style={styles.timeText}>{currentTime.minutes}</Text>
-          </View>
-          <Text style={styles.separator}>:</Text>
-          <View style={styles.timeBox}>
-            <Text style={styles.timeText}>{currentTime.seconds}</Text>
-          </View>
+          <View style={{ paddingBottom: 20 }} />
+          <AnalogClock
+            size={220}
+            colorClock="#F2F9FE"
+            colorNumber="#000000"
+            colorCenter="#00BCD4"
+            colorHour="#3B3B89"
+            colorMinutes="#3B3B89"
+            hour={parseInt(currentTime.hours)}
+            minutes={parseInt(currentTime.minutes)}
+          />
         </View>
-        <View style={{ paddingBottom: 20 }}></View>
-        <AnalogClock
-          size={250}
-          colorClock="#F2F9FE"
-          colorNumber="#000000"
-          colorCenter="#00BCD4"
-          colorHour="#3B3B89"
-          colorMinutes="#3B3B89"
-          hour={parseInt(currentTime.hours)}
-          minutes={parseInt(currentTime.minutes)}
-        ></AnalogClock>
-      </View>
-      <View
-        style={{
-          borderBottomColor: "#BBB686",
-          borderBottomWidth: 1,
-          paddingTop: 20,
-        }}
-      ></View>
-      <Text style={styles.textreason}>Reason</Text>
-      <TextInput
-        style={[styles.textInput, !isReasonValid && styles.invalidInput]}
-        placeholder="Reason"
-        value={reason}
-        onChangeText={(text) => {
-          setReason(text);
-          setIsReasonValid(true);
-        }}
-      />
-      <View style={{ display: "flex", flexDirection: "row", marginTop: 20 }}>
-        <ButtonMedium label="Cancel" action={handleCancel} />
-        <ButtonMedium label="Clock Out" action={handleClockOut} />
-      </View>
-    </KeyboardAwareScrollView>
+        <View
+          style={{
+            borderBottomColor: "#BBB686",
+            borderBottomWidth: 1,
+            marginLeft: 20,
+            marginRight: 20,
+          }}
+        />
+        <Text style={styles.textreason}>Reason</Text>
+        <TextInput
+          style={[styles.textInput, !isReasonValid && styles.invalidInput]}
+          placeholder="Reason"
+          value={reason}
+          onChangeText={(text) => {
+            setReason(text);
+            setIsReasonValid(true);
+          }}
+        />
+
+        <View style={{ display: "flex", flexDirection: "row", marginTop: 20 }}>
+          <ButtonMedium label="Cancel" action={handleCancel} marginLeft={10} />
+          <ButtonMedium
+            label="Clock Out"
+            action={handleClockOut}
+            marginLeft={-20}
+          />
+        </View>
+      </KeyboardAwareScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -131,6 +148,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   titletext: {
+    padding: 20,
     fontFamily: "MontserratBold",
     fontSize: 24,
     textAlign: "left",
@@ -138,13 +156,16 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
   },
   dateBox: {
+    marginLeft: 20,
     paddingTop: 15,
     paddingLeft: 20,
     paddingBottom: 15,
     backgroundColor: "#F2F9FE",
     borderRadius: 10,
     alignItems: "left",
+    width: "90%",
   },
+
   text1: {
     fontFamily: "MontserratSemiBold",
     fontSize: 12,
@@ -154,13 +175,15 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
   },
   text2: {
+    paddingLeft: 20,
     fontFamily: "MontserratSemiBold",
     fontSize: 12,
     textAlign: "left",
     alignSelf: "flex-start",
-    paddingTop: 20,
+    paddingTop: 10,
   },
   boxtime: {
+    margin: 20,
     borderRadius: 10,
     padding: 20,
     alignItems: "center",
@@ -169,6 +192,7 @@ const styles = StyleSheet.create({
   timeContainer: {
     flexDirection: "row",
     alignItems: "center",
+    marginBottom: 10,
   },
   timeBox: {
     backgroundColor: "#F2F9FE",
@@ -213,15 +237,18 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     fontFamily: "MontserratMedium",
     fontSize: 14,
-    paddingTop: 10,
+    paddingTop: 15,
+    marginLeft: 20,
   },
   textInput: {
+    marginLeft: 20,
     height: 40,
     borderColor: "#3B3B89",
     borderWidth: 1,
     borderRadius: 5,
     paddingLeft: 10,
     marginTop: 10,
+    width: "90%",
   },
   invalidInput: {
     borderColor: "red",

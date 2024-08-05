@@ -29,11 +29,12 @@ const styles = StyleSheet.create({
   buttonStyle: {
     display: "flex",
     alignItems: "center",
-    width: "100%",
+    width: "95%",
     paddingVertical: 20,
     backgroundColor: "rgb(59, 59, 137)",
     borderRadius: 30,
     shadowColor: "rgba(0, 0, 0, 0.25)",
+    marginLeft: 10,
     shadowOffset: {
       width: 0,
       height: 4,

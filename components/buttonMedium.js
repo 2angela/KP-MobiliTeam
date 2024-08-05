@@ -1,11 +1,11 @@
 import { Text, StyleSheet, Pressable } from "react-native";
 
-export default function ButtonMedium({ label, action, marginTop }) {
+export default function ButtonMedium({ label, action, marginTop, marginLeft }) {
   return (
     <Pressable
       style={({ pressed }) => [
         styles.buttonStyle,
-        { marginTop: marginTop },
+        { marginTop: marginTop, marginLeft: marginLeft },
         pressed ? styles.buttonPressed : null,
       ]}
       onPress={action}

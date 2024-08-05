@@ -6,6 +6,7 @@ import {
   Modal,
   PermissionsAndroid,
   Alert,
+  SafeAreaView,
 } from "react-native";
 import AnalogClock from "react-native-clock-analog";
 import { Icon } from "react-native-paper";
@@ -95,7 +96,7 @@ export default function ClockIn({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.titletext}>Clock-In Now</Text>
       <View style={styles.dateBox}>
         <View style={{ flexDirection: "row", alignself: "flex-start" }}>
@@ -109,6 +110,8 @@ export default function ClockIn({ navigation }) {
           borderBottomColor: "#BBB686",
           borderBottomWidth: 1,
           paddingTop: 20,
+          marginLeft: 20,
+          marginRight: 20,
         }}
       ></View>
       <Text style={styles.text2}>Current Time</Text>
@@ -126,9 +129,9 @@ export default function ClockIn({ navigation }) {
             <Text style={styles.timeText}>{currentTime.seconds}</Text>
           </View>
         </View>
-        <View style={{ paddingBottom: 20 }}></View>
+        <View style={{ paddingBottom: 0 }}></View>
         <AnalogClock
-          size={250}
+          size={220}
           colorClock="#F2F9FE"
           colorNumber="#000000"
           colorCenter="#00BCD4"
@@ -139,8 +142,18 @@ export default function ClockIn({ navigation }) {
         ></AnalogClock>
       </View>
       <View style={{ display: "flex", flexDirection: "row" }}>
-        <ButtonMedium label="Clock In" action={handleClockIn} marginTop={50} />
-        <ButtonMedium label="Absent" action={handleAbsent} marginTop={50} />
+        <ButtonMedium
+          label="Clock In"
+          action={handleClockIn}
+          marginTop={20}
+          marginLeft={10}
+        />
+        <ButtonMedium
+          label="Absent"
+          action={handleAbsent}
+          marginTop={20}
+          marginLeft={-15}
+        />
       </View>
       <ButtonLarge
         label="Cancel"
@@ -178,19 +191,18 @@ export default function ClockIn({ navigation }) {
           </View>
         </View>
       </Modal>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    width: "100%",
-    padding: 20,
-    backgroundColor: "white",
+    backgroundColor: "#FFFFFF",
+    color: "white",
   },
   titletext: {
+    padding: 20,
     fontFamily: "MontserratBold",
     fontSize: 24,
     textAlign: "left",
@@ -198,12 +210,14 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
   },
   dateBox: {
+    marginLeft: 20,
     paddingTop: 15,
     paddingLeft: 20,
     paddingBottom: 15,
     backgroundColor: "#F2F9FE",
     borderRadius: 10,
     alignItems: "left",
+    width: "90%",
   },
   text1: {
     fontFamily: "MontserratSemiBold",
@@ -214,6 +228,7 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
   },
   text2: {
+    paddingLeft: 20,
     fontFamily: "MontserratSemiBold",
     fontSize: 12,
     textAlign: "left",
@@ -221,6 +236,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   boxtime: {
+    margin: 20,
     borderRadius: 10,
     padding: 20,
     alignItems: "center",
@@ -229,6 +245,7 @@ const styles = StyleSheet.create({
   timeContainer: {
     flexDirection: "row",
     alignItems: "center",
+    marginBottom: 10,
   },
   timeBox: {
     backgroundColor: "#F2F9FE",

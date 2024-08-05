@@ -1,8 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { useDispatch } from "react-redux";
 import GradientBG from "../components/gradientBG";
+import { resetUser } from "../redux/actions";
 
 export default function Notice({ navigation }) {
+  const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <GradientBG />
@@ -40,6 +43,7 @@ export default function Notice({ navigation }) {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
+              dispatch(resetUser());
               navigation.push("SignUp");
             }}
           >

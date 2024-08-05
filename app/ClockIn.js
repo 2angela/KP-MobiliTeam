@@ -8,6 +8,8 @@ import {
   Alert,
   SafeAreaView,
 } from "react-native";
+import { useDispatch } from "react-redux";
+import { clockIn } from "../redux/actions";
 import AnalogClock from "react-native-clock-analog";
 import { Icon } from "react-native-paper";
 import ButtonLarge from "../components/buttonLarge";
@@ -86,9 +88,11 @@ export default function ClockIn({ navigation }) {
     navigation.push("MainPage");
   };
 
+  const dispatch = useDispatch();
   const handlePermissionChoice = (choice) => {
     setModalVisible(false);
     if (choice === "allow") {
+      dispatch(clockIn());
       navigation.push("MainPage");
     } else if (choice === "deny") {
       requestLocationPermission();

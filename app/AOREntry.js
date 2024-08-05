@@ -11,6 +11,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { useState, useRef, Fragment, useEffect } from "react";
 import set from "lodash/set";
 import cloneDeep from "lodash/cloneDeep";
+import { useDispatch, useSelector } from "react-redux";
+import { saveAOR } from "../redux/actions";
 import { aorFormat as inputFormat } from "../data/inputFormat.js";
 import ScreenTitle from "../components/screenTitle";
 import Back from "../assets/icons/back_fill.svg";
@@ -22,6 +24,7 @@ import NumberField from "../components/numberField.js";
 import Connector from "../assets/connector.svg";
 import Divider from "../assets/divider.svg";
 import { PhotoUpload, PhotoInput } from "../components/aorFields.js";
+import SaveModal from "../components/saveModal";
 
 export default function AOREntry({ navigation }) {
   // track current screen
@@ -179,8 +182,12 @@ export default function AOREntry({ navigation }) {
     firstSubmit.current = true;
   };
 
+  const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
   const handleSave = () => {
-    // save input to app cache (?)
+    // save input to global state
+    setShowModal(true);
+    dispatch(saveAOR(cloneDeep(input)));
   };
 
   // Get data path for the input (every input has different paths)
@@ -263,7 +270,6 @@ export default function AOREntry({ navigation }) {
   const handleInputUpload = (path, value) => {
     const newInput = set({ ...input }, path, value);
     setInput(newInput);
-    console.log("input changed!");
   };
 
   // error checking for dropdown and input fields
@@ -453,9 +459,10 @@ export default function AOREntry({ navigation }) {
   // Error invalid data modal
   const [errorModal, setErrorModal] = useState(false);
 
-  // useEffect(() => {
-
-  // }, []);
+  const savedInput = useSelector((state) => state.aor);
+  useEffect(() => {
+    setInput(cloneDeep(savedInput));
+  }, [savedInput]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -523,7 +530,6 @@ export default function AOREntry({ navigation }) {
       {/* fields */}
       <KeyboardAwareScrollView
         style={styles.innerContainer}
-        showsVerticalScrollIndicator={false}
         bounces={false}
         ref={yScroll}
       >
@@ -672,7 +678,7 @@ export default function AOREntry({ navigation }) {
             label={
               currentScreen == "Site Information" ? "Save Site" : "Save Changes"
             }
-            action={null}
+            action={handleSave}
             marginTop={0}
             marginBottom={0}
           />
@@ -753,6 +759,7 @@ export default function AOREntry({ navigation }) {
           </View>
         </View>
       </Modal>
+      {showModal ? <SaveModal setShowModal={setShowModal} /> : null}
     </SafeAreaView>
   );
 }

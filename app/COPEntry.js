@@ -1,8 +1,10 @@
 import { View, StyleSheet, SafeAreaView } from "react-native";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import get from "lodash/get";
 import set from "lodash/set";
+import { useDispatch, useSelector } from "react-redux";
+import { saveCOP } from "../redux/actions";
 import { copFormat as inputFormat } from "../data/inputFormat";
 import ScreenTitle from "../components/screenTitle";
 import DropdownField from "../components/dropdownField";
@@ -11,6 +13,7 @@ import ButtonClearHalf from "../components/buttonClearHalf";
 import ButtonBlueHalf from "../components/buttonBlueHalf";
 import ButtonWhite from "../components/buttonWhite";
 import GradientBG from "../components/gradientBG";
+import SaveModal from "../components/saveModal";
 
 export default function COPEntry({ navigation }) {
   const categories = [
@@ -48,16 +51,19 @@ export default function COPEntry({ navigation }) {
   const clearInput = () => {
     const temp = { ...inputFormat };
     setInput(temp);
-    setErrors(Array(numOfErrors).fill(false));
+    setErrors(Array(numOfField).fill(false));
     firstSubmit.current = true;
   };
 
+  const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
   const handleSave = () => {
-    // save input to app cache (?)
+    // save input to global state
+    setShowModal(true);
+    dispatch(saveCOP(input));
   };
 
-  const numOfErrors = Object.keys(input).length; // set number of fields in the screen with error conditions
-  const [errors, setErrors] = useState(Array(numOfErrors).fill(false));
+  const [errors, setErrors] = useState(Array(numOfField).fill(false));
 
   // customize valid conditions here
   // example checking empty condition
@@ -127,6 +133,12 @@ export default function COPEntry({ navigation }) {
   const findValue = (category) => {
     return get(input, findPath(category));
   };
+
+  const savedInput = useSelector((state) => state.cop);
+  useEffect(() => {
+    console.log(savedInput);
+    setInput(savedInput);
+  }, [savedInput]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -243,7 +255,7 @@ export default function COPEntry({ navigation }) {
         <View style={styles.buttonsContainer}>
           <ButtonClearHalf
             label="Save Entry"
-            action={null}
+            action={handleSave}
             marginTop={15}
             marginBottom={0}
           />
@@ -254,6 +266,7 @@ export default function COPEntry({ navigation }) {
             marginBottom={0}
           />
         </View>
+        {showModal ? <SaveModal setShowModal={setShowModal} /> : null}
       </KeyboardAwareScrollView>
     </SafeAreaView>
   );

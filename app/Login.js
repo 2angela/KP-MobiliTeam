@@ -8,7 +8,9 @@ import {
   SafeAreaView,
 } from "react-native";
 import { HelperText, Icon } from "react-native-paper";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/actions";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import ButtonBlue from "../components/buttonBlue";
 import ButtonClear from "../components/buttonClear";
@@ -16,18 +18,38 @@ import background from "../assets/landing-photo.png";
 import logo from "../assets/app-logo.png";
 import poca from "../assets/poca-logo.png";
 
-export default function Landing({ navigation }) {
+export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // temporary login credential
+  const loginCreds = {
+    email: "admin@poca.com",
+    password: "admin123",
+  };
+
   const numOfField = 2; // set number of fields in the screen with active/inactive states
-  const numOfErrors = 2; // set number of fields in the screen with error conditions
 
   // true if field is active (on Focus), false otherwise
   const [active, setActive] = useState(Array(numOfField).fill(false));
 
+  // determine how many error conditions for each field
+  const emailErr = Array(3).fill(false);
+  const passErr = Array(2).fill(false);
   // true if invalid/error input, false if valid input
-  const [errors, setErrors] = useState(Array(numOfErrors).fill(false));
+  const [errors, setErrors] = useState([emailErr, passErr]);
+
+  // helper text variations
+  const [emailHT, setEmailHT] = useState(0);
+  const [passHT, setPassHT] = useState(0);
+  const helpers = {
+    email: [
+      "This field cannot be empty",
+      "Please enter a valid poca email",
+      "Incorrect email or password",
+    ],
+    password: ["This field cannot be empty", "Incorrect email or password"],
+  };
 
   const handleActiveState = (index) => {
     const newActive = active.map((item, i) => (i == index ? !item : item)); // change state of the item to the opposite
@@ -39,13 +61,23 @@ export default function Landing({ navigation }) {
     if (!firstSubmit.current) {
       //handle credential validation
       const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const invalidEmail = !email || regex.test(email) == false;
-      const invalidPass = !password;
+      const newEmailErr = [
+        !email,
+        regex.test(email) == false || !email.includes("poca"),
+        email !== loginCreds.email,
+      ];
+      const newPassErr = [!password, password !== loginCreds.password];
+      setEmailHT(() =>
+        newEmailErr.includes(true) ? newEmailErr.indexOf(true) : 0
+      );
+      setPassHT(() =>
+        newPassErr.includes(true) ? newPassErr.indexOf(true) : 0
+      );
 
-      const newErrors = [invalidEmail, invalidPass];
+      const newErrors = [newEmailErr, newPassErr];
       setErrors(newErrors);
 
-      if (!invalidEmail && !invalidPass) {
+      if (!newEmailErr.includes(true) && !newPassErr.includes(true)) {
         return true;
       } else return false;
     } else {
@@ -53,6 +85,7 @@ export default function Landing({ navigation }) {
     }
   };
 
+  const dispatch = useDispatch();
   const handleNavigate = (screen) => {
     if (screen == "SignUp") {
       navigation.push("SignUp");
@@ -62,12 +95,25 @@ export default function Landing({ navigation }) {
       }
       const isValid = validate();
       if (isValid) {
+        const currentUser = {
+          name: "Lorem Ipsum Dolor",
+          email: email,
+          role: "Project Manager",
+          project: "IOH NPM",
+        };
+        dispatch(setUser(currentUser));
         navigation.push("ClockIn");
       } else {
+        // set firstSubmit back to true to validate only after submit is cliked
+        firstSubmit.current = true;
         return null;
       }
     }
   };
+
+  // useEffect(() => {
+
+  // }, []);
 
   return (
     <KeyboardAwareScrollView
@@ -94,7 +140,7 @@ export default function Landing({ navigation }) {
               style={[
                 styles.input,
                 active[0] ? styles.inputActive : null,
-                errors[0] ? styles.inputError : null,
+                errors[0].includes(true) ? styles.inputError : null,
               ]}
             >
               <Icon source="at" size={30} />
@@ -102,14 +148,15 @@ export default function Landing({ navigation }) {
                 style={[
                   styles.textFont,
                   { color: "black" },
-                  errors[0] ? styles.textError : null,
+                  errors[0].includes(true) ? styles.textError : null,
                 ]}
                 placeholder="Enter your email"
-                placeholderTextColor={errors[0] ? "red" : "#7F7F7F"}
+                placeholderTextColor={
+                  errors[0].includes(true) ? "red" : "#7F7F7F"
+                }
                 onFocus={() => handleActiveState(0)}
                 onBlur={() => {
                   handleActiveState(0);
-                  validate();
                 }}
                 name="email"
                 value={email}
@@ -117,8 +164,12 @@ export default function Landing({ navigation }) {
                 onChangeText={(e) => setEmail(e)}
               />
             </View>
-            <HelperText type="error" visible={errors[0]} style={styles.helper}>
-              Poca email is required
+            <HelperText
+              type="error"
+              visible={errors[0].includes(true)}
+              style={styles.helper}
+            >
+              {helpers.email[emailHT]}
             </HelperText>
           </View>
 
@@ -129,7 +180,7 @@ export default function Landing({ navigation }) {
               style={[
                 styles.input,
                 active[1] ? styles.inputActive : null,
-                errors[1] ? styles.inputError : null,
+                errors[1].includes(true) ? styles.inputError : null,
               ]}
             >
               <Icon source="lock-outline" size={30} />
@@ -137,15 +188,16 @@ export default function Landing({ navigation }) {
                 style={[
                   styles.textFont,
                   { color: "black" },
-                  errors[1] ? styles.textError : null,
+                  errors[1].includes(true) ? styles.textError : null,
                 ]}
                 placeholder="Enter your password"
-                placeholderTextColor={errors[1] ? "red" : "#7F7F7F"}
+                placeholderTextColor={
+                  errors[1].includes(true) ? "red" : "#7F7F7F"
+                }
                 secureTextEntry={true}
                 onFocus={() => handleActiveState(1)}
                 onBlur={() => {
                   handleActiveState(1);
-                  validate();
                 }}
                 name="password"
                 type="password"
@@ -153,8 +205,12 @@ export default function Landing({ navigation }) {
                 onChangeText={(e) => setPassword(e)}
               />
             </View>
-            <HelperText type="error" visible={errors[1]} style={styles.helper}>
-              Password is required
+            <HelperText
+              type="error"
+              visible={errors[1].includes(true)}
+              style={styles.helper}
+            >
+              {helpers.password[passHT]}
             </HelperText>
           </View>
 

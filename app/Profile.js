@@ -11,7 +11,8 @@ import {
   Pressable,
 } from "react-native";
 import pfp from "../assets/profile-photo-placeholder.jpg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Mail from "../assets/icons/mail_fill.svg";
 import Role from "../assets/icons/work_fill.svg";
 import Project from "../assets/icons/project_fill.svg";
@@ -20,26 +21,11 @@ import Camera from "../assets/icons/camera.svg";
 import Gallery from "../assets/icons/gallery.svg";
 import Close from "../assets/icons/close.svg";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
+import { resetUser } from "../redux/actions";
 
 export default function Profile({ navigation }) {
-  const [user, setUser] = useState({
-    name: "",
-    email: "",
-    role: "",
-    project: "",
-  });
+  const user = useSelector((state) => state.user);
   const [modalVisible, setModalVisible] = useState(false);
-
-  useEffect(() => {
-    // set user example
-    const userExample = {
-      name: "Lorem Ipsum Dolor",
-      email: "lorem@pocagroup.com",
-      role: "Project Manager",
-      project: "IOH NPM",
-    };
-    setUser(userExample);
-  }, []);
 
   const handlePfpClick = () => {
     console.log("Profile picture clicked");
@@ -49,6 +35,8 @@ export default function Profile({ navigation }) {
   const handleCloseModal = () => {
     setModalVisible(false);
   };
+
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.container}>
@@ -80,7 +68,10 @@ export default function Profile({ navigation }) {
         </View>
         <ButtonBlue
           label="Sign Out"
-          action={() => navigation.navigate("Landing")}
+          action={() => {
+            dispatch(resetUser());
+            navigation.navigate("Login");
+          }}
           marginTop={20}
           marginBottom={0}
         />

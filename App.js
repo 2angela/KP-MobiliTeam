@@ -1,7 +1,9 @@
 import "react-native-gesture-handler";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import Landing from "./app/Landing";
+import Login from "./app/Login";
 import SignUp from "./app/SignUp";
 import MainPage from "./app/MainPage";
 import Home from "./app/Home";
@@ -47,32 +49,60 @@ export default function App() {
     console.log("Fonts Loaded!");
 
     return (
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Landing"
-          screenOptions={{ headerShown: false }}
-        >
-          <Stack.Screen name="Landing" component={Landing}></Stack.Screen>
-          <Stack.Screen name="SignUp" component={SignUp}></Stack.Screen>
-          <Stack.Screen name="MainPage" component={MainPage}></Stack.Screen>
-          <Stack.Screen name="Home" component={Home}></Stack.Screen>
-          <Stack.Screen name="Profile" component={Profile}></Stack.Screen>
-          <Stack.Screen name="Notice" component={Notice}></Stack.Screen>
-          <Stack.Screen name="BBMEntry" component={BBMEntry}></Stack.Screen>
-          <Stack.Screen name="Tasks" component={Tasks}></Stack.Screen>
-          <Stack.Screen name="AOREntry" component={AOREntry}></Stack.Screen>
-          <Stack.Screen name="COPEntry" component={COPEntry}></Stack.Screen>
-          <Stack.Screen name="NewSite" component={NewSite}></Stack.Screen>
-          <Stack.Screen name="TaskEntry" component={TaskEntry}></Stack.Screen>
-          <Stack.Screen name="AOR46" component={AOR46}></Stack.Screen>
-          <Stack.Screen name="ClockIn" component={ClockIn}></Stack.Screen>
-          <Stack.Screen name="ClockOut" component={ClockOut}></Stack.Screen>
-          <Stack.Screen name="BBMRequest" component={BBMRequest}></Stack.Screen>
-          <Stack.Screen name="Site" component={Site}></Stack.Screen>
-          <Stack.Screen name="AORDoc" component={AORDoc}></Stack.Screen>
-          <Stack.Screen name="COPHistory" component={COPHistory}></Stack.Screen>
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Provider store={store}>
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="Login"
+            screenOptions={{ headerShown: false }}
+          >
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{ gestureEnabled: false }}
+            ></Stack.Screen>
+            <Stack.Screen name="SignUp" component={SignUp}></Stack.Screen>
+            <Stack.Screen
+              name="MainPage"
+              component={MainPage}
+              options={{ gestureEnabled: false }}
+            ></Stack.Screen>
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{ gestureEnabled: false }}
+            ></Stack.Screen>
+            <Stack.Screen
+              name="Profile"
+              component={Profile}
+              options={{ gestureEnabled: false }}
+            ></Stack.Screen>
+            <Stack.Screen
+              name="Notice"
+              component={Notice}
+              options={{ gestureEnabled: false }}
+            ></Stack.Screen>
+            <Stack.Screen name="BBMEntry" component={BBMEntry}></Stack.Screen>
+            <Stack.Screen name="Tasks" component={Tasks}></Stack.Screen>
+            <Stack.Screen name="AOREntry" component={AOREntry}></Stack.Screen>
+            <Stack.Screen name="COPEntry" component={COPEntry}></Stack.Screen>
+            <Stack.Screen name="NewSite" component={NewSite}></Stack.Screen>
+            <Stack.Screen name="TaskEntry" component={TaskEntry}></Stack.Screen>
+            <Stack.Screen name="AOR46" component={AOR46}></Stack.Screen>
+            <Stack.Screen name="ClockIn" component={ClockIn}></Stack.Screen>
+            <Stack.Screen name="ClockOut" component={ClockOut}></Stack.Screen>
+            <Stack.Screen
+              name="BBMRequest"
+              component={BBMRequest}
+            ></Stack.Screen>
+            <Stack.Screen name="Site" component={Site}></Stack.Screen>
+            <Stack.Screen name="AORDoc" component={AORDoc}></Stack.Screen>
+            <Stack.Screen
+              name="COPHistory"
+              component={COPHistory}
+            ></Stack.Screen>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
     );
   }
 }

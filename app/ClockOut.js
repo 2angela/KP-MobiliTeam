@@ -7,6 +7,8 @@ import {
   SafeAreaView,
   Alert,
 } from "react-native";
+import { useDispatch } from "react-redux";
+import { clockOut } from "../redux/actions";
 import AnalogClock from "react-native-clock-analog";
 import { Icon } from "react-native-paper";
 import ButtonMedium from "../components/buttonMedium";
@@ -46,6 +48,7 @@ export default function ClockOut({ navigation }) {
     return () => cancelAnimationFrame(animationFrameId);
   }, []);
 
+  const dispatch = useDispatch();
   const handleClockOut = () => {
     const now = new Date();
     const currentHours = now.getHours();
@@ -72,9 +75,11 @@ export default function ClockOut({ navigation }) {
     } else {
       if (!reason.trim()) {
         setIsReasonValid(false);
-        return;
+        Alert.alert("Validation Error", "Please provide a reason.");
+      } else {
+        dispatch(clockOut());
+        navigation.goBack();
       }
-      navigation.goBack();
     }
   };
 

@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Clock from "../assets/icons/clock_fill.svg";
 import Add from "../assets/icons/add_fill.svg";
 import ChevronRight from "../assets/icons/chevron-right.svg";
@@ -77,22 +78,23 @@ export default function Home({ navigation }) {
       return navigation.push(screenName);
     }
   };
-  // useEffect(() => {
-  //   //example changing task count values (without fetching data from API/database)
-  //   const newTasks = tasks.map((item) => {
-  //     if (item.category == "Done") {
-  //       return { ...item, count: 5 };
-  //     } else if (item.category == "On Progress") {
-  //       return { ...item, count: 2 };
-  //     } else if (item.category == "Cancelled") {
-  //       return { ...item, count: 1 };
-  //     } else {
-  //       return item;
-  //     }
-  //   });
-  //   setTasks(newTasks);
-  //   console.log(newTasks);
-  // }, []);
+  useEffect(() => {
+    //example changing task count values (without fetching data from API/database)
+    const newTasks = tasks.map((item) => {
+      if (item.category == "Done") {
+        return { ...item, count: 5 };
+      } else if (item.category == "On Progress") {
+        return { ...item, count: 2 };
+      } else if (item.category == "Cancelled") {
+        return { ...item, count: 1 };
+      } else {
+        return item;
+      }
+    });
+    setTasks(newTasks);
+  }, []);
+
+  const clockedIn = useSelector((state) => state.clockedIn);
 
   return (
     <ScrollView
@@ -130,7 +132,11 @@ export default function Home({ navigation }) {
               styles.shadowXY0,
               pressed ? styles.clicked : null,
             ]}
-            onPress={() => navigation.push("ClockOut")}
+            onPress={() =>
+              clockedIn
+                ? navigation.push("ClockOut")
+                : navigation.push("ClockIn")
+            }
           >
             <Clock width="30" height="30" fill="#3B3B89" />
           </Pressable>

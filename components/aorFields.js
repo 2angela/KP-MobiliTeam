@@ -63,7 +63,7 @@ export const PhotoUpload = ({
         <Text style={styles.title}>{category.toUpperCase()}</Text>
         <Text style={styles.capture}>Capture Photo</Text>
       </View>
-      <View style={[styles.cameraContainer, { borderBottomRightRadius: 30 }]}>
+      <View style={[styles.cameraContainer, { borderBottomRightRadius: 29 }]}>
         <Camera width="100" height="100" fill="#3B3B89" right="-5%" top="5%" />
       </View>
     </Pressable>
@@ -111,7 +111,7 @@ export const PhotoInput = ({
         value={inputVal}
         onChangeText={(e) => handleInputUpload(currentInputPath, e)}
       />
-      <View style={[styles.cameraContainer, { borderRadius: 47 }]}>
+      <View style={[styles.cameraContainer, { borderRadius: 34 }]}>
         <Camera width="100" height="100" fill="#3B3B89" right="-5%" top="5%" />
       </View>
     </Pressable>
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     width: "100%",
     backgroundColor: "white",
-    borderRadius: 50,
+    borderRadius: 35,
     borderColor: "#B1B1D0",
     borderWidth: 1,
     shadowColor: "rgba(0, 0, 0, 0.25)",
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "white",
     gap: 10,
-    borderRadius: 50,
+    borderRadius: 30,
     borderColor: "#B1B1D0",
     borderWidth: 1,
     shadowColor: "rgba(0, 0, 0, 0.25)",

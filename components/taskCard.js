@@ -67,7 +67,6 @@ export default function TaskCard({ item }) {
 const styles = StyleSheet.create({
   card: {
     display: "flex",
-    width: "100%",
     borderRadius: 15,
     borderColor: "#D9D9D9",
     borderWidth: 1,

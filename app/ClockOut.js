@@ -4,8 +4,8 @@ import {
   Text,
   StyleSheet,
   TextInput,
-  Alert,
   SafeAreaView,
+  Alert,
 } from "react-native";
 import AnalogClock from "react-native-clock-analog";
 import { Icon } from "react-native-paper";
@@ -47,13 +47,35 @@ export default function ClockOut({ navigation }) {
   }, []);
 
   const handleClockOut = () => {
-    if (!reason.trim()) {
-      setIsReasonValid(false);
-      Alert.alert("Validation Error", "Please provide a reason.");
-      return;
-    }
+    const now = new Date();
+    const currentHours = now.getHours();
 
-    navigation.goBack();
+    if (currentHours < 17) {
+      if (!reason.trim()) {
+        setIsReasonValid(false);
+        return;
+      }
+      Alert.alert(
+        "Alert",
+        "Working hours are until 17:00. Are you certain you want to clock out now?",
+        [
+          {
+            text: "Cancel",
+            style: "cancel",
+          },
+          {
+            text: "Yes",
+            onPress: () => navigation.goBack(),
+          },
+        ]
+      );
+    } else {
+      if (!reason.trim()) {
+        setIsReasonValid(false);
+        return;
+      }
+      navigation.goBack();
+    }
   };
 
   const handleCancel = () => {
@@ -125,6 +147,9 @@ export default function ClockOut({ navigation }) {
             setIsReasonValid(true);
           }}
         />
+        {!isReasonValid && (
+          <Text style={styles.errorText}>Please provide a reason.</Text>
+        )}
 
         <View style={{ display: "flex", flexDirection: "row", marginTop: 20 }}>
           <ButtonMedium label="Cancel" action={handleCancel} marginLeft={10} />
@@ -165,7 +190,6 @@ const styles = StyleSheet.create({
     alignItems: "left",
     width: "90%",
   },
-
   text1: {
     fontFamily: "MontserratSemiBold",
     fontSize: 12,
@@ -252,5 +276,11 @@ const styles = StyleSheet.create({
   },
   invalidInput: {
     borderColor: "red",
+  },
+  errorText: {
+    color: "red",
+    marginLeft: 20,
+    marginTop: 5,
+    fontFamily: "MontserratRegular",
   },
 });

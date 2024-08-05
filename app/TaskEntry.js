@@ -13,6 +13,7 @@ import ButtonClearHalf from "../components/buttonClearHalf";
 import ButtonBlueHalf from "../components/buttonBlueHalf";
 import ButtonWhite from "../components/buttonWhite";
 import SaveModal from "../components/saveModal";
+import GradientBG from "../components/gradientBG";
 
 export default function TaskEntry({ navigation }) {
   const categories = [
@@ -128,6 +129,7 @@ export default function TaskEntry({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <GradientBG />
       <ScreenTitle screenName="New Task Entry" navigation={navigation} />
       <ButtonWhite label="Clear" action={clearInput} marginRight={20} />
       <KeyboardAwareScrollView style={styles.innerContainer} bounces={false}>

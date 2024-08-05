@@ -530,7 +530,6 @@ export default function AOREntry({ navigation }) {
       {/* fields */}
       <KeyboardAwareScrollView
         style={styles.innerContainer}
-        showsVerticalScrollIndicator={false}
         bounces={false}
         ref={yScroll}
       >

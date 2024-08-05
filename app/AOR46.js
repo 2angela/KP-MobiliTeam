@@ -516,7 +516,7 @@ export default function AOR46({ navigation }) {
   // different input styles
   const inputStyle = (category, index) => {
     if (category == "Antenna" || category == "Tilting") return "PhotoInput";
-    else if (category == "Azimuth" && index >= 0 && index <= 2)
+    else if (category == "Azimuth" && index >= 0 && index <= 5)
       return "PhotoInput";
     else if (
       category == "RF Config Azimuth" ||
@@ -606,7 +606,6 @@ export default function AOR46({ navigation }) {
       {/* fields */}
       <KeyboardAwareScrollView
         style={styles.innerContainer}
-        showsVerticalScrollIndicator={false}
         bounces={false}
         ref={yScroll}
       >
@@ -707,13 +706,13 @@ export default function AOR46({ navigation }) {
                     item.name,
                     category,
                     "photo",
-                    `${index < 3 ? "before" : "after"}`
+                    `${index < 6 ? "before" : "after"}`
                   );
                   const currentInputPath = getInputPath(
                     item.name,
                     category,
                     "input",
-                    `${index < 3 ? "before" : "after"}`
+                    `${index < 6 ? "before" : "after"}`
                   );
                   const photoVal = findValueFromPath(currentPhotoPath);
                   const inputVal = findValueFromPath(currentInputPath);
@@ -725,7 +724,7 @@ export default function AOR46({ navigation }) {
                           <Divider width="100%" />
                         </View>
                       ) : null}
-                      {index == 3 ? (
+                      {index == 6 ? (
                         <View style={[styles.divider, { marginTop: "5%" }]}>
                           <Text style={styles.dividerText}>AFTER</Text>
                           <Divider width="100%" />

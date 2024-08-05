@@ -6,16 +6,16 @@
     "type": "Preventive",
     "category": "Maintenance",
     "status": "Done",
-    "createdAt": "20/07/2024, 11.50.20 AM"
+    "createdAt": "13/07/2024, 11.50.20 AM"
   },
   {
-    "site": "28MAAJ001_RDTO_MALUNDAK_SUMBA_EP",
-    "region": "Kalisumpa",
-    "cluster": "Majene",
+    "site": "E_APR005MD1_Sidemen-TBG_MD0",
+    "region": "Central Java",
+    "cluster": "Grobogan",
     "type": "Preventive",
     "category": "Maintenance",
     "status": "Pending",
-    "createdAt": "20/07/2024, 11.50.20 AM"
+    "createdAt": "19/07/2024, 11.50.20 AM"
   },
   {
     "site": "28MAAJ001_RDTO_MALUNDAK_SUMBA_EP",
@@ -24,15 +24,51 @@
     "type": "Preventive",
     "category": "Maintenance",
     "status": "Cancelled",
-    "createdAt": "20/07/2024, 11.50.20 AM"
+    "createdAt": "15/07/2024, 11.50.20 AM"
   },
   {
     "site": "28MAAJ001_RDTO_MALUNDAK_SUMBA_EP",
     "region": "Kalisumpa",
     "cluster": "Majene",
-    "type": "Preventive",
-    "category": "Maintenance",
+    "type": "Non Preventive",
+    "category": "Maintenance Genset",
     "status": "On Progress",
-    "createdAt": "20/07/2024, 11.50.20 AM"
+    "createdAt": "29/07/2024, 11.50.20 AM"
+  },
+  {
+    "site": "19ATB0001_US_TABEAN_BU",
+    "region": "East Java",
+    "cluster": "Nusa Tenggara Timur",
+    "type": "Preventive",
+    "category": "Backup",
+    "status": "Done",
+    "createdAt": "13/07/2024, 11.50.20 AM"
+  },
+  {
+    "site": "23BRI0047_NT_DESA_PASTING_PK",
+    "region": "Kalisumpa",
+    "cluster": "Banjarbaru",
+    "type": "Preventive",
+    "category": "Troubleshoot",
+    "status": "Done",
+    "createdAt": "13/07/2024, 11.50.20 AM"
+  },
+  {
+    "site": "16JMB0001_GONDANGMANIS_JMB_TB",
+    "region": "East Java",
+    "cluster": "Jombang",
+    "type": "Preventive",
+    "category": "Kasuistik",
+    "status": "Done",
+    "createdAt": "13/07/2024, 11.50.20 AM"
+  },
+  {
+    "site": "20BEK0070_SUNGAI_JAGA_MT",
+    "region": "Kalisumpa",
+    "cluster": "Mempawah",
+    "type": "Preventive",
+    "category": "Fueling",
+    "status": "Done",
+    "createdAt": "13/07/2024, 11.50.20 AM"
   }
 ]

@@ -6,6 +6,7 @@ import {
   Image,
   TextInput,
 } from "react-native";
+import { launchCamera } from "react-native-image-picker";
 import Camera from "../assets/icons/photo-camera.svg";
 import NoPhoto from "../assets/no-photo.svg";
 
@@ -14,11 +15,29 @@ const randomPhoto = () => {
   return "https://picsum.photos/50?random=1";
 };
 
+const handleTakePhoto = async (currentPhotoPath, handleInputUpload) => {
+  try {
+    await launchCamera({ mediaType: "photo", quality: 1 }, (response) => {
+      if (response.didCancel) {
+        console.log("User cancelled image picker");
+      } else if (response.errorCode) {
+        console.log("Error taking photo: ", response.errorMessage);
+      } else {
+        console.log("Image response: ", response);
+        handleInputUpload(currentPhotoPath, response.assets[0].uri);
+        return;
+      }
+    });
+  } catch {
+    handleInputUpload(currentPhotoPath, randomPhoto());
+  }
+};
+
 // Generate Random Photo component
-const RandomPhoto = () => {
-  return (
+const UploadedPhoto = ({ photoVal }) => {
+  return photoVal ? (
     <Image
-      source={{ uri: randomPhoto() }}
+      source={{ uri: photoVal }}
       style={{
         minWidth: 50,
         minHeight: 50,
@@ -28,6 +47,14 @@ const RandomPhoto = () => {
         marginBottom: 5,
         marginLeft: "10%",
       }}
+    />
+  ) : (
+    <NoPhoto
+      width="50"
+      height="50"
+      marginTop={5}
+      marginBottom={5}
+      marginLeft="10%"
     />
   );
 };
@@ -45,19 +72,9 @@ export const PhotoUpload = ({
         styles.container,
         pressed ? styles.fieldPressed : null,
       ]}
-      onPress={() => handleInputUpload(currentPhotoPath, randomPhoto())}
+      onPress={() => handleTakePhoto(currentPhotoPath, handleInputUpload)}
     >
-      {!photoVal ? (
-        <NoPhoto
-          width="50"
-          height="50"
-          marginTop={5}
-          marginBottom={5}
-          marginLeft="10%"
-        />
-      ) : (
-        <RandomPhoto />
-      )}
+      <UploadedPhoto photoVal={photoVal} />
 
       <View style={styles.textContent}>
         <Text style={styles.title}>{category.toUpperCase()}</Text>
@@ -85,20 +102,10 @@ export const PhotoInput = ({
         styles.container2,
         pressed ? styles.fieldPressed : null,
       ]}
-      onPress={() => handleInputUpload(currentPhotoPath, randomPhoto())}
+      onPress={() => handleTakePhoto(currentPhotoPath, handleInputUpload)}
     >
       <View style={styles.container3}>
-        {!photoVal ? (
-          <NoPhoto
-            width="50"
-            height="50"
-            marginTop={5}
-            marginBottom={5}
-            marginLeft="10%"
-          />
-        ) : (
-          <RandomPhoto />
-        )}
+        <UploadedPhoto photoVal={photoVal} />
         <View style={styles.textContent}>
           <Text style={styles.title}>{category.toUpperCase()}</Text>
           <Text style={styles.capture}>Capture Photo</Text>

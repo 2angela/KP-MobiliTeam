@@ -8,6 +8,7 @@ import {
   Modal,
   TextInput,
   TouchableWithoutFeedback,
+  Platform,
 } from "react-native";
 import Home from "../assets/icons/home_fill.svg";
 import Profile from "../assets/icons/account-circle.svg";
@@ -150,7 +151,10 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     paddingTop: 10,
     paddingBottom: 15,
-    borderColor: "rgba(59, 59, 137, 0.1)",
+    borderColor:
+      Platform.OS === "android"
+        ? "rgba(59, 59, 137, 0.3)"
+        : "rgba(59, 59, 137, 0.1)",
     borderWidth: 1,
     shadowColor: "rgba(59, 59, 137, 0.25)",
     shadowOffset: {
@@ -197,7 +201,10 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 100,
-    borderColor: "rgba(59, 59, 137, 0.1)",
+    borderColor:
+      Platform.OS === "android"
+        ? "rgba(59, 59, 137, 0.3)"
+        : "rgba(59, 59, 137, 0.1)",
     borderWidth: 1,
     backgroundColor: "white",
     shadowColor: "rgba(59, 59, 137, 0.5)",

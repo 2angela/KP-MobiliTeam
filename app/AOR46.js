@@ -356,7 +356,6 @@ export default function AOR46({ navigation }) {
   const handleInputUpload = (path, value) => {
     const newInput = set({ ...input }, path, value);
     setInput(newInput);
-    console.log("input changed!");
   };
 
   // error checking for dropdown and input fields
@@ -398,10 +397,8 @@ export default function AOR46({ navigation }) {
   const findErrorInScreens = () => {
     if (!firstSubmit.current) {
       const newErrorScreen = screens.map((screen) => {
-        console.log(input);
         switch (screen.name) {
           case "Site Information":
-            console.log("checking site information... errors =", errors);
             return (
               isEmpty(input.region) ||
               isEmpty(input.cluster) ||
@@ -442,7 +439,6 @@ export default function AOR46({ navigation }) {
         }
       });
       setErrorScreen(newErrorScreen);
-      console.log("new error screen =", newErrorScreen);
       return newErrorScreen.includes(true);
     } else {
       console.log("Submit First!");

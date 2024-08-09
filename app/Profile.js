@@ -25,6 +25,7 @@ import { resetUser } from "../redux/actions";
 
 export default function Profile({ navigation }) {
   const user = useSelector((state) => state.user);
+  const [profilePhoto, setProfilePhoto] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
   const handlePfpClick = () => {
@@ -46,7 +47,10 @@ export default function Profile({ navigation }) {
             style={styles.pfpContainer}
             onPress={handlePfpClick}
           >
-            <Image source={pfp} style={styles.pfp} />
+            <Image
+              source={profilePhoto ? { uri: profilePhoto } : pfp}
+              style={styles.pfp}
+            />
           </TouchableOpacity>
         </SafeAreaView>
       </View>
@@ -76,12 +80,16 @@ export default function Profile({ navigation }) {
           marginBottom={0}
         />
       </SafeAreaView>
-      <ModalEditProfile visible={modalVisible} onClose={handleCloseModal} />
+      <ModalEditProfile
+        visible={modalVisible}
+        onClose={handleCloseModal}
+        setProfilePhoto={setProfilePhoto}
+      />
     </View>
   );
 }
 
-const ModalEditProfile = ({ visible, onClose }) => {
+const ModalEditProfile = ({ visible, onClose, setProfilePhoto }) => {
   const handleTakePhoto = () => {
     launchCamera({ mediaType: "photo", quality: 1 }, (response) => {
       if (response.didCancel) {
@@ -90,6 +98,8 @@ const ModalEditProfile = ({ visible, onClose }) => {
         console.log("ImagePicker Error: ", response.errorMessage);
       } else {
         console.log("Image response: ", response);
+        setProfilePhoto(response.assets[0].uri);
+        onClose();
       }
     });
   };
@@ -102,6 +112,8 @@ const ModalEditProfile = ({ visible, onClose }) => {
         console.log("ImagePicker Error: ", response.errorMessage);
       } else {
         console.log("Image response: ", response);
+        setProfilePhoto(response.assets[0].uri);
+        onClose();
       }
     });
   };

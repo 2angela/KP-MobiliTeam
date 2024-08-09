@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  ScrollView,
+  Platform,
+} from "react-native";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Clock from "../assets/icons/clock_fill.svg";
@@ -349,7 +356,10 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: "white",
     borderRadius: 30,
-    borderColor: "rgba(0,0,0,0.1)",
+    borderColor:
+      Platform.OS === "android"
+        ? "rgba(59, 59, 137, 0.3)"
+        : "rgba(59, 59, 137, 0.1)",
     borderWidth: 1,
   },
   addIconContainer: {
@@ -418,7 +428,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 30,
     gap: 20,
-    borderColor: "rgba(0,0,0,0.1)",
+    borderColor:
+      Platform.OS === "android"
+        ? "rgba(59, 59, 137, 0.2)"
+        : "rgba(59, 59, 137, 0.1)",
     borderWidth: 1,
   },
   menu: {

@@ -320,10 +320,8 @@ export default function AOREntry({ navigation }) {
   const findErrorInScreens = () => {
     if (!firstSubmit.current) {
       const newErrorScreen = screens.map((screen) => {
-        console.log(input);
         switch (screen.name) {
           case "Site Information":
-            console.log("checking site information... errors =", errors);
             return (
               isEmpty(input.region) ||
               isEmpty(input.cluster) ||
@@ -360,7 +358,6 @@ export default function AOREntry({ navigation }) {
         }
       });
       setErrorScreen(newErrorScreen);
-      console.log("new error screen =", newErrorScreen);
       return newErrorScreen.includes(true);
     } else {
       console.log("Submit First!");

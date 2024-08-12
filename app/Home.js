@@ -102,6 +102,7 @@ export default function Home({ navigation }) {
   }, []);
 
   const clockedIn = useSelector((state) => state.clockedIn);
+  const user = useSelector((state) => state.user);
 
   return (
     <ScrollView
@@ -110,7 +111,7 @@ export default function Home({ navigation }) {
     >
       <View style={styles.header}>
         <View style={styles.headerLeft}>
-          <Text style={[styles.h1, styles.bold]}>Lorem Ipsum Dolor</Text>
+          <Text style={[styles.h1, styles.bold]}>{user.name}</Text>
           <Text
             style={[
               styles.h2,
@@ -119,7 +120,7 @@ export default function Home({ navigation }) {
               { marginTop: 5 },
             ]}
           >
-            Project Manager
+            {user.role}
           </Text>
           <Text
             style={[
@@ -129,7 +130,7 @@ export default function Home({ navigation }) {
               { marginTop: 5 },
             ]}
           >
-            IOH NPM
+            {user.project}
           </Text>
         </View>
         <View style={styles.headerRight}>

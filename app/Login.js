@@ -59,6 +59,8 @@ export default function Login({ navigation }) {
   const firstSubmit = useRef(true);
   const validate = () => {
     if (!firstSubmit.current) {
+      setEmail(email.trim());
+      setPassword(password.trim());
       //handle credential validation
       const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       const newEmailErr = [
@@ -96,7 +98,7 @@ export default function Login({ navigation }) {
       const isValid = validate();
       if (isValid) {
         const currentUser = {
-          name: "Lorem Ipsum Dolor",
+          name: "Admin KP",
           email: email,
           role: "Project Manager",
           project: "IOH NPM",

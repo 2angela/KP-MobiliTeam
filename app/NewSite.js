@@ -72,8 +72,12 @@ export default function NewSite({ navigation }) {
   const firstSubmit = useRef(true);
   const validate = () => {
     if (!firstSubmit.current) {
+      let tempInput = { ...input };
+      tempInput["site"] = tempInput["site"].trim();
+      tempInput["name"] = tempInput["name"].trim();
+      setInput(tempInput);
       // check for errors
-      const newErrors = Object.values(input).map((value) => {
+      const newErrors = Object.values(tempInput).map((value) => {
         return isEmpty(value);
         // add more error checking here
       });

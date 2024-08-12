@@ -89,27 +89,36 @@ export default function SignUp({ navigation }) {
   const [next, setNext] = useState(false);
   const validate = (step) => {
     if (!firstNext.current) {
+      let tempUser = {};
+      Object.keys(user).forEach((prop) => {
+        tempUser[prop] = user[prop].trim();
+      });
+      tempUser["password"] = user.password;
+      tempUser["confirm"] = user.confirm;
       // different error conditions for each fields
       const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       // name must at least have first and last name (separated with space)
-      const errName = [!user.name, !user.name.includes(" ")];
+      const errName = [!tempUser.name, !tempUser.name.includes(" ")];
       // email must be in the foo@bar.com format and is poca email
       const errEmail = [
-        !user.email,
-        regex.test(user.email) == false || !user.email.includes("poca"),
+        !tempUser.email,
+        regex.test(tempUser.email) == false || !tempUser.email.includes("poca"),
       ];
       // phone must be at least 11 chars long and start with either 0 or +
       const errPhone = [
-        !user.phone,
-        user.phone.length < 11 ||
-          (!user.phone[0] == 0 && !user.phone[0] == "+"),
+        !tempUser.phone,
+        tempUser.phone.length < 11 ||
+          (!tempUser.phone[0] == 0 && !tempUser.phone[0] == "+"),
       ];
       // nik must be at least 15 chars long
-      const errNik = [!user.nik, user.nik.length < 15];
+      const errNik = [!tempUser.nik, tempUser.nik.length < 15];
       // nik must be at least 8 chars long
-      const errPass = [!user.password, user.password.length < 8];
+      const errPass = [!tempUser.password, tempUser.password.length < 8];
       // confirm pass must match with password
-      const errConf = [!user.confirm, user.confirm != user.password];
+      const errConf = [
+        !tempUser.confirm,
+        tempUser.confirm !== tempUser.password,
+      ];
 
       // set new errors
       let newErrors = [...errors];
@@ -137,10 +146,10 @@ export default function SignUp({ navigation }) {
         return true;
       } else if (step == "second") {
         if (!firstSubmit.current) {
-          const errReg = [!user.region];
-          const errClus = [!user.cluster];
-          const errProj = [!user.project];
-          const errRole = [!user.role];
+          const errReg = [!tempUser.region];
+          const errClus = [!tempUser.cluster];
+          const errProj = [!tempUser.project];
+          const errRole = [!tempUser.role];
           newErrors[6] = errReg;
           newErrors[7] = errClus;
           newErrors[8] = errProj;
@@ -152,6 +161,8 @@ export default function SignUp({ navigation }) {
               return false;
             }
           }
+          console.log(tempUser);
+          setCurrentUser(tempUser);
           return true;
         } else {
           console.log("Submit First!");
@@ -211,7 +222,7 @@ export default function SignUp({ navigation }) {
           <Text style={styles.screenname}>Sign Up</Text>
           <Pressable
             style={styles.back}
-            onPress={() => (next ? setNext(false) : navigation.goBack())}
+            onPress={() => (next ? setNext(false) : navigation.push("Login"))}
           >
             <Back width="20" height="20" fill="white" />
             <Text style={styles.textStyle}>back</Text>

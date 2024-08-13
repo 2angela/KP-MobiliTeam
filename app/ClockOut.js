@@ -68,7 +68,10 @@ export default function ClockOut({ navigation }) {
           },
           {
             text: "Yes",
-            onPress: () => navigation.goBack(),
+            onPress: () => {
+              dispatch(clockOut());
+              navigation.goBack();
+            },
           },
         ]
       );

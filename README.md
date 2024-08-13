@@ -7,7 +7,7 @@ Disusun oleh tim Kerja Praktik ITB STI 2024
 
 ## Penjelasan Singkat Aplikasi
 
-MobiliTeam adalah aplikasi seluler untuk melakukan monitoring pekerjaan dan manajemen tim lapangan. _Repository_ ini berisi kode untuk membangun prototipe aplikasi MobiliTeam dengan tampilan antarmuka yang telah diperbarui. Prototipe ini tidak mengandung data sensitif dan seluruh data yang ditampilkan merupakan _placeholder_.
+MobiliTeam adalah aplikasi seluler untuk melakukan monitoring pekerjaan dan manajemen tim lapangan. _Repository_ ini berisi kode untuk membangun prototipe aplikasi MobiliTeam dengan tampilan antarmuka yang telah diperbarui. Prototipe ini tidak mengandung informasi sensitif dan seluruh data yang ditampilkan merupakan _placeholder_.
 
 ## Cara menjalankan aplikasi
 
@@ -37,3 +37,88 @@ Untuk mengunduh dan menggunakan emulator dari Android Studio, silahkan merujuk k
 2. Setelah menjalankan seluruh tahapan, emulator akan otomatis terbuka dan aplikasi otomatis dijalankan.
 
 ## Layar Prototipe MobiliTeam
+
+**1. Melakukan Log In** <br>
+<img src="./doc/logIn1.jpeg" width=40%>
+<img src="./doc/logIn2.jpeg" width=40%>
+
+**2. Melakukan Sign Up** <br>
+<img src="./doc/signUp1.jpeg" width=40%>
+<img src="./doc/signUp2.jpeg" width=40%>
+<img src="./doc/signUp3.jpeg" width=40%>
+<img src="./doc/signUp4.jpeg" width=40%>
+
+**3. Menambahkan task baru** <br>
+<img src="./doc/newTask1.jpeg" width=40%>
+<img src="./doc/newTask2.jpeg" width=40%>
+
+**4. Melihat daftar task** <br>
+<img src="./doc/displayTask1.jpeg" width=40%>
+<img src="./doc/displayTask2.jpeg" width=40%>
+<img src="./doc/displayTask3.jpeg" width=40%>
+<img src="./doc/displayTask4.jpeg" width=40%>
+
+**5. Menambahkan permintaan BBM** <br>
+<img src="./doc/bbmReq1.jpeg" width=40%>
+<img src="./doc/bbmReq2.jpeg" width=40%>
+
+**6. Melihat data BBM** <br>
+<img src="./doc/displayBBM1.jpeg" width=40%>
+<img src="./doc/displayBBM2.jpeg" width=40%>
+<img src="./doc/displayBBM3.jpeg" width=40%>
+<img src="./doc/displayBBM4.jpeg" width=40%>
+
+**7. Menambahkan data COP** <br>
+<img src="./doc/COPEntry1.jpeg" width=40%>
+<img src="./doc/COPEntry2.jpeg" width=40%>
+
+**8. Melihat data COP** <br>
+<img src="./doc/COPHistory1.jpeg" width=40%>
+<img src="./doc/COPHistory2.jpeg" width=40%>
+<img src="./doc/COPHistory3.jpeg" width=40%>
+<img src="./doc/COPHistory4.jpeg" width=40%>
+<img src="./doc/COPHistory5.jpeg" width=40%>
+
+**9. Menambahkan data AOR** <br>
+<img src="./doc/AOR1.jpeg" width=40%>
+<img src="./doc/AOR2.jpeg" width=40%>
+<img src="./doc/AOR3.jpeg" width=40%>
+<img src="./doc/AOR4.jpeg" width=40%>
+<img src="./doc/AOR5.jpeg" width=40%>
+<img src="./doc/AOR6.jpeg" width=40%>
+<img src="./doc/AOR7.jpeg" width=40%>
+<img src="./doc/AOR8.jpeg" width=40%>
+<img src="./doc/AOR9.jpeg" width=40%>
+<img src="./doc/AOR10.jpeg" width=40%>
+<img src="./doc/AOR11.jpeg" width=40%>
+
+**9. Menambahkan data AOR** <br>
+<img src="./doc/AOR1.jpeg" width=40%>
+<img src="./doc/AOR2.jpeg" width=40%>
+<img src="./doc/AOR3.jpeg" width=40%>
+<img src="./doc/AOR4.jpeg" width=40%>
+<img src="./doc/AOR5.jpeg" width=40%>
+<img src="./doc/AOR6.jpeg" width=40%>
+<img src="./doc/AOR7.jpeg" width=40%>
+<img src="./doc/AOR8.jpeg" width=40%>
+<img src="./doc/AOR9.jpeg" width=40%>
+<img src="./doc/AOR10.jpeg" width=40%>
+<img src="./doc/AOR11.jpeg" width=40%>
+
+**10. Melihat data AOR** <br>
+<img src="./doc/AORDoc1.jpeg" width=40%>
+<img src="./doc/AORDoc2.jpeg" width=40%>
+
+**11. Menambahkan data tower** <br>
+<img src="./doc/NewSite1.jpeg" width=40%>
+<img src="./doc/NewSite2.jpeg" width=40%>
+
+**12. Melihat data tower** <br>
+<img src="./doc/TowerList1.jpeg" width=40%>
+<img src="./doc/TowerList2.jpeg" width=40%>
+
+**13. Melakukan clock in** <br>
+<img src="./doc/ClockIn.jpeg" width=40%>
+
+**14. Melakukan clock out** <br>
+<img src="./doc/ClockOut.jpeg" width=40%>

@@ -1,0 +1,52 @@
+[
+  {
+    "site": "BLA001",
+    "region": "Central Java",
+    "cluster": "Semarang"
+  },
+  {
+    "site": "BLA002",
+    "region": "Central Java",
+    "cluster": "Yogyakarta"
+  },
+  {
+    "site": "BLA003",
+    "region": "Central Java",
+    "cluster": "Solo"
+  },
+  {
+    "site": "BLA004",
+    "region": "Central Java",
+    "cluster": "Magelang"
+  },
+  {
+    "site": "BLA005",
+    "region": "Central Java",
+    "cluster": "Kebumen"
+  },
+  {
+    "site": "BLA006",
+    "region": "East Java",
+    "cluster": "Malang"
+  },
+  {
+    "site": "BLA007",
+    "region": "East Java",
+    "cluster": "Surabaya"
+  },
+  {
+    "site": "BLA008",
+    "region": "West Java",
+    "cluster": "Bandung"
+  },
+  {
+    "site": "BLA009",
+    "region": "West Java",
+    "cluster": "Bogor"
+  },
+  {
+    "site": "BLA010",
+    "region": "West Java",
+    "cluster": "Depok"
+  }
+]

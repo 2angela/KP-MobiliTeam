@@ -11,8 +11,11 @@ MobiliTeam adalah aplikasi seluler untuk melakukan monitoring pekerjaan dan mana
 
 ## Cara menjalankan aplikasi
 
-1. Buka project pada Visual Studio Code dan ubah directory terminal ke directory project.
-2. Pada terminal, jalankan command `npm install` untuk menginstal semua modul dan _dependencies_ yang diperlukan untuk menjalankan aplikasi.
+Berikut adalah tahapan untuk menjalankan prototipe aplikasi.
+
+1. Unduh atau clone project ini dari GitHub.
+2. Buka project pada Visual Studio Code dan ubah directory terminal ke directory project MobiliTeam atau melalui command `cd ./MobiliTeam` pada terminal.
+3. Pada terminal, jalankan command `npm install` untuk menginstal semua modul dan _dependencies_ yang diperlukan untuk menjalankan aplikasi.
 
 Selanjutnya, aplikasi dapat dijalankan melalui Expo Go maupun emulator Android Studio.
 
